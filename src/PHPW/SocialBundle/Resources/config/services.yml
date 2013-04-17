@@ -1,0 +1,7 @@
+parameters:
+#    phpw_social.example.class: PHPW\SocialBundle\Example
+
+services:
+#    phpw_social.example:
+#        class: %phpw_social.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
