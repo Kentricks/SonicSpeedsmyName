@@ -7,35 +7,50 @@ class __TwigTemplate_28603c64e46e02610c309e086d7a2bb3 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("::base2sn.html.twig");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'body' => array($this, 'block_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "::base2sn.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bootstrap 101 Template</title>
-    <!-- Bootstrap -->
-    <link rel=\"stylesheet\" href=\"/bootstrap/css/bootstrap.css\">
-  </head>
-  <body>
-    <p class=\"alert\">Hello ";
-        // line 9
-        echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
-        echo "!</p>
-    <table class=\"table table-bordered\">
-      <tr><th>Hello</th><th>Toi</th></tr>
-    </table>
-   <script src=\"/bootstrap/js/jquery.js\"><\\/script>
-   <script src=\"/bootstrap/js/bootstrap.js\"></script>
-  </body>
-</html>
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        echo "Accueil";
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = array())
+    {
+        // line 6
+        if ((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))) {
+            // line 7
+            echo "<table class=\"table table-bordered\">
+\t<tr>
+\t\t<th>Hello</th><th>";
+            // line 9
+            echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
+            echo "</th>
+\t</tr>
+</table>
 ";
+        } else {
+            // line 13
+            echo "\t<p>Pas trouvé</p>
+\t";
+        }
     }
 
     public function getTemplateName()
@@ -50,6 +65,6 @@ class __TwigTemplate_28603c64e46e02610c309e086d7a2bb3 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  29 => 9,  19 => 1,);
+        return array (  51 => 13,  44 => 9,  40 => 7,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

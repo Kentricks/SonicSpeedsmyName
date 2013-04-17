@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bootstrap 101 Template</title>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-  </head>
-  <body>
-    <p class="alert">Hello {{ name }}!</p>
-    <table class="table table-bordered">
-      <tr><th>Hello</th><th>Toi</th></tr>
-    </table>
-   <script src="/bootstrap/js/jquery.js"><\/script>
-   <script src="/bootstrap/js/bootstrap.js"></script>
-  </body>
-</html>
+{% extends '::base2sn.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+{% if name %}
+<table class="table table-bordered">
+	<tr>
+		<th>Hello</th><th>{{ name }}</th>
+	</tr>
+</table>
+{% else %}
+	<p>Pas trouvé</p>
+	{% endif %}
+{% endblock %}

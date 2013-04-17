@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    </head>
+    <body>
+        <h1>2SN</h1>
+        <div id="navbar">
+            {% block navbar %}
+            <div class="navbar navbar">
+                <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a  class="brand" href="#">Accueil</a></li>
+                            <li class="active"><a href="#">Mon compte</a></li>
+                            <li><a href="#">Messages</a></li>
+                            <li><a href="#">Mes amis</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                        <li><a href="#"><i src='../images/glaphicons-halflings.png'class="icon-off"></i>Deconnexion</a></li>
+                        </ul>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            {% block footer %}
+            <div class="navbar navbar">
+                <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="#">A Propos</a></li>
+                            <li><a href="#">© Copyright 2013 </a></li>
+                        </ul>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+        <script src="/bootstrap/js/jquery.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+    </body>
+</html>

@@ -4,3 +4,6 @@
 [submodule "bootstrap-bundle"]
 	path = bootstrap-bundle
 	url = git://github.com/braincrafted/bootstrap-bundle.git
+[submodule "te"]
+	path = te
+	url = git://github.com/braincrafted/bootstrap-bundle.git
