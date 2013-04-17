@@ -1852,6 +1852,48 @@
         ]
     },
     {
+        "name": "jquery/jquery",
+        "version": "1.9.1",
+        "version_normalized": "1.9.1.0",
+        "dist": {
+            "type": "file",
+            "url": "http://code.jquery.com/jquery-1.9.1.js",
+            "reference": null,
+            "shasum": null
+        },
+        "type": "library",
+        "installation-source": "dist"
+    },
+    {
+        "name": "twitter/bootstrap",
+        "version": "v2.3.1",
+        "version_normalized": "2.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twitter/bootstrap.git",
+            "reference": "v2.3.1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twitter/bootstrap/zipball/v2.3.1",
+            "reference": "v2.3.1",
+            "shasum": ""
+        },
+        "time": "2013-03-01 05:24:27",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+        "homepage": "http://twitter.github.com/bootstrap/",
+        "keywords": [
+            "bootstrap",
+            "css"
+        ]
+    },
+    {
         "name": "braincrafted/bootstrap-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -1909,48 +1951,6 @@
         "description": "Twitter Bootstrap for Symfony2",
         "keywords": [
             "bootstrap"
-        ]
-    },
-    {
-        "name": "jquery/jquery",
-        "version": "1.9.1",
-        "version_normalized": "1.9.1.0",
-        "dist": {
-            "type": "file",
-            "url": "http://code.jquery.com/jquery-1.9.1.js",
-            "reference": null,
-            "shasum": null
-        },
-        "type": "library",
-        "installation-source": "dist"
-    },
-    {
-        "name": "twitter/bootstrap",
-        "version": "v2.3.1",
-        "version_normalized": "2.3.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twitter/bootstrap.git",
-            "reference": "v2.3.1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twitter/bootstrap/zipball/v2.3.1",
-            "reference": "v2.3.1",
-            "shasum": ""
-        },
-        "time": "2013-03-01 05:24:27",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Apache-2.0"
-        ],
-        "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-        "homepage": "http://twitter.github.com/bootstrap/",
-        "keywords": [
-            "bootstrap",
-            "css"
         ]
     }
 ]
