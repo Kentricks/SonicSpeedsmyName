@@ -71,9 +71,8 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetManagerService()
     {
-        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('config' => new \Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader(), 'twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/config'), true)));
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/config'), true)));
 
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource(array('bootstrap_css' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/bootstrap.less', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/responsive.less'), 1 => array(0 => 'less', 1 => 'cssrewrite'), 2 => array('output' => '/css/bootstrap.css')), 'bootstrap_js' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-transition.js', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-alert.js', 2 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-button.js', 3 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-carousel.js', 4 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-collapse.js', 5 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js', 6 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-modal.js', 7 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js', 8 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-popover.js', 9 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js', 10 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tab.js', 11 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js', 12 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-affix.js'), 1 => array(), 2 => array('output' => '/js/bootstrap.js')), 'jquery' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/jquery/jquery/jquery-1.9.1.js'), 1 => array(), 2 => array('output' => '/js/jquery.js')))), 'config');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
 
         return $instance;
@@ -148,45 +147,6 @@ class appDevDebugProjectContainer extends Container
     protected function getAssetic_RequestListenerService()
     {
         return $this->services['assetic.request_listener'] = new \Symfony\Bundle\AsseticBundle\EventListener\RequestListener();
-    }
-
-    /**
-     * Gets the 'bc_bootstrap.twig.badge_extension' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension A Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension instance.
-     */
-    protected function getBcBootstrap_Twig_BadgeExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.badge_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension();
-    }
-
-    /**
-     * Gets the 'bc_bootstrap.twig.icon_extension' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension A Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension instance.
-     */
-    protected function getBcBootstrap_Twig_IconExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.icon_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension();
-    }
-
-    /**
-     * Gets the 'bc_bootstrap.twig.label_extension' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension A Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension instance.
-     */
-    protected function getBcBootstrap_Twig_LabelExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.label_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension();
     }
 
     /**
@@ -354,11 +314,11 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
-     * @return EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+     * @return EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51704de734c93.php';
+        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51705278990c5.php';
 
         $a = new \Doctrine\Common\Cache\ArrayCache();
         $a->setNamespace('sf2orm_default_d14ac98f9685f1247ad3a3cc9ad675ee');
@@ -385,7 +345,7 @@ class appDevDebugProjectContainer extends Container
         $e = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
         $this->get('doctrine.orm.default_manager_configurator')->configure($e);
 
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
     }
 
     /**
@@ -2717,14 +2677,11 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig', 1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
         $instance->addExtension(new \Twig_Extension_Debug());
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default')));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \JMS\SecurityExtraBundle\Twig\SecurityExtension($a));
-        $instance->addExtension($this->get('bc_bootstrap.twig.icon_extension'));
-        $instance->addExtension($this->get('bc_bootstrap.twig.label_extension'));
-        $instance->addExtension($this->get('bc_bootstrap.twig.badge_extension'));
         $instance->addExtension($this->get('twig.extension.acme.demo'));
         $instance->addGlobal('app', $this->get('templating.globals'));
 
@@ -2776,7 +2733,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/src/PHPW/SocialBundle/Resources/views', 'PHPWSocial');
-        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/views', 'BcBootstrap');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/src/Acme/DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
@@ -2899,7 +2855,7 @@ class appDevDebugProjectContainer extends Container
     /**
      * Gets the doctrine.orm.entity_manager service alias.
      *
-     * @return EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
+     * @return EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
      */
     protected function getDoctrine_Orm_EntityManagerService()
     {
@@ -3276,7 +3232,6 @@ class appDevDebugProjectContainer extends Container
                 'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
                 'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
-                'BcBootstrapBundle' => 'Bc\\Bundle\\BootstrapBundle\\BcBootstrapBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -3563,7 +3518,6 @@ class appDevDebugProjectContainer extends Container
             'twig.exception_listener.controller' => 'twig.controller.exception:showAction',
             'twig.form.resources' => array(
                 0 => 'form_div_layout.html.twig',
-                1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig',
             ),
             'twig.options' => array(
                 'debug' => true,
@@ -3773,8 +3727,8 @@ class appDevDebugProjectContainer extends Container
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
 
             ),
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51704de734c93.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51705278990c5.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
             'security.secured_services' => array(
 
             ),

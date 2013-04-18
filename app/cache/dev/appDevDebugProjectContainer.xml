@@ -20,7 +20,6 @@
       <parameter key="JMSAopBundle">JMS\AopBundle\JMSAopBundle</parameter>
       <parameter key="JMSDiExtraBundle">JMS\DiExtraBundle\JMSDiExtraBundle</parameter>
       <parameter key="JMSSecurityExtraBundle">JMS\SecurityExtraBundle\JMSSecurityExtraBundle</parameter>
-      <parameter key="BcBootstrapBundle">Bc\Bundle\BootstrapBundle\BcBootstrapBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -301,7 +300,6 @@
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
-      <parameter>BcBootstrapBundle:Form:form_div_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.options" type="collection">
       <parameter key="debug">true</parameter>
@@ -491,8 +489,8 @@
     <parameter key="jms_di_extra.disable_grep">false</parameter>
     <parameter key="jms_di_extra.doctrine_integration">true</parameter>
     <parameter key="jms_di_extra.cache_warmer.controller_file_blacklist" type="collection"/>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51704de734c93.php</parameter>
-    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.file">/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51705278990c5.php</parameter>
+    <parameter key="jms_di_extra.doctrine_integration.entity_manager.class">EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager</parameter>
     <parameter key="security.secured_services" type="collection"/>
     <parameter key="security.access.method_interceptor.class">JMS\SecurityExtraBundle\Security\Authorization\Interception\MethodSecurityInterceptor</parameter>
     <parameter key="security.access.method_access_control" type="collection"/>
@@ -2025,7 +2023,6 @@
                   <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
                     <argument type="collection">
                       <argument>form_div_layout.html.twig</argument>
-                      <argument>BcBootstrapBundle:Form:form_div_layout.html.twig</argument>
                     </argument>
                   </service>
                 </argument>
@@ -2070,15 +2067,6 @@
             <argument type="service" id="security.context"/>
           </service>
         </argument>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="bc_bootstrap.twig.icon_extension"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="bc_bootstrap.twig.label_extension"/>
-      </call>
-      <call method="addExtension">
-        <argument type="service" id="bc_bootstrap.twig.badge_extension"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.acme.demo"/>
@@ -2135,11 +2123,6 @@
     <service id="assetic.asset_manager" class="Assetic\Factory\LazyAssetManager">
       <argument type="service" id="assetic.asset_factory"/>
       <argument type="collection">
-        <argument key="config" type="service">
-          <service class="Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader" public="false">
-            <tag name="assetic.formula_loader" alias="config"/>
-          </service>
-        </argument>
         <argument key="twig" type="service">
           <service class="Assetic\Factory\Loader\CachedFormulaLoader" public="false">
             <tag name="assetic.formula_loader" alias="twig"/>
@@ -2159,59 +2142,6 @@
           </service>
         </argument>
       </argument>
-      <call method="addResource">
-        <argument type="service">
-          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource" public="false">
-            <tag name="assetic.formula_resource" loader="config"/>
-            <argument type="collection">
-              <argument key="bootstrap_css" type="collection">
-                <argument type="collection">
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/bootstrap.less</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/responsive.less</argument>
-                </argument>
-                <argument type="collection">
-                  <argument>less</argument>
-                  <argument>cssrewrite</argument>
-                </argument>
-                <argument type="collection">
-                  <argument key="output">/css/bootstrap.css</argument>
-                </argument>
-              </argument>
-              <argument key="bootstrap_js" type="collection">
-                <argument type="collection">
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-transition.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-alert.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-button.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-carousel.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-collapse.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-modal.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-popover.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tab.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js</argument>
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-affix.js</argument>
-                </argument>
-                <argument type="collection"/>
-                <argument type="collection">
-                  <argument key="output">/js/bootstrap.js</argument>
-                </argument>
-              </argument>
-              <argument key="jquery" type="collection">
-                <argument type="collection">
-                  <argument>/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/jquery/jquery/jquery-1.9.1.js</argument>
-                </argument>
-                <argument type="collection"/>
-                <argument type="collection">
-                  <argument key="output">/js/jquery.js</argument>
-                </argument>
-              </argument>
-            </argument>
-          </service>
-        </argument>
-        <argument>config</argument>
-      </call>
       <call method="addResource">
         <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
@@ -2361,8 +2291,8 @@
       <argument type="collection"/>
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
-      <file>/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51704de734c93.php</file>
+    <service id="doctrine.orm.default_entity_manager" class="EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager">
+      <file>/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51705278990c5.php</file>
       <argument type="service">
         <service class="Doctrine\ORM\EntityManager" factory-method="create" public="false">
           <argument type="service" id="doctrine.dbal.default_connection"/>
@@ -2581,15 +2511,6 @@
           </service>
         </argument>
       </call>
-    </service>
-    <service id="bc_bootstrap.twig.icon_extension" class="Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="bc_bootstrap.twig.label_extension" class="Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension">
-      <tag name="twig.extension"/>
-    </service>
-    <service id="bc_bootstrap.twig.badge_extension" class="Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension">
-      <tag name="twig.extension"/>
     </service>
     <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
       <tag name="twig.extension"/>
@@ -2884,10 +2805,6 @@
       <call method="addPath">
         <argument>/Users/Ophelie/Sites/2SN-git/2SN/src/PHPW/SocialBundle/Resources/views</argument>
         <argument>PHPWSocial</argument>
-      </call>
-      <call method="addPath">
-        <argument>/Users/Ophelie/Sites/2SN-git/2SN/vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/views</argument>
-        <argument>BcBootstrap</argument>
       </call>
       <call method="addPath">
         <argument>/Users/Ophelie/Sites/2SN-git/2SN/src/Acme/DemoBundle/Resources/views</argument>

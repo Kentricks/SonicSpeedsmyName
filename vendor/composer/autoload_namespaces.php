@@ -34,7 +34,6 @@ return array(
     'Doctrine\\Common\\' => $vendorDir . '/doctrine/common/lib',
     'Doctrine\\Bundle\\DoctrineBundle' => $vendorDir . '/doctrine/doctrine-bundle',
     'CG\\' => $vendorDir . '/jms/cg/src',
-    'Bc\\Bundle\\BootstrapBundle' => $vendorDir . '/braincrafted/bootstrap-bundle',
     'Assetic' => $vendorDir . '/kriswallsmith/assetic/src',
     '' => $baseDir . '/src',
 );
