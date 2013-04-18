@@ -2,8 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-<<<<<<< HEAD
-    resource: /Users/adamsdavid/piscine/2SN-git/2SN/app/config/routing_dev.yml
-=======
     resource: /Users/Ophelie/Sites/2SN-git/2SN/app/config/routing_dev.yml
->>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf

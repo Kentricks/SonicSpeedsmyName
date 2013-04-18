@@ -26,8 +26,7 @@ class appProdProjectContainer extends Container
     }
     protected function getAssetic_AssetManagerService()
     {
-        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('config' => new \Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader(), 'twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/config'), false)));
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource(array('bootstrap_css' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/bootstrap.less', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/responsive.less'), 1 => array(0 => 'less', 1 => 'cssrewrite'), 2 => array('output' => '/css/bootstrap.css')), 'bootstrap_js' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-transition.js', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-alert.js', 2 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-button.js', 3 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-carousel.js', 4 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-collapse.js', 5 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js', 6 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-modal.js', 7 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js', 8 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-popover.js', 9 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js', 10 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tab.js', 11 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js', 12 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-affix.js'), 1 => array(), 2 => array('output' => '/js/bootstrap.js')), 'jquery' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/jquery/jquery/jquery-1.9.1.js'), 1 => array(), 2 => array('output' => '/js/jquery.js')))), 'config');
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/config'), false)));
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
         return $instance;
     }
@@ -55,18 +54,6 @@ class appProdProjectContainer extends Container
     protected function getAssetic_RequestListenerService()
     {
         return $this->services['assetic.request_listener'] = new \Symfony\Bundle\AsseticBundle\EventListener\RequestListener();
-    }
-    protected function getBcBootstrap_Twig_BadgeExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.badge_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension();
-    }
-    protected function getBcBootstrap_Twig_IconExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.icon_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension();
-    }
-    protected function getBcBootstrap_Twig_LabelExtensionService()
-    {
-        return $this->services['bc_bootstrap.twig.label_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension();
     }
     protected function getCacheClearerService()
     {
@@ -97,11 +84,11 @@ class appProdProjectContainer extends Container
     }
     protected function getDoctrine_Dbal_DefaultConnectionService()
     {
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'symfony', 'host' => '127.0.0.1', 'port' => NULL, 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('dbname' => 'phpw_project', 'host' => 'localhost', 'port' => NULL, 'user' => 'root', 'password' => 'root', 'charset' => 'UTF8', 'driver' => 'pdo_mysql', 'driverOptions' => array()), new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
     }
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516ef4e1c9179.php';
+        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_517054093b73b.php';
         $a = new \Doctrine\Common\Cache\ArrayCache();
         $a->setNamespace('sf2orm_default_99c814d9c36c2d350af60ad2741067e0');
         $b = new \Doctrine\Common\Cache\ArrayCache();
@@ -122,7 +109,7 @@ class appProdProjectContainer extends Container
         $d->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
         $e = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
         $this->get('doctrine.orm.default_manager_configurator')->configure($e);
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager516ef4e1c9179_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager517054093b73b_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
     }
     protected function getDoctrine_Orm_DefaultManagerConfiguratorService()
     {
@@ -171,7 +158,7 @@ class appProdProjectContainer extends Container
     }
     protected function getForm_CsrfProviderService()
     {
-        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\SessionCsrfProvider($this->get('session'), 'ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['form.csrf_provider'] = new \Symfony\Component\Form\Extension\Csrf\CsrfProvider\SessionCsrfProvider($this->get('session'), 'e3a1820d138f1b8d494673abf49697a6855dbf7a');
     }
     protected function getForm_FactoryService()
     {
@@ -898,13 +885,10 @@ class appProdProjectContainer extends Container
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig', 1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
         $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default')));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \JMS\SecurityExtraBundle\Twig\SecurityExtension($a));
-        $instance->addExtension($this->get('bc_bootstrap.twig.icon_extension'));
-        $instance->addExtension($this->get('bc_bootstrap.twig.label_extension'));
-        $instance->addExtension($this->get('bc_bootstrap.twig.badge_extension'));
         $instance->addGlobal('app', $this->get('templating.globals'));
         return $instance;
     }
@@ -926,7 +910,6 @@ class appProdProjectContainer extends Container
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/src/PHPW/SocialBundle/Resources/views', 'PHPWSocial');
-        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/views', 'BcBootstrap');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views');
         return $instance;
     }
@@ -936,7 +919,7 @@ class appProdProjectContainer extends Container
     }
     protected function getUriSignerService()
     {
-        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('ThisTokenIsNotSoSecretChangeIt');
+        return $this->services['uri_signer'] = new \Symfony\Component\HttpKernel\UriSigner('e3a1820d138f1b8d494673abf49697a6855dbf7a');
     }
     protected function getValidatorService()
     {
@@ -1066,22 +1049,22 @@ class appProdProjectContainer extends Container
                 'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
                 'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
-                'BcBootstrapBundle' => 'Bc\\Bundle\\BootstrapBundle\\BcBootstrapBundle',
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdProjectContainer',
             'database_driver' => 'pdo_mysql',
-            'database_host' => '127.0.0.1',
+            'database_host' => 'localhost',
             'database_port' => NULL,
-            'database_name' => 'symfony',
+            'database_name' => 'phpw_project',
             'database_user' => 'root',
-            'database_password' => NULL,
+            'database_password' => 'root',
             'mailer_transport' => 'smtp',
             'mailer_host' => '127.0.0.1',
             'mailer_user' => NULL,
             'mailer_password' => NULL,
             'locale' => 'en',
-            'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'secret' => 'e3a1820d138f1b8d494673abf49697a6855dbf7a',
+            'database_path' => NULL,
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
             'controller_name_converter.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerNameParser',
             'response_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\ResponseListener',
@@ -1125,7 +1108,7 @@ class appProdProjectContainer extends Container
             'translation.loader.class' => 'Symfony\\Bundle\\FrameworkBundle\\Translation\\TranslationLoader',
             'translation.extractor.class' => 'Symfony\\Component\\Translation\\Extractor\\ChainExtractor',
             'translation.writer.class' => 'Symfony\\Component\\Translation\\Writer\\TranslationWriter',
-            'kernel.secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'kernel.secret' => 'e3a1820d138f1b8d494673abf49697a6855dbf7a',
             'kernel.trusted_proxies' => array(
             ),
             'kernel.trust_proxy_headers' => false,
@@ -1339,7 +1322,6 @@ class appProdProjectContainer extends Container
             'twig.exception_listener.controller' => 'twig.controller.exception:showAction',
             'twig.form.resources' => array(
                 0 => 'form_div_layout.html.twig',
-                1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig',
             ),
             'twig.options' => array(
                 'debug' => false,
@@ -1536,8 +1518,8 @@ class appProdProjectContainer extends Container
             'jms_di_extra.doctrine_integration' => true,
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
             ),
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516ef4e1c9179.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager516ef4e1c9179_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_517054093b73b.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager517054093b73b_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
             'security.secured_services' => array(
             ),
             'security.access.method_interceptor.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Interception\\MethodSecurityInterceptor',
