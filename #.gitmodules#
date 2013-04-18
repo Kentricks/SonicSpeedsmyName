@@ -1,0 +1,3 @@
+[submodule "BootstrapBundle"]
+        path = 
+        url = ./vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle

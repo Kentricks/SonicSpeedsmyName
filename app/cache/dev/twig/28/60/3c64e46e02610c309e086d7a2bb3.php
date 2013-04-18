@@ -35,19 +35,23 @@ class __TwigTemplate_28603c64e46e02610c309e086d7a2bb3 extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 6
+        echo "<div class=\"alert alert-info\">
+</div>
+";
+        // line 8
         if ((isset($context["name"]) ? $context["name"] : $this->getContext($context, "name"))) {
-            // line 7
+            // line 9
             echo "<table class=\"table table-bordered\">
 \t<tr>
 \t\t<th>Hello</th><th>";
-            // line 9
+            // line 11
             echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
             echo "</th>
 \t</tr>
 </table>
 ";
         } else {
-            // line 13
+            // line 15
             echo "\t<p>Pas trouvé</p>
 \t";
         }
@@ -65,6 +69,6 @@ class __TwigTemplate_28603c64e46e02610c309e086d7a2bb3 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  51 => 13,  44 => 9,  40 => 7,  38 => 6,  35 => 5,  29 => 3,);
+        return array (  55 => 15,  48 => 11,  44 => 9,  42 => 8,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

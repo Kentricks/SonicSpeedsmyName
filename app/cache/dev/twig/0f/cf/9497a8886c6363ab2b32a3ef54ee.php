@@ -77,7 +77,7 @@ class __TwigTemplate_0fcf9497a8886c6363ab2b32a3ef54ee extends Twig_Template
                             <li><a href=\"#\">Mes amis</a></li>
                         </ul>
                         <ul class=\"nav pull-right\">
-                        <li><a href=\"#\"><i src='../images/glaphicons-halflings.png'class=\"icon-off\"></i>Deconnexion</a></li>
+                        <li><a href=\"#\"><i class=\"icon-heart\"></i>Deconnexion</a></li>
                         </ul>
                 </div>
             </div>
@@ -111,6 +111,6 @@ class __TwigTemplate_0fcf9497a8886c6363ab2b32a3ef54ee extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  96 => 34,  93 => 33,  88 => 29,  71 => 12,  68 => 11,  62 => 5,  54 => 43,  52 => 33,  47 => 30,  45 => 29,  40 => 26,  38 => 11,  29 => 5,  23 => 1,);
+        return array (  96 => 34,  93 => 33,  88 => 29,  71 => 12,  68 => 11,  62 => 5,  54 => 43,  52 => 33,  47 => 30,  45 => 29,  40 => 26,  23 => 1,  55 => 15,  48 => 11,  44 => 9,  42 => 8,  38 => 11,  35 => 5,  29 => 5,);
     }
 }
