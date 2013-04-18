@@ -58,7 +58,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAnnotationReaderService()
     {
+<<<<<<< HEAD
+        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/annotations', true);
+=======
         return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/annotations', true);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -71,9 +75,19 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetManagerService()
     {
+<<<<<<< HEAD
         $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/config'), true)));
+=======
+<<<<<<< HEAD
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/assetic/config'), true)));
+
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/adamsdavid/piscine/2SN-git/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+=======
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('config' => new \Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader(), 'twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/config'), true)));
+>>>>>>> ca96e827cf57759a65a93735598d7247b52d4638
 
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         return $instance;
     }
@@ -175,7 +189,11 @@ class appDevDebugProjectContainer extends Container
         $a = $this->get('kernel');
         $b = $this->get('templating.filename_parser');
 
+<<<<<<< HEAD
+        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Users/adamsdavid/piscine/2SN-git/2SN/app/Resources');
+=======
         $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine')), 5 => new \JMS\DiExtraBundle\HttpKernel\ControllerInjectorsWarmer($a, $this->get('jms_di_extra.controller_resolver'), array())));
     }
@@ -314,7 +332,27 @@ class appDevDebugProjectContainer extends Container
      * This service is shared.
      * This method always returns the same instance of the service.
      *
+<<<<<<< HEAD
      * @return EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+=======
+<<<<<<< HEAD
+     * @return EntityManager516e9a81d184f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager516e9a81d184f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+     */
+    protected function getDoctrine_Orm_DefaultEntityManagerService()
+    {
+        require_once '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_516e9a81d184f.php';
+
+        $a = new \Doctrine\Common\Cache\ArrayCache();
+        $a->setNamespace('sf2orm_default_7312c54d597e758e94065ef3e707a0d6');
+
+        $b = new \Doctrine\Common\Cache\ArrayCache();
+        $b->setNamespace('sf2orm_default_7312c54d597e758e94065ef3e707a0d6');
+
+        $c = new \Doctrine\Common\Cache\ArrayCache();
+        $c->setNamespace('sf2orm_default_7312c54d597e758e94065ef3e707a0d6');
+=======
+     * @return EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager A EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager instance.
+>>>>>>> ca96e827cf57759a65a93735598d7247b52d4638
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
@@ -328,6 +366,7 @@ class appDevDebugProjectContainer extends Container
 
         $c = new \Doctrine\Common\Cache\ArrayCache();
         $c->setNamespace('sf2orm_default_d14ac98f9685f1247ad3a3cc9ad675ee');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         $d = new \Doctrine\ORM\Configuration();
         $d->setEntityNamespaces(array());
@@ -335,7 +374,11 @@ class appDevDebugProjectContainer extends Container
         $d->setQueryCacheImpl($b);
         $d->setResultCacheImpl($c);
         $d->setMetadataDriverImpl(new \Doctrine\ORM\Mapping\Driver\DriverChain());
+<<<<<<< HEAD
+        $d->setProxyDir('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/doctrine/orm/Proxies');
+=======
         $d->setProxyDir('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/doctrine/orm/Proxies');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
         $d->setProxyNamespace('Proxies');
         $d->setAutoGenerateProxyClasses(true);
         $d->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
@@ -345,7 +388,15 @@ class appDevDebugProjectContainer extends Container
         $e = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
         $this->get('doctrine.orm.default_manager_configurator')->configure($e);
 
+<<<<<<< HEAD
         return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+=======
+<<<<<<< HEAD
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager516e9a81d184f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+=======
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
+>>>>>>> ca96e827cf57759a65a93735598d7247b52d4638
     }
 
     /**
@@ -438,7 +489,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getFileLocatorService()
     {
+<<<<<<< HEAD
+        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/Users/adamsdavid/piscine/2SN-git/2SN/app/Resources');
+=======
         return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1077,7 +1132,11 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['jms_di_extra.metadata.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'jms_di_extra.metadata_driver'), 'Metadata\\ClassHierarchyMetadata', true);
 
+<<<<<<< HEAD
+        $instance->setCache(new \Metadata\Cache\FileCache('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_diextra/metadata'));
+=======
         $instance->setCache(new \Metadata\Cache\FileCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/metadata'));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         return $instance;
     }
@@ -1203,7 +1262,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getMonolog_Handler_MainService()
     {
+<<<<<<< HEAD
+        return $this->services['monolog.handler.main'] = new \Monolog\Handler\StreamHandler('/Users/adamsdavid/piscine/2SN-git/2SN/app/logs/dev.log', 100, true);
+=======
         return $this->services['monolog.handler.main'] = new \Monolog\Handler\StreamHandler('/Users/Ophelie/Sites/2SN-git/2SN/app/logs/dev.log', 100, true);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1385,7 +1448,11 @@ class appDevDebugProjectContainer extends Container
         $d = new \Doctrine\Bundle\DoctrineBundle\DataCollector\DoctrineDataCollector($this->get('doctrine'));
         $d->addLogger('default', $this->get('doctrine.dbal.logger.profiling.default'));
 
+<<<<<<< HEAD
+        $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/profiler', '', '', 86400), $a);
+=======
         $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/profiler', '', '', 86400), $a);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         $instance->add($c);
         $instance->add($this->get('data_collector.request'));
@@ -1468,7 +1535,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getRouterService()
     {
+<<<<<<< HEAD
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/assetic/routing.yml', array('cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev', 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context'), $this->get('monolog.logger.router'));
+=======
         return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/routing.yml', array('cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev', 'debug' => true, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appDevUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appDevUrlMatcher', 'strict_requirements' => true), $this->get('router.request_context'), $this->get('monolog.logger.router'));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1523,7 +1594,11 @@ class appDevDebugProjectContainer extends Container
     {
         $a = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\LazyLoadingExpressionVoter($this->get('security.expressions.handler'), $this->get('monolog.logger.security'));
         $a->setLazyCompiler($this, 'security.expressions.compiler');
+<<<<<<< HEAD
+        $a->setCacheDir('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_security/expressions');
+=======
         $a->setCacheDir('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_security/expressions');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         return $this->services['security.access.decision_manager'] = new \JMS\SecurityExtraBundle\Security\Authorization\RememberingAccessDecisionManager(new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => $a, 1 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($this->get('security.role_hierarchy')), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($this->get('security.authentication.trust_resolver'))), 'affirmative', false, true));
     }
@@ -1750,7 +1825,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_SecureRandomService()
     {
+<<<<<<< HEAD
+        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/secure_random.seed', $this->get('monolog.logger.security'));
+=======
         return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/secure_random.seed', $this->get('monolog.logger.security'));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1776,7 +1855,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSensio_Distribution_WebconfiguratorService()
     {
+<<<<<<< HEAD
+        return $this->services['sensio.distribution.webconfigurator'] = new \Sensio\Bundle\DistributionBundle\Configurator\Configurator('/Users/adamsdavid/piscine/2SN-git/2SN/app');
+=======
         return $this->services['sensio.distribution.webconfigurator'] = new \Sensio\Bundle\DistributionBundle\Configurator\Configurator('/Users/Ophelie/Sites/2SN-git/2SN/app');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1924,7 +2007,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSession_HandlerService()
     {
+<<<<<<< HEAD
+        return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/sessions');
+=======
         return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/sessions');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -1937,7 +2024,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSession_Storage_FilesystemService()
     {
+<<<<<<< HEAD
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/sessions');
+=======
         return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/sessions');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -2155,7 +2246,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTemplating_Helper_CodeService()
     {
+<<<<<<< HEAD
+        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, '/Users/adamsdavid/piscine/2SN-git/2SN/app', 'UTF-8');
+=======
         return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, '/Users/Ophelie/Sites/2SN-git/2SN/app', 'UTF-8');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -2651,7 +2746,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTranslator_DefaultService()
     {
+<<<<<<< HEAD
+        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/translations', 'debug' => true));
+=======
         return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/translations', 'debug' => true));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -2666,14 +2765,22 @@ class appDevDebugProjectContainer extends Container
     {
         $a = $this->get('security.context');
 
+<<<<<<< HEAD
+        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'cache' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
+=======
         $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'cache' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($a));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\ActionsExtension($this));
+<<<<<<< HEAD
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/Users/adamsdavid/piscine/2SN-git/2SN/app', 'UTF-8'));
+=======
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/Users/Ophelie/Sites/2SN-git/2SN/app', 'UTF-8'));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
@@ -2726,6 +2833,18 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
 
+<<<<<<< HEAD
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/src/Acme/DemoBundle/Resources/views', 'AcmeDemo');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
+        $instance->addPath('/Users/adamsdavid/piscine/2SN-git/2SN/app/Resources/views');
+=======
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
@@ -2737,6 +2856,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views', 'SensioDistribution');
         $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         return $instance;
     }
@@ -2855,7 +2975,15 @@ class appDevDebugProjectContainer extends Container
     /**
      * Gets the doctrine.orm.entity_manager service alias.
      *
+<<<<<<< HEAD
      * @return EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
+=======
+<<<<<<< HEAD
+     * @return EntityManager516e9a81d184f_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
+=======
+     * @return EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager An instance of the doctrine.orm.default_entity_manager service
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
+>>>>>>> ca96e827cf57759a65a93735598d7247b52d4638
      */
     protected function getDoctrine_Orm_EntityManagerService()
     {
@@ -2886,7 +3014,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_AssetFactoryService()
     {
+<<<<<<< HEAD
+        $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), '/Users/adamsdavid/piscine/2SN-git/2SN/app/../web', true);
+=======
         $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), '/Users/Ophelie/Sites/2SN-git/2SN/app/../web', true);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         $instance->addWorker(new \Assetic\Factory\Worker\EnsureFilterWorker('/\\.less$/', $this->get('assetic.filter.less')));
         $instance->addWorker(new \Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker());
@@ -2908,7 +3040,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getAssetic_CacheService()
     {
+<<<<<<< HEAD
+        return $this->services['assetic.cache'] = new \Assetic\Cache\FilesystemCache('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/assetic/assets');
+=======
         return $this->services['assetic.cache'] = new \Assetic\Cache\FilesystemCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/assets');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -3048,7 +3184,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Extra_MetadataFactoryService()
     {
+<<<<<<< HEAD
+        $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'), new \Metadata\Cache\FileCache('/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_security', true));
+=======
         $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'), new \Metadata\Cache\FileCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_security', true));
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
 
         $instance->setIncludeInterfaces(true);
 
@@ -3108,7 +3248,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getTemplating_LocatorService()
     {
+<<<<<<< HEAD
+        return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev');
+=======
         return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev');
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -3159,7 +3303,11 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getValidator_Mapping_ClassMetadataFactoryService()
     {
+<<<<<<< HEAD
+        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
+=======
         return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
     }
 
     /**
@@ -3213,12 +3361,21 @@ class appDevDebugProjectContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
+<<<<<<< HEAD
+            'kernel.root_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app',
+            'kernel.environment' => 'dev',
+            'kernel.debug' => true,
+            'kernel.name' => 'app',
+            'kernel.cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev',
+            'kernel.logs_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/logs',
+=======
             'kernel.root_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
             'kernel.name' => 'app',
             'kernel.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev',
             'kernel.logs_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/logs',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'kernel.bundles' => array(
                 'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
                 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
@@ -3297,7 +3454,11 @@ class appDevDebugProjectContainer extends Container
             'translation.writer.class' => 'Symfony\\Component\\Translation\\Writer\\TranslationWriter',
             'debug.event_dispatcher.class' => 'Symfony\\Component\\HttpKernel\\Debug\\TraceableEventDispatcher',
             'debug.stopwatch.class' => 'Symfony\\Component\\Stopwatch\\Stopwatch',
+<<<<<<< HEAD
+            'debug.container.dump' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/appDevDebugProjectContainer.xml',
+=======
             'debug.container.dump' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/appDevDebugProjectContainer.xml',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'debug.controller_resolver.class' => 'Symfony\\Component\\HttpKernel\\Controller\\TraceableControllerResolver',
             'debug.deprecation_logger_listener.class' => 'Symfony\\Component\\HttpKernel\\EventListener\\DeprecationLoggerListener',
             'kernel.secret' => 'e3a1820d138f1b8d494673abf49697a6855dbf7a',
@@ -3316,7 +3477,11 @@ class appDevDebugProjectContainer extends Container
             'session.storage.options' => array(
 
             ),
+<<<<<<< HEAD
+            'session.save_path' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/sessions',
+=======
             'session.save_path' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/sessions',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
             'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
             'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
@@ -3371,7 +3536,11 @@ class appDevDebugProjectContainer extends Container
             'validator.mapping.loader.yaml_files_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFilesLoader',
             'validator.validator_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Validator\\ConstraintValidatorFactory',
             'validator.mapping.loader.xml_files_loader.mapping_files' => array(
+<<<<<<< HEAD
+                0 => '/Users/adamsdavid/piscine/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
+=======
                 0 => '/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             ),
             'validator.mapping.loader.yaml_files_loader.mapping_files' => array(
 
@@ -3390,7 +3559,11 @@ class appDevDebugProjectContainer extends Container
             'data_collector.router.class' => 'Symfony\\Bundle\\FrameworkBundle\\DataCollector\\RouterDataCollector',
             'profiler_listener.only_exceptions' => false,
             'profiler_listener.only_master_requests' => false,
+<<<<<<< HEAD
+            'profiler.storage.dsn' => 'file:/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/profiler',
+=======
             'profiler.storage.dsn' => 'file:/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/profiler',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'profiler.storage.username' => '',
             'profiler.storage.password' => '',
             'profiler.storage.lifetime' => 86400,
@@ -3414,7 +3587,11 @@ class appDevDebugProjectContainer extends Container
             'router.request_context.host' => 'localhost',
             'router.request_context.scheme' => 'http',
             'router.request_context.base_url' => '',
+<<<<<<< HEAD
+            'router.resource' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/assetic/routing.yml',
+=======
             'router.resource' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic/routing.yml',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'router.cache_class_prefix' => 'appDev',
             'request_listener.http_port' => 80,
             'request_listener.https_port' => 443,
@@ -3523,7 +3700,11 @@ class appDevDebugProjectContainer extends Container
                 'debug' => true,
                 'strict_variables' => true,
                 'exception_controller' => 'twig.controller.exception:showAction',
+<<<<<<< HEAD
+                'cache' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/twig',
+=======
                 'cache' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/twig',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
                 'charset' => 'UTF-8',
                 'paths' => array(
 
@@ -3577,7 +3758,11 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.plugin.blackhole.class' => 'Swift_Plugins_BlackholePlugin',
             'swiftmailer.spool.memory.class' => 'Swift_MemorySpool',
             'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
+<<<<<<< HEAD
+            'swiftmailer.spool.memory.path' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/swiftmailer/spool',
+=======
             'swiftmailer.spool.memory.path' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/swiftmailer/spool',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'swiftmailer.spool.enabled' => true,
             'swiftmailer.sender_address' => NULL,
             'swiftmailer.single_address' => NULL,
@@ -3599,7 +3784,11 @@ class appDevDebugProjectContainer extends Container
             'assetic.node.paths' => array(
 
             ),
+<<<<<<< HEAD
+            'assetic.cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/assetic',
+=======
             'assetic.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/assetic',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'assetic.bundles' => array(
 
             ),
@@ -3611,8 +3800,13 @@ class appDevDebugProjectContainer extends Container
             'assetic.debug' => true,
             'assetic.use_controller' => true,
             'assetic.enable_profiler' => false,
+<<<<<<< HEAD
+            'assetic.read_from' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/../web',
+            'assetic.write_to' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/../web',
+=======
             'assetic.read_from' => '/Users/Ophelie/Sites/2SN-git/2SN/app/../web',
             'assetic.write_to' => '/Users/Ophelie/Sites/2SN-git/2SN/app/../web',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'assetic.variables' => array(
 
             ),
@@ -3692,7 +3886,11 @@ class appDevDebugProjectContainer extends Container
             'doctrine.orm.naming_strategy.default.class' => 'Doctrine\\ORM\\Mapping\\DefaultNamingStrategy',
             'doctrine.orm.naming_strategy.underscore.class' => 'Doctrine\\ORM\\Mapping\\UnderscoreNamingStrategy',
             'doctrine.orm.auto_generate_proxy_classes' => true,
+<<<<<<< HEAD
+            'doctrine.orm.proxy_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/doctrine/orm/Proxies',
+=======
             'doctrine.orm.proxy_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/doctrine/orm/Proxies',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'doctrine.orm.proxy_namespace' => 'Proxies',
             'sensio_framework_extra.view.guesser.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser',
             'sensio_framework_extra.controller.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener',
@@ -3704,7 +3902,11 @@ class appDevDebugProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
+<<<<<<< HEAD
+            'jms_aop.cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_aop',
+=======
             'jms_aop.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_aop',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'jms_aop.interceptor_loader.class' => 'JMS\\AopBundle\\Aop\\InterceptorLoader',
             'jms_di_extra.metadata.driver.annotation_driver.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\AnnotationDriver',
             'jms_di_extra.metadata.driver.configured_controller_injections.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\ConfiguredControllerInjectionsDriver',
@@ -3721,14 +3923,28 @@ class appDevDebugProjectContainer extends Container
             'jms_di_extra.directories' => array(
 
             ),
+<<<<<<< HEAD
+            'jms_di_extra.cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_diextra',
+=======
             'jms_di_extra.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'jms_di_extra.disable_grep' => false,
             'jms_di_extra.doctrine_integration' => true,
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
 
             ),
+<<<<<<< HEAD
             'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51705278990c5.php',
             'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager51705278990c5_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+=======
+<<<<<<< HEAD
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_516e9a81d184f.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager516e9a81d184f_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+=======
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/doctrine/EntityManager_51704de734c93.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager51704de734c93_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
+>>>>>>> ca96e827cf57759a65a93735598d7247b52d4638
             'security.secured_services' => array(
 
             ),
@@ -3750,7 +3966,11 @@ class appDevDebugProjectContainer extends Container
             'security.extra.annotation_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\AnnotationDriver',
             'security.extra.file_cache.class' => 'Metadata\\Cache\\FileCache',
             'security.access.secure_all_services' => false,
+<<<<<<< HEAD
+            'security.extra.cache_dir' => '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_security',
+=======
             'security.extra.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_security',
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
             'security.acl.permission_evaluator.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\PermissionEvaluator',
             'security.acl.has_permission_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\HasPermissionFunctionCompiler',
             'security.expressions.voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\LazyLoadingExpressionVoter',
