@@ -1,0 +1,17 @@
+{% extends '::base2sn.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="alert alert-info">
+</div>
+{% if name %}
+<table class="table table-bordered">
+	<tr>
+		<th>Hello</th><th>{{ name }}</th>
+	</tr>
+</table>
+{% else %}
+	<p>Pas trouvé</p>
+	{% endif %}
+{% endblock %}

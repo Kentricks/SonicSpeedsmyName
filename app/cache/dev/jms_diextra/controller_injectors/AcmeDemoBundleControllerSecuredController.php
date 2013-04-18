@@ -10,7 +10,11 @@ namespace Acme\DemoBundle\Controller;
 class SecuredController__JMSInjector
 {
     public static function inject($container) {
+<<<<<<< HEAD
         require_once '/Users/adamsdavid/piscine/2SN-git/2SN/app/cache/dev/jms_diextra/proxies/Acme-DemoBundle-Controller-SecuredController.php';
+=======
+        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/dev/jms_diextra/proxies/Acme-DemoBundle-Controller-SecuredController.php';
+>>>>>>> b14ce45d8ed0f3016500bd925300979d811b2bcf
         $a = new \JMS\AopBundle\Aop\InterceptorLoader($container, array('Acme\\DemoBundle\\Controller\\SecuredController' => array('helloadminAction' => array(0 => 'security.access.method_interceptor'))));
         $instance = new \EnhancedProxy_72114c0f8683bcc2a66ceccb136abe5a78f8577e\__CG__\Acme\DemoBundle\Controller\SecuredController();
         $instance->__CGInterception__setLoader($a);

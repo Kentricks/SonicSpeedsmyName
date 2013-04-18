@@ -22,21 +22,51 @@ class appProdProjectContainer extends Container
     }
     protected function getAnnotationReaderService()
     {
-        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/annotations', false);
+        return $this->services['annotation_reader'] = new \Doctrine\Common\Annotations\FileCacheReader(new \Doctrine\Common\Annotations\AnnotationReader(), '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/annotations', false);
     }
     protected function getAssetic_AssetManagerService()
     {
-        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/assetic/config'), false)));
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/nguyenkenny/ETNA/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+        $this->services['assetic.asset_manager'] = $instance = new \Assetic\Factory\LazyAssetManager($this->get('assetic.asset_factory'), array('config' => new \Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader(), 'twig' => new \Assetic\Factory\Loader\CachedFormulaLoader(new \Assetic\Extension\Twig\TwigFormulaLoader($this->get('twig')), new \Assetic\Cache\ConfigCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/config'), false)));
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource(array('bootstrap_css' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/bootstrap.less', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/less/responsive.less'), 1 => array(0 => 'less', 1 => 'cssrewrite'), 2 => array('output' => '/css/bootstrap.css')), 'bootstrap_js' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-transition.js', 1 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-alert.js', 2 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-button.js', 3 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-carousel.js', 4 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-collapse.js', 5 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-dropdown.js', 6 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-modal.js', 7 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tooltip.js', 8 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-popover.js', 9 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-scrollspy.js', 10 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-tab.js', 11 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-typeahead.js', 12 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/twitter/bootstrap/js/bootstrap-affix.js'), 1 => array(), 2 => array('output' => '/js/bootstrap.js')), 'jquery' => array(0 => array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/app/../vendor/jquery/jquery/jquery-1.9.1.js'), 1 => array(), 2 => array('output' => '/js/jquery.js')))), 'config');
+        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($this->get('templating.loader'), '', '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views', '/\\.[^.]+\\.twig$/'), 'twig');
+        return $instance;
+    }
+    protected function getAssetic_ControllerService()
+    {
+        $instance = new \Symfony\Bundle\AsseticBundle\Controller\AsseticController($this->get('request'), $this->get('assetic.asset_manager'), $this->get('assetic.cache'), false, $this->get('profiler'));
+        $instance->setValueSupplier($this->get('assetic.value_supplier.default'));
         return $instance;
     }
     protected function getAssetic_Filter_CssrewriteService()
     {
         return $this->services['assetic.filter.cssrewrite'] = new \Assetic\Filter\CssRewriteFilter();
     }
+    protected function getAssetic_Filter_LessService()
+    {
+        $this->services['assetic.filter.less'] = $instance = new \Assetic\Filter\LessFilter('/usr/local/bin/node', array(0 => '/usr/local/lib/node_modules'));
+        $instance->setTimeout(NULL);
+        $instance->setCompress(NULL);
+        return $instance;
+    }
     protected function getAssetic_FilterManagerService()
     {
-        return $this->services['assetic.filter_manager'] = new \Symfony\Bundle\AsseticBundle\FilterManager($this, array('cssrewrite' => 'assetic.filter.cssrewrite'));
+        return $this->services['assetic.filter_manager'] = new \Symfony\Bundle\AsseticBundle\FilterManager($this, array('cssrewrite' => 'assetic.filter.cssrewrite', 'less' => 'assetic.filter.less'));
+    }
+    protected function getAssetic_RequestListenerService()
+    {
+        return $this->services['assetic.request_listener'] = new \Symfony\Bundle\AsseticBundle\EventListener\RequestListener();
+    }
+    protected function getBcBootstrap_Twig_BadgeExtensionService()
+    {
+        return $this->services['bc_bootstrap.twig.badge_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapBadgeExtension();
+    }
+    protected function getBcBootstrap_Twig_IconExtensionService()
+    {
+        return $this->services['bc_bootstrap.twig.icon_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapIconExtension();
+    }
+    protected function getBcBootstrap_Twig_LabelExtensionService()
+    {
+        return $this->services['bc_bootstrap.twig.label_extension'] = new \Bc\Bundle\BootstrapBundle\Twig\BootstrapLabelExtension();
     }
     protected function getCacheClearerService()
     {
@@ -46,7 +76,7 @@ class appProdProjectContainer extends Container
     {
         $a = $this->get('kernel');
         $b = $this->get('templating.filename_parser');
-        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Users/nguyenkenny/ETNA/2SN/app/Resources');
+        $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources');
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine')), 5 => new \JMS\DiExtraBundle\HttpKernel\ControllerInjectorsWarmer($a, $this->get('jms_di_extra.controller_resolver'), array())));
     }
     protected function getDataCollector_RequestService()
@@ -71,20 +101,20 @@ class appProdProjectContainer extends Container
     }
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        require_once '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516e6e37d9369.php';
+        require_once '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516ef4e1c9179.php';
         $a = new \Doctrine\Common\Cache\ArrayCache();
-        $a->setNamespace('sf2orm_default_7c69a62ae6cd7a18cc682c9f5609022d');
+        $a->setNamespace('sf2orm_default_99c814d9c36c2d350af60ad2741067e0');
         $b = new \Doctrine\Common\Cache\ArrayCache();
-        $b->setNamespace('sf2orm_default_7c69a62ae6cd7a18cc682c9f5609022d');
+        $b->setNamespace('sf2orm_default_99c814d9c36c2d350af60ad2741067e0');
         $c = new \Doctrine\Common\Cache\ArrayCache();
-        $c->setNamespace('sf2orm_default_7c69a62ae6cd7a18cc682c9f5609022d');
+        $c->setNamespace('sf2orm_default_99c814d9c36c2d350af60ad2741067e0');
         $d = new \Doctrine\ORM\Configuration();
         $d->setEntityNamespaces(array());
         $d->setMetadataCacheImpl($a);
         $d->setQueryCacheImpl($b);
         $d->setResultCacheImpl($c);
         $d->setMetadataDriverImpl(new \Doctrine\ORM\Mapping\Driver\DriverChain());
-        $d->setProxyDir('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/doctrine/orm/Proxies');
+        $d->setProxyDir('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/doctrine/orm/Proxies');
         $d->setProxyNamespace('Proxies');
         $d->setAutoGenerateProxyClasses(false);
         $d->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
@@ -92,7 +122,7 @@ class appProdProjectContainer extends Container
         $d->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
         $e = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
         $this->get('doctrine.orm.default_manager_configurator')->configure($e);
-        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager516e6e37d9369_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
+        return $this->services['doctrine.orm.default_entity_manager'] = new \EntityManager516ef4e1c9179_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM\EntityManager($e, $this);
     }
     protected function getDoctrine_Orm_DefaultManagerConfiguratorService()
     {
@@ -110,6 +140,7 @@ class appProdProjectContainer extends Container
     {
         $this->services['event_dispatcher'] = $instance = new \Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher($this);
         $instance->addListenerService('kernel.controller', array(0 => 'data_collector.router', 1 => 'onKernelController'), 0);
+        $instance->addListenerService('kernel.request', array(0 => 'assetic.request_listener', 1 => 'onKernelRequest'), 0);
         $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.controller.listener', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.converter.listener', 1 => 'onKernelController'), 0);
         $instance->addListenerService('kernel.controller', array(0 => 'sensio_framework_extra.view.listener', 1 => 'onKernelController'), 0);
@@ -132,7 +163,7 @@ class appProdProjectContainer extends Container
     }
     protected function getFileLocatorService()
     {
-        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/Users/nguyenkenny/ETNA/2SN/app/Resources');
+        return $this->services['file_locator'] = new \Symfony\Component\HttpKernel\Config\FileLocator($this->get('kernel'), '/Users/Ophelie/Sites/2SN-git/2SN/app/Resources');
     }
     protected function getFilesystemService()
     {
@@ -332,7 +363,7 @@ class appProdProjectContainer extends Container
     protected function getJmsDiExtra_Metadata_MetadataFactoryService()
     {
         $this->services['jms_di_extra.metadata.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'jms_di_extra.metadata_driver'), 'Metadata\\ClassHierarchyMetadata', false);
-        $instance->setCache(new \Metadata\Cache\FileCache('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_diextra/metadata'));
+        $instance->setCache(new \Metadata\Cache\FileCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/metadata'));
         return $instance;
     }
     protected function getJmsDiExtra_MetadataDriverService()
@@ -368,7 +399,7 @@ class appProdProjectContainer extends Container
     }
     protected function getMonolog_Handler_NestedService()
     {
-        return $this->services['monolog.handler.nested'] = new \Monolog\Handler\StreamHandler('/Users/nguyenkenny/ETNA/2SN/app/logs/prod.log', 100, true);
+        return $this->services['monolog.handler.nested'] = new \Monolog\Handler\StreamHandler('/Users/Ophelie/Sites/2SN-git/2SN/app/logs/prod.log', 100, true);
     }
     protected function getMonolog_Logger_DoctrineService()
     {
@@ -411,7 +442,7 @@ class appProdProjectContainer extends Container
         $b = $this->get('kernel');
         $c = new \Symfony\Component\HttpKernel\DataCollector\ConfigDataCollector();
         $c->setKernel($b);
-        $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:/Users/nguyenkenny/ETNA/2SN/app/cache/prod/profiler', '', '', 86400), $a);
+        $this->services['profiler'] = $instance = new \Symfony\Component\HttpKernel\Profiler\Profiler(new \Symfony\Component\HttpKernel\Profiler\FileProfilerStorage('file:/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/profiler', '', '', 86400), $a);
         $instance->disable();
         $instance->add($c);
         $instance->add($this->get('data_collector.request'));
@@ -446,7 +477,7 @@ class appProdProjectContainer extends Container
     }
     protected function getRouterService()
     {
-        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/Users/nguyenkenny/ETNA/2SN/app/config/routing.yml', array('cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod', 'debug' => false, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appProdUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appProdUrlMatcher', 'strict_requirements' => NULL), $this->get('router.request_context'), $this->get('monolog.logger.router'));
+        return $this->services['router'] = new \Symfony\Bundle\FrameworkBundle\Routing\Router($this, '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/routing.yml', array('cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod', 'debug' => false, 'generator_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_base_class' => 'Symfony\\Component\\Routing\\Generator\\UrlGenerator', 'generator_dumper_class' => 'Symfony\\Component\\Routing\\Generator\\Dumper\\PhpGeneratorDumper', 'generator_cache_class' => 'appProdUrlGenerator', 'matcher_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_base_class' => 'Symfony\\Bundle\\FrameworkBundle\\Routing\\RedirectableUrlMatcher', 'matcher_dumper_class' => 'Symfony\\Component\\Routing\\Matcher\\Dumper\\PhpMatcherDumper', 'matcher_cache_class' => 'appProdUrlMatcher', 'strict_requirements' => NULL), $this->get('router.request_context'), $this->get('monolog.logger.router'));
     }
     protected function getRouterListenerService()
     {
@@ -461,6 +492,7 @@ class appProdProjectContainer extends Container
         $d->addLoader(new \Symfony\Component\Routing\Loader\XmlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\YamlFileLoader($a));
         $d->addLoader(new \Symfony\Component\Routing\Loader\PhpFileLoader($a));
+        $d->addLoader(new \Symfony\Bundle\AsseticBundle\Routing\AsseticLoader($this->get('assetic.asset_manager')));
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationDirectoryLoader($a, $c));
         $d->addLoader(new \Symfony\Component\Routing\Loader\AnnotationFileLoader($a, $c));
         $d->addLoader($c);
@@ -470,7 +502,7 @@ class appProdProjectContainer extends Container
     {
         $a = new \JMS\SecurityExtraBundle\Security\Authorization\Expression\LazyLoadingExpressionVoter($this->get('security.expressions.handler'), $this->get('monolog.logger.security'));
         $a->setLazyCompiler($this, 'security.expressions.compiler');
-        $a->setCacheDir('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_security/expressions');
+        $a->setCacheDir('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_security/expressions');
         return $this->services['security.access.decision_manager'] = new \JMS\SecurityExtraBundle\Security\Authorization\RememberingAccessDecisionManager(new \Symfony\Component\Security\Core\Authorization\AccessDecisionManager(array(0 => $a, 1 => new \Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter($this->get('security.role_hierarchy')), 2 => new \Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter($this->get('security.authentication.trust_resolver'))), 'affirmative', false, true));
     }
     protected function getSecurity_Access_MethodInterceptorService()
@@ -551,7 +583,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSecurity_SecureRandomService()
     {
-        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/secure_random.seed', $this->get('monolog.logger.security'));
+        return $this->services['security.secure_random'] = new \Symfony\Component\Security\Core\Util\SecureRandom('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/secure_random.seed', $this->get('monolog.logger.security'));
     }
     protected function getSecurity_Validator_UserPasswordService()
     {
@@ -602,11 +634,11 @@ class appProdProjectContainer extends Container
     }
     protected function getSession_HandlerService()
     {
-        return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/sessions');
+        return $this->services['session.handler'] = new \Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/sessions');
     }
     protected function getSession_Storage_FilesystemService()
     {
-        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/sessions');
+        return $this->services['session.storage.filesystem'] = new \Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/sessions');
     }
     protected function getSession_Storage_NativeService()
     {
@@ -680,13 +712,13 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_Helper_CodeService()
     {
-        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, '/Users/nguyenkenny/ETNA/2SN/app', 'UTF-8');
+        return $this->services['templating.helper.code'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper(NULL, '/Users/Ophelie/Sites/2SN-git/2SN/app', 'UTF-8');
     }
     protected function getTemplating_Helper_FormService()
     {
         $a = new \Symfony\Bundle\FrameworkBundle\Templating\PhpEngine($this->get('templating.name_parser'), $this, $this->get('templating.loader'), $this->get('templating.globals'));
         $a->setCharset('UTF-8');
-        $a->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.static'));
+        $a->setHelpers(array('slots' => 'templating.helper.slots', 'assets' => 'templating.helper.assets', 'request' => 'templating.helper.request', 'session' => 'templating.helper.session', 'router' => 'templating.helper.router', 'actions' => 'templating.helper.actions', 'code' => 'templating.helper.code', 'translator' => 'templating.helper.translator', 'form' => 'templating.helper.form', 'logout_url' => 'templating.helper.logout_url', 'security' => 'templating.helper.security', 'assetic' => 'assetic.helper.dynamic'));
         return $this->services['templating.helper.form'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper(new \Symfony\Component\Form\FormRenderer(new \Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine($a, array(0 => 'FrameworkBundle:Form')), $this->get('form.csrf_provider')));
     }
     protected function getTemplating_Helper_LogoutUrlService()
@@ -851,25 +883,28 @@ class appProdProjectContainer extends Container
     }
     protected function getTranslator_DefaultService()
     {
-        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/translations', 'debug' => false));
+        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => array(0 => 'php'), 'translation.loader.yml' => array(0 => 'yml'), 'translation.loader.xliff' => array(0 => 'xlf', 1 => 'xliff'), 'translation.loader.po' => array(0 => 'po'), 'translation.loader.mo' => array(0 => 'mo'), 'translation.loader.qt' => array(0 => 'ts'), 'translation.loader.csv' => array(0 => 'csv'), 'translation.loader.res' => array(0 => 'res'), 'translation.loader.dat' => array(0 => 'dat'), 'translation.loader.ini' => array(0 => 'ini')), array('cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/translations', 'debug' => false));
     }
     protected function getTwigService()
     {
         $a = $this->get('security.context');
-        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => false, 'strict_variables' => false, 'exception_controller' => 'twig.controller.exception:showAction', 'cache' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/twig', 'charset' => 'UTF-8', 'paths' => array()));
+        $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => false, 'strict_variables' => false, 'exception_controller' => 'twig.controller.exception:showAction', 'cache' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/twig', 'charset' => 'UTF-8', 'paths' => array()));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($a));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\ActionsExtension($this));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/Users/nguyenkenny/ETNA/2SN/app', 'UTF-8'));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\CodeExtension(NULL, '/Users/Ophelie/Sites/2SN-git/2SN/app', 'UTF-8'));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\RoutingExtension($this->get('router')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\YamlExtension());
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\HttpKernelExtension($this->get('fragment.handler')));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
-        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), false, array(), array(), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\FormExtension(new \Symfony\Bridge\Twig\Form\TwigRenderer(new \Symfony\Bridge\Twig\Form\TwigRendererEngine(array(0 => 'form_div_layout.html.twig', 1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig')), $this->get('form.csrf_provider'))));
+        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(), $this->get('assetic.value_supplier.default')));
         $instance->addExtension(new \Doctrine\Bundle\DoctrineBundle\Twig\DoctrineExtension());
         $instance->addExtension(new \JMS\SecurityExtraBundle\Twig\SecurityExtension($a));
+        $instance->addExtension($this->get('bc_bootstrap.twig.icon_extension'));
+        $instance->addExtension($this->get('bc_bootstrap.twig.label_extension'));
+        $instance->addExtension($this->get('bc_bootstrap.twig.badge_extension'));
         $instance->addGlobal('app', $this->get('templating.globals'));
         return $instance;
     }
@@ -884,13 +919,15 @@ class appProdProjectContainer extends Container
     protected function getTwig_LoaderService()
     {
         $this->services['twig.loader'] = $instance = new \Symfony\Bundle\TwigBundle\Loader\FilesystemLoader($this->get('templating.locator'), $this->get('templating.name_parser'));
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
-        $instance->addPath('/Users/nguyenkenny/ETNA/2SN/app/Resources/views');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views', 'Framework');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views', 'Security');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views', 'Twig');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/swiftmailer-bundle/Symfony/Bundle/SwiftmailerBundle/Resources/views', 'Swiftmailer');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views', 'Doctrine');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/src/PHPW/SocialBundle/Resources/views', 'PHPWSocial');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/Resources/views', 'BcBootstrap');
+        $instance->addPath('/Users/Ophelie/Sites/2SN-git/2SN/app/Resources/views');
         return $instance;
     }
     protected function getTwig_Translation_ExtractorService()
@@ -919,7 +956,18 @@ class appProdProjectContainer extends Container
     }
     protected function getAssetic_AssetFactoryService()
     {
-        return $this->services['assetic.asset_factory'] = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), '/Users/nguyenkenny/ETNA/2SN/app/../web', false);
+        $this->services['assetic.asset_factory'] = $instance = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, $this->getParameterBag(), '/Users/Ophelie/Sites/2SN-git/2SN/app/../web', false);
+        $instance->addWorker(new \Assetic\Factory\Worker\EnsureFilterWorker('/\\.less$/', $this->get('assetic.filter.less')));
+        $instance->addWorker(new \Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker());
+        return $instance;
+    }
+    protected function getAssetic_CacheService()
+    {
+        return $this->services['assetic.cache'] = new \Assetic\Cache\FilesystemCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/assets');
+    }
+    protected function getAssetic_ValueSupplier_DefaultService()
+    {
+        return $this->services['assetic.value_supplier.default'] = new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this);
     }
     protected function getControllerNameConverterService()
     {
@@ -945,7 +993,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSecurity_Extra_MetadataFactoryService()
     {
-        $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'), new \Metadata\Cache\FileCache('/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_security', false));
+        $this->services['security.extra.metadata_factory'] = $instance = new \Metadata\MetadataFactory(new \Metadata\Driver\LazyLoadingDriver($this, 'security.extra.metadata_driver'), new \Metadata\Cache\FileCache('/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_security', false));
         $instance->setIncludeInterfaces(true);
         return $instance;
     }
@@ -962,7 +1010,7 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_LocatorService()
     {
-        return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/Users/nguyenkenny/ETNA/2SN/app/cache/prod');
+        return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod');
     }
     protected function getTranslator_SelectorService()
     {
@@ -970,7 +1018,7 @@ class appProdProjectContainer extends Container
     }
     protected function getValidator_Mapping_ClassMetadataFactoryService()
     {
-        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
+        return $this->services['validator.mapping.class_metadata_factory'] = new \Symfony\Component\Validator\Mapping\ClassMetadataFactory(new \Symfony\Component\Validator\Mapping\Loader\LoaderChain(array(0 => new \Symfony\Component\Validator\Mapping\Loader\AnnotationLoader($this->get('annotation_reader')), 1 => new \Symfony\Component\Validator\Mapping\Loader\StaticMethodLoader(), 2 => new \Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader(array(0 => '/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml')), 3 => new \Symfony\Component\Validator\Mapping\Loader\YamlFilesLoader(array()))), NULL);
     }
     public function getParameter($name)
     {
@@ -999,12 +1047,12 @@ class appProdProjectContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-            'kernel.root_dir' => '/Users/nguyenkenny/ETNA/2SN/app',
+            'kernel.root_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app',
             'kernel.environment' => 'prod',
             'kernel.debug' => false,
             'kernel.name' => 'app',
-            'kernel.cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod',
-            'kernel.logs_dir' => '/Users/nguyenkenny/ETNA/2SN/app/logs',
+            'kernel.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod',
+            'kernel.logs_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/logs',
             'kernel.bundles' => array(
                 'FrameworkBundle' => 'Symfony\\Bundle\\FrameworkBundle\\FrameworkBundle',
                 'SecurityBundle' => 'Symfony\\Bundle\\SecurityBundle\\SecurityBundle',
@@ -1013,10 +1061,12 @@ class appProdProjectContainer extends Container
                 'SwiftmailerBundle' => 'Symfony\\Bundle\\SwiftmailerBundle\\SwiftmailerBundle',
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
+                'PHPWSocialBundle' => 'PHPW\\SocialBundle\\PHPWSocialBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'JMSAopBundle' => 'JMS\\AopBundle\\JMSAopBundle',
                 'JMSDiExtraBundle' => 'JMS\\DiExtraBundle\\JMSDiExtraBundle',
                 'JMSSecurityExtraBundle' => 'JMS\\SecurityExtraBundle\\JMSSecurityExtraBundle',
+                'BcBootstrapBundle' => 'Bc\\Bundle\\BootstrapBundle\\BcBootstrapBundle',
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appProdProjectContainer',
@@ -1089,7 +1139,7 @@ class appProdProjectContainer extends Container
             'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
             'session.storage.options' => array(
             ),
-            'session.save_path' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/sessions',
+            'session.save_path' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/sessions',
             'form.resolved_type_factory.class' => 'Symfony\\Component\\Form\\ResolvedFormTypeFactory',
             'form.registry.class' => 'Symfony\\Component\\Form\\FormRegistry',
             'form.factory.class' => 'Symfony\\Component\\Form\\FormFactory',
@@ -1143,7 +1193,7 @@ class appProdProjectContainer extends Container
             'validator.mapping.loader.yaml_files_loader.class' => 'Symfony\\Component\\Validator\\Mapping\\Loader\\YamlFilesLoader',
             'validator.validator_factory.class' => 'Symfony\\Bundle\\FrameworkBundle\\Validator\\ConstraintValidatorFactory',
             'validator.mapping.loader.xml_files_loader.mapping_files' => array(
-                0 => '/Users/nguyenkenny/ETNA/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
+                0 => '/Users/Ophelie/Sites/2SN-git/2SN/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml',
             ),
             'validator.mapping.loader.yaml_files_loader.mapping_files' => array(
             ),
@@ -1161,7 +1211,7 @@ class appProdProjectContainer extends Container
             'data_collector.router.class' => 'Symfony\\Bundle\\FrameworkBundle\\DataCollector\\RouterDataCollector',
             'profiler_listener.only_exceptions' => false,
             'profiler_listener.only_master_requests' => false,
-            'profiler.storage.dsn' => 'file:/Users/nguyenkenny/ETNA/2SN/app/cache/prod/profiler',
+            'profiler.storage.dsn' => 'file:/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/profiler',
             'profiler.storage.username' => '',
             'profiler.storage.password' => '',
             'profiler.storage.lifetime' => 86400,
@@ -1185,7 +1235,7 @@ class appProdProjectContainer extends Container
             'router.request_context.host' => 'localhost',
             'router.request_context.scheme' => 'http',
             'router.request_context.base_url' => '',
-            'router.resource' => '/Users/nguyenkenny/ETNA/2SN/app/config/routing.yml',
+            'router.resource' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic/routing.yml',
             'router.cache_class_prefix' => 'appProd',
             'request_listener.http_port' => 80,
             'request_listener.https_port' => 443,
@@ -1289,12 +1339,13 @@ class appProdProjectContainer extends Container
             'twig.exception_listener.controller' => 'twig.controller.exception:showAction',
             'twig.form.resources' => array(
                 0 => 'form_div_layout.html.twig',
+                1 => 'BcBootstrapBundle:Form:form_div_layout.html.twig',
             ),
             'twig.options' => array(
                 'debug' => false,
                 'strict_variables' => false,
                 'exception_controller' => 'twig.controller.exception:showAction',
-                'cache' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/twig',
+                'cache' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/twig',
                 'charset' => 'UTF-8',
                 'paths' => array(
                 ),
@@ -1344,7 +1395,7 @@ class appProdProjectContainer extends Container
             'swiftmailer.plugin.blackhole.class' => 'Swift_Plugins_BlackholePlugin',
             'swiftmailer.spool.memory.class' => 'Swift_MemorySpool',
             'swiftmailer.email_sender.listener.class' => 'Symfony\\Bundle\\SwiftmailerBundle\\EventListener\\EmailSenderListener',
-            'swiftmailer.spool.memory.path' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/swiftmailer/spool',
+            'swiftmailer.spool.memory.path' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/swiftmailer/spool',
             'swiftmailer.spool.enabled' => true,
             'swiftmailer.sender_address' => NULL,
             'swiftmailer.single_address' => NULL,
@@ -1364,7 +1415,7 @@ class appProdProjectContainer extends Container
             'assetic.value_supplier.class' => 'Symfony\\Bundle\\AsseticBundle\\DefaultValueSupplier',
             'assetic.node.paths' => array(
             ),
-            'assetic.cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/assetic',
+            'assetic.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/assetic',
             'assetic.bundles' => array(
             ),
             'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
@@ -1373,10 +1424,10 @@ class appProdProjectContainer extends Container
             'assetic.helper.static.class' => 'Symfony\\Bundle\\AsseticBundle\\Templating\\StaticAsseticHelper',
             'assetic.php_formula_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Loader\\AsseticHelperFormulaLoader',
             'assetic.debug' => false,
-            'assetic.use_controller' => false,
+            'assetic.use_controller' => true,
             'assetic.enable_profiler' => false,
-            'assetic.read_from' => '/Users/nguyenkenny/ETNA/2SN/app/../web',
-            'assetic.write_to' => '/Users/nguyenkenny/ETNA/2SN/app/../web',
+            'assetic.read_from' => '/Users/Ophelie/Sites/2SN-git/2SN/app/../web',
+            'assetic.write_to' => '/Users/Ophelie/Sites/2SN-git/2SN/app/../web',
             'assetic.variables' => array(
             ),
             'assetic.java.bin' => '/usr/bin/java',
@@ -1384,8 +1435,20 @@ class appProdProjectContainer extends Container
             'assetic.ruby.bin' => '/usr/bin/ruby',
             'assetic.sass.bin' => '/usr/bin/sass',
             'assetic.filter.cssrewrite.class' => 'Assetic\\Filter\\CssRewriteFilter',
+            'assetic.filter.less.class' => 'Assetic\\Filter\\LessFilter',
+            'assetic.filter.less.node' => '/usr/local/bin/node',
+            'assetic.filter.less.node_paths' => array(
+                0 => '/usr/local/lib/node_modules',
+            ),
+            'assetic.filter.less.timeout' => NULL,
+            'assetic.filter.less.compress' => NULL,
             'assetic.twig_extension.functions' => array(
             ),
+            'assetic.controller.class' => 'Symfony\\Bundle\\AsseticBundle\\Controller\\AsseticController',
+            'assetic.routing_loader.class' => 'Symfony\\Bundle\\AsseticBundle\\Routing\\AsseticLoader',
+            'assetic.cache.class' => 'Assetic\\Cache\\FilesystemCache',
+            'assetic.use_controller_worker.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Worker\\UseControllerWorker',
+            'assetic.request_listener.class' => 'Symfony\\Bundle\\AsseticBundle\\EventListener\\RequestListener',
             'doctrine.dbal.logger.chain.class' => 'Doctrine\\DBAL\\Logging\\LoggerChain',
             'doctrine.dbal.logger.profiling.class' => 'Doctrine\\DBAL\\Logging\\DebugStack',
             'doctrine.dbal.logger.class' => 'Symfony\\Bridge\\Doctrine\\Logger\\DbalLogger',
@@ -1441,7 +1504,7 @@ class appProdProjectContainer extends Container
             'doctrine.orm.naming_strategy.default.class' => 'Doctrine\\ORM\\Mapping\\DefaultNamingStrategy',
             'doctrine.orm.naming_strategy.underscore.class' => 'Doctrine\\ORM\\Mapping\\UnderscoreNamingStrategy',
             'doctrine.orm.auto_generate_proxy_classes' => false,
-            'doctrine.orm.proxy_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/doctrine/orm/Proxies',
+            'doctrine.orm.proxy_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/doctrine/orm/Proxies',
             'doctrine.orm.proxy_namespace' => 'Proxies',
             'sensio_framework_extra.view.guesser.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Templating\\TemplateGuesser',
             'sensio_framework_extra.controller.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\ControllerListener',
@@ -1453,7 +1516,7 @@ class appProdProjectContainer extends Container
             'sensio_framework_extra.converter.doctrine.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DoctrineParamConverter',
             'sensio_framework_extra.converter.datetime.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\Request\\ParamConverter\\DateTimeParamConverter',
             'sensio_framework_extra.view.listener.class' => 'Sensio\\Bundle\\FrameworkExtraBundle\\EventListener\\TemplateListener',
-            'jms_aop.cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_aop',
+            'jms_aop.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_aop',
             'jms_aop.interceptor_loader.class' => 'JMS\\AopBundle\\Aop\\InterceptorLoader',
             'jms_di_extra.metadata.driver.annotation_driver.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\AnnotationDriver',
             'jms_di_extra.metadata.driver.configured_controller_injections.class' => 'JMS\\DiExtraBundle\\Metadata\\Driver\\ConfiguredControllerInjectionsDriver',
@@ -1468,13 +1531,13 @@ class appProdProjectContainer extends Container
             ),
             'jms_di_extra.directories' => array(
             ),
-            'jms_di_extra.cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_diextra',
+            'jms_di_extra.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra',
             'jms_di_extra.disable_grep' => false,
             'jms_di_extra.doctrine_integration' => true,
             'jms_di_extra.cache_warmer.controller_file_blacklist' => array(
             ),
-            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516e6e37d9369.php',
-            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager516e6e37d9369_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
+            'jms_di_extra.doctrine_integration.entity_manager.file' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_diextra/doctrine/EntityManager_516ef4e1c9179.php',
+            'jms_di_extra.doctrine_integration.entity_manager.class' => 'EntityManager516ef4e1c9179_546a8d27f194334ee012bfe64f629947b07e4919\\__CG__\\Doctrine\\ORM\\EntityManager',
             'security.secured_services' => array(
             ),
             'security.access.method_interceptor.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Interception\\MethodSecurityInterceptor',
@@ -1494,7 +1557,7 @@ class appProdProjectContainer extends Container
             'security.extra.annotation_driver.class' => 'JMS\\SecurityExtraBundle\\Metadata\\Driver\\AnnotationDriver',
             'security.extra.file_cache.class' => 'Metadata\\Cache\\FileCache',
             'security.access.secure_all_services' => false,
-            'security.extra.cache_dir' => '/Users/nguyenkenny/ETNA/2SN/app/cache/prod/jms_security',
+            'security.extra.cache_dir' => '/Users/Ophelie/Sites/2SN-git/2SN/app/cache/prod/jms_security',
             'security.acl.permission_evaluator.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\PermissionEvaluator',
             'security.acl.has_permission_compiler.class' => 'JMS\\SecurityExtraBundle\\Security\\Acl\\Expression\\HasPermissionFunctionCompiler',
             'security.expressions.voter.class' => 'JMS\\SecurityExtraBundle\\Security\\Authorization\\Expression\\LazyLoadingExpressionVoter',

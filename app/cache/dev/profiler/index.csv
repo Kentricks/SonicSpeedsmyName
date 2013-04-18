@@ -1,6 +1,2 @@
-2f24820949831be42fa303577532ee40ac7ec433,::1,GET,http://localhost:8888/2SN/web/app_dev.php/,1366191716,
-5d0902042bc5578ad0996d855fcbbe63d882f49b,::1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/,1366191724,
-30e43c9b4a223aa982fc8c769f11e715049062eb,::1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/hello/World,1366191725,
-963bbe187557d69cf8e060f8c96422bedd24d17a,::1,GET,http://localhost:8888/2SN/web/app_dev.php/hello/World,1366191732,
-ae48de274b45df85c46dc22168b8a82ae4bc48d2,::1,GET,http://localhost:8888/2SN/web/app_dev.php/hello/World,1366191732,
-e81201c5e4b44db7bfac77b043c63b47b089405f,::1,GET,http://localhost:8888/2SN/web/app_dev.php/demo/hello/PizzaHut,1366191756,
+46c31f098a997e149a1b03858cd60b72c5fe5106,::1,GET,http://localhost:8888/app_dev.php/hello/toi,1366314480,
+f51b74c88c06e28c11c08ed3f774517b0f78bc08,::1,GET,http://localhost:8888/app_dev.php/hello/toi,1366314480,
