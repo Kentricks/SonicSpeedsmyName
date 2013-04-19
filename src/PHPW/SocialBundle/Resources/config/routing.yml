@@ -1,3 +1,0 @@
-phpw_social_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: PHPWSocialBundle:Default:index }

@@ -1,5 +1,0 @@
-phpw_social:
-    resource: "@PHPWSocialBundle/Resources/config/routing.yml"
-    prefix:   /
-
-

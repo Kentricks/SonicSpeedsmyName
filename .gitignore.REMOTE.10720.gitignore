@@ -1,6 +1,0 @@
-app/cache/*
-app/logs/*
-*.iml
-*.ipr
-*.iws
-.idea/

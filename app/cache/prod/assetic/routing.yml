@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: /Users/Ophelie/Sites/2SN-git/2SN/app/config/routing.yml

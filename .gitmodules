@@ -1,9 +1,0 @@
-[submodule "BootstrapBundle"]
-	path = vendor/braincrafted/bootstrap-bundle/Bc/Bundle/BootstrapBundle/
-	url = git://github.com/braincrafted/bootstrap-bundle.git
-[submodule "bootstrap-bundle"]
-	path = bootstrap-bundle
-	url = git://github.com/braincrafted/bootstrap-bundle.git
-[submodule "te"]
-	path = te
-	url = git://github.com/braincrafted/bootstrap-bundle.git
