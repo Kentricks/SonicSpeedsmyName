@@ -1,0 +1,4 @@
+etna_social:
+    resource: "@EtnaSocialBundle/Resources/config/routing.yml"
+    prefix:   /
+

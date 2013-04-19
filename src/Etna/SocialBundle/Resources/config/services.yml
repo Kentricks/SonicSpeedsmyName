@@ -1,0 +1,7 @@
+parameters:
+#    etna_social.example.class: Etna\SocialBundle\Example
+
+services:
+#    etna_social.example:
+#        class: %etna_social.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
