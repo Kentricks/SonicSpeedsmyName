@@ -48,6 +48,10 @@ class Photo
      */
     protected $membre;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Album", inversedBy="photos")
+     */
+    private $albums;
 
     /**
      * Get id
@@ -149,5 +153,45 @@ class Photo
     public function getMembre()
     {
         return $this->membre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add albums
+     *
+     * @param \Etna\SocialBundle\Entity\Album $albums
+     * @return Photo
+     */
+    public function addAlbum(\Etna\SocialBundle\Entity\Album $albums)
+    {
+        $this->albums[] = $albums;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albums
+     *
+     * @param \Etna\SocialBundle\Entity\Album $albums
+     */
+    public function removeAlbum(\Etna\SocialBundle\Entity\Album $albums)
+    {
+        $this->albums->removeElement($albums);
+    }
+
+    /**
+     * Get albums
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
     }
 }

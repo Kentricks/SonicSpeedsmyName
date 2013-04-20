@@ -24,9 +24,9 @@ class Album
     /**
      * @var string
      *
-     * @ORM\Column(name="a_nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $a_nom;
+    private $nom;
 
     /**
      * @var \DateTime
@@ -35,6 +35,16 @@ class Album
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="albums")
+     * @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
+     */
+    protected $membre;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Photo", inversedBy="albums")
+     */
+    private $photos;
 
     /**
      * Get id
@@ -47,26 +57,26 @@ class Album
     }
 
     /**
-     * Set a_nom
+     * Set nom
      *
-     * @param string $aNom
+     * @param string $nom
      * @return Album
      */
-    public function setANom($aNom)
+    public function setNom($nom)
     {
-        $this->a_nom = $aNom;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get a_nom
+     * Get nom
      *
      * @return string 
      */
-    public function getANom()
+    public function getNom()
     {
-        return $this->a_nom;
+        return $this->nom;
     }
 
     /**
@@ -90,5 +100,68 @@ class Album
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membre
+     * @return Album
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add photos
+     *
+     * @param \Etna\SocialBundle\Entity\Photo $photos
+     * @return Album
+     */
+    public function addPhoto(\Etna\SocialBundle\Entity\Photo $photos)
+    {
+        $this->photos[] = $photos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove photos
+     *
+     * @param \Etna\SocialBundle\Entity\Photo $photos
+     */
+    public function removePhoto(\Etna\SocialBundle\Entity\Photo $photos)
+    {
+        $this->photos->removeElement($photos);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 }
