@@ -98,6 +98,10 @@ class Membre
      */
     private $myFriends;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="membres")
+     */
+    private $groupes;
 
     /**
      * Get id
@@ -314,5 +318,79 @@ class Membre
     public function getDateInscription()
     {
         return $this->date_inscription;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add friendsWithMe
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $friendsWithMe
+     * @return Membre
+     */
+    public function addFriendsWithMe(\Etna\SocialBundle\Entity\Membre $friendsWithMe)
+    {
+        $this->friendsWithMe[] = $friendsWithMe;
+    
+        return $this;
+    }
+
+    /**
+     * Remove friendsWithMe
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $friendsWithMe
+     */
+    public function removeFriendsWithMe(\Etna\SocialBundle\Entity\Membre $friendsWithMe)
+    {
+        $this->friendsWithMe->removeElement($friendsWithMe);
+    }
+
+    /**
+     * Get friendsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * Add myFriends
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $myFriends
+     * @return Membre
+     */
+    public function addMyFriend(\Etna\SocialBundle\Entity\Membre $myFriends)
+    {
+        $this->myFriends[] = $myFriends;
+    
+        return $this;
+    }
+
+    /**
+     * Remove myFriends
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $myFriends
+     */
+    public function removeMyFriend(\Etna\SocialBundle\Entity\Membre $myFriends)
+    {
+        $this->myFriends->removeElement($myFriends);
+    }
+
+    /**
+     * Get myFriends
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyFriends()
+    {
+        return $this->myFriends;
     }
 }

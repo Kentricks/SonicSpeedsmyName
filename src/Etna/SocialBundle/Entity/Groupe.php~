@@ -24,41 +24,13 @@ class Groupe
     /**
      * @var string
      *
-     * @ORM\Column(name="g_nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $g_nom;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $nom;
 
     /**
-     * Set g_nom
-     *
-     * @param string $gNom
-     * @return Groupe
+     * @ORM\ManyToMany(targetEntity="Membre", inversedBy="groupes")
      */
-    public function setGNom($gNom)
-    {
-        $this->g_nom = $gNom;
-    
-        return $this;
-    }
+    private $membres;
 
-    /**
-     * Get g_nom
-     *
-     * @return string 
-     */
-    public function getGNom()
-    {
-        return $this->g_nom;
-    }
 }

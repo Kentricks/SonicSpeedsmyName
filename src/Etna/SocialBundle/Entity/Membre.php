@@ -98,6 +98,10 @@ class Membre
      */
     private $myFriends;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Groupe", inversedBy="membres")
+     */
+    private $groupes;
 
     /**
      * Get id
@@ -388,5 +392,38 @@ class Membre
     public function getMyFriends()
     {
         return $this->myFriends;
+    }
+
+    /**
+     * Add groupes
+     *
+     * @param \Etna\SocialBundle\Entity\Groupe $groupes
+     * @return Membre
+     */
+    public function addGroupe(\Etna\SocialBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes[] = $groupes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove groupes
+     *
+     * @param \Etna\SocialBundle\Entity\Groupe $groupes
+     */
+    public function removeGroupe(\Etna\SocialBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes->removeElement($groupes);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
     }
 }

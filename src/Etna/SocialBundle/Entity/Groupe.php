@@ -24,11 +24,23 @@ class Groupe
     /**
      * @var string
      *
-     * @ORM\Column(name="g_nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $g_nom;
+    private $nom;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Membre", inversedBy="groupes")
+     */
+    private $membres;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->membres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -40,25 +52,58 @@ class Groupe
     }
 
     /**
-     * Set g_nom
+     * Set nom
      *
-     * @param string $gNom
+     * @param string $nom
      * @return Groupe
      */
-    public function setGNom($gNom)
+    public function setNom($nom)
     {
-        $this->g_nom = $gNom;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get g_nom
+     * Get nom
      *
      * @return string 
      */
-    public function getGNom()
+    public function getNom()
     {
-        return $this->g_nom;
+        return $this->nom;
+    }
+
+    /**
+     * Add membres
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membres
+     * @return Groupe
+     */
+    public function addMembre(\Etna\SocialBundle\Entity\Membre $membres)
+    {
+        $this->membres[] = $membres;
+    
+        return $this;
+    }
+
+    /**
+     * Remove membres
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membres
+     */
+    public function removeMembre(\Etna\SocialBundle\Entity\Membre $membres)
+    {
+        $this->membres->removeElement($membres);
+    }
+
+    /**
+     * Get membres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMembres()
+    {
+        return $this->membres;
     }
 }
