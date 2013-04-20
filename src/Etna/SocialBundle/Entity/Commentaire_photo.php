@@ -35,6 +35,11 @@ class Commentaire_photo
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
+     */
+    protected $membre;
 
     /**
      * Get id
@@ -90,5 +95,28 @@ class Commentaire_photo
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Photo $membre
+     * @return Commentaire_photo
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Photo $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Photo 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }

@@ -35,6 +35,11 @@ class Commentaire_photo
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
+     */
+    protected $membre;
 
     /**
      * Get id

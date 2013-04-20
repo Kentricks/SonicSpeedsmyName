@@ -54,6 +54,11 @@ class Photo
     private $albums;
 
     /**
+     * @ORM\OneToMany(targetEntity="Commentaire_photo", mappedBy="photo")
+     */
+    private $commentaires;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -193,5 +198,38 @@ class Photo
     public function getAlbums()
     {
         return $this->albums;
+    }
+
+    /**
+     * Add commentaires
+     *
+     * @param \Etna\SocialBundle\Entity\Commentaire_photo $commentaires
+     * @return Photo
+     */
+    public function addCommentaire(\Etna\SocialBundle\Entity\Commentaire_photo $commentaires)
+    {
+        $this->commentaires[] = $commentaires;
+    
+        return $this;
+    }
+
+    /**
+     * Remove commentaires
+     *
+     * @param \Etna\SocialBundle\Entity\Commentaire_photo $commentaires
+     */
+    public function removeCommentaire(\Etna\SocialBundle\Entity\Commentaire_photo $commentaires)
+    {
+        $this->commentaires->removeElement($commentaires);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }
