@@ -118,6 +118,8 @@ class Membre
      */
     private $statuts;
 
+    
+
     /**
      * Get id
      *
