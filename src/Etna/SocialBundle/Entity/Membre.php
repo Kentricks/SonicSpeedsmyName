@@ -320,105 +320,17 @@ class Membre
      */
     public function __construct()
     {
-        $this->amis = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    /**
-     * Add amis
-     *
-     * @param \Etna\SocialBundle\Entity\Membre $amis
-     * @return Membre
-     */
-    public function addAmi(\Etna\SocialBundle\Entity\Membre $amis)
-    {
-        $this->amis[] = $amis;
-    
-        return $this;
-    }
-
-    /**
-     * Remove amis
-     *
-     * @param \Etna\SocialBundle\Entity\Membre $amis
-     */
-    public function removeAmi(\Etna\SocialBundle\Entity\Membre $amis)
-    {
-        $this->amis->removeElement($amis);
-    }
-
-    /**
-     * Get amis
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAmis()
-    {
-        return $this->amis;
-    }
-
-    /**
-     * Add membres
-     *
-     * @param \Etna\SocialBundle\Entity\Membre $membres
-     * @return Membre
-     */
-    public function addMembre(\Etna\SocialBundle\Entity\Membre $membres)
-    {
-        $this->membres[] = $membres;
-    
-        return $this;
-    }
-
-    /**
-     * Remove membres
-     *
-     * @param \Etna\SocialBundle\Entity\Membre $membres
-     */
-    public function removeMembre(\Etna\SocialBundle\Entity\Membre $membres)
-    {
-        $this->membres->removeElement($membres);
-    }
-
-    /**
-     * Get membres
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMembres()
-    {
-        return $this->membres;
-    }
-
-    /**
-     * Set membre
-     *
-     * @param \Etna\SocialBundle\Entity\Membre $membre
-     * @return Membre
-     */
-    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
-    {
-        $this->membre = $membre;
-    
-        return $this;
-    }
-
-    /**
-     * Get membre
-     *
-     * @return \Etna\SocialBundle\Entity\Membre 
-     */
-    public function getMembre()
-    {
-        return $this->membre;
-    }
-
     /**
      * Add friendsWithMe
      *
-     * @param \Etna\SocialBundle\Entity\Member $friendsWithMe
+     * @param \Etna\SocialBundle\Entity\Membre $friendsWithMe
      * @return Membre
      */
-    public function addFriendsWithMe(\Etna\SocialBundle\Entity\Member $friendsWithMe)
+    public function addFriendsWithMe(\Etna\SocialBundle\Entity\Membre $friendsWithMe)
     {
         $this->friendsWithMe[] = $friendsWithMe;
     
@@ -428,9 +340,9 @@ class Membre
     /**
      * Remove friendsWithMe
      *
-     * @param \Etna\SocialBundle\Entity\Member $friendsWithMe
+     * @param \Etna\SocialBundle\Entity\Membre $friendsWithMe
      */
-    public function removeFriendsWithMe(\Etna\SocialBundle\Entity\Member $friendsWithMe)
+    public function removeFriendsWithMe(\Etna\SocialBundle\Entity\Membre $friendsWithMe)
     {
         $this->friendsWithMe->removeElement($friendsWithMe);
     }
@@ -448,10 +360,10 @@ class Membre
     /**
      * Add myFriends
      *
-     * @param \Etna\SocialBundle\Entity\Member $myFriends
+     * @param \Etna\SocialBundle\Entity\Membre $myFriends
      * @return Membre
      */
-    public function addMyFriend(\Etna\SocialBundle\Entity\Member $myFriends)
+    public function addMyFriend(\Etna\SocialBundle\Entity\Membre $myFriends)
     {
         $this->myFriends[] = $myFriends;
     
@@ -461,9 +373,9 @@ class Membre
     /**
      * Remove myFriends
      *
-     * @param \Etna\SocialBundle\Entity\Member $myFriends
+     * @param \Etna\SocialBundle\Entity\Membre $myFriends
      */
-    public function removeMyFriend(\Etna\SocialBundle\Entity\Member $myFriends)
+    public function removeMyFriend(\Etna\SocialBundle\Entity\Membre $myFriends)
     {
         $this->myFriends->removeElement($myFriends);
     }
