@@ -42,6 +42,11 @@ class Statut
     protected $membre;
 
     /**
+     * @ORM\OneToMany(targetEntity="Commentaire_statut", mappedBy="statut")
+     */
+    private $commentaires;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -119,5 +124,45 @@ class Statut
     public function getMembre()
     {
         return $this->membre;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add commentaires
+     *
+     * @param \Etna\SocialBundle\Entity\Commentaire_statut $commentaires
+     * @return Statut
+     */
+    public function addCommentaire(\Etna\SocialBundle\Entity\Commentaire_statut $commentaires)
+    {
+        $this->commentaires[] = $commentaires;
+    
+        return $this;
+    }
+
+    /**
+     * Remove commentaires
+     *
+     * @param \Etna\SocialBundle\Entity\Commentaire_statut $commentaires
+     */
+    public function removeCommentaire(\Etna\SocialBundle\Entity\Commentaire_statut $commentaires)
+    {
+        $this->commentaires->removeElement($commentaires);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

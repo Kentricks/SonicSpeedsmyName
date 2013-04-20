@@ -42,6 +42,11 @@ class Statut
     protected $membre;
 
     /**
+     * @ORM\OneToMany(targetEntity="Commentaire_statut", mappedBy="statut")
+     */
+    private $commentaires;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -96,5 +101,28 @@ class Statut
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membre
+     * @return Statut
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }

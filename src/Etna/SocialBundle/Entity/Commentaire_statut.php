@@ -47,6 +47,12 @@ class Commentaire_statut
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
+     */
+    protected $statut;
+
+    /**
      * Set contenu
      *
      * @param string $contenu
@@ -90,5 +96,28 @@ class Commentaire_statut
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param \Etna\SocialBundle\Entity\Statut $statut
+     * @return Commentaire_statut
+     */
+    public function setStatut(\Etna\SocialBundle\Entity\Statut $statut = null)
+    {
+        $this->statut = $statut;
+    
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return \Etna\SocialBundle\Entity\Statut 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
     }
 }
