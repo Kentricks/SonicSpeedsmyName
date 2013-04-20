@@ -35,6 +35,11 @@ class Statut
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="statut")
+     * @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
+     */
+    protected $membre;
 
     /**
      * Get id
@@ -45,6 +50,7 @@ class Statut
     {
         return $this->id;
     }
+
 
     /**
      * Set contenu

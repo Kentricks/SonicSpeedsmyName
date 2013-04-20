@@ -35,6 +35,11 @@ class Statut
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="statut")
+     * @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
+     */
+    protected $membre;
 
     /**
      * Get id
@@ -45,6 +50,7 @@ class Statut
     {
         return $this->id;
     }
+
 
     /**
      * Set contenu
@@ -90,5 +96,28 @@ class Statut
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membre
+     * @return Statut
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }

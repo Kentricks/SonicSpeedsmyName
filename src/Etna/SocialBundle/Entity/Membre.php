@@ -114,6 +114,11 @@ class Membre
     private $albums;
 
     /**
+     * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre")
+     */
+    private $statuts;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -501,5 +506,38 @@ class Membre
     public function getAlbums()
     {
         return $this->albums;
+    }
+
+    /**
+     * Add statuts
+     *
+     * @param \Etna\SocialBundle\Entity\Statut $statuts
+     * @return Membre
+     */
+    public function addStatut(\Etna\SocialBundle\Entity\Statut $statuts)
+    {
+        $this->statuts[] = $statuts;
+    
+        return $this;
+    }
+
+    /**
+     * Remove statuts
+     *
+     * @param \Etna\SocialBundle\Entity\Statut $statuts
+     */
+    public function removeStatut(\Etna\SocialBundle\Entity\Statut $statuts)
+    {
+        $this->statuts->removeElement($statuts);
+    }
+
+    /**
+     * Get statuts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStatuts()
+    {
+        return $this->statuts;
     }
 }
