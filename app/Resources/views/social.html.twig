@@ -9,7 +9,42 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        <div id="navbar">
+            {% block navbar %}
+            <div class="navbar navbar">
+                <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a  class="brand" href="#">Accueil</a></li>
+                            <li class="active"><a href="#">Mon compte</a></li>
+                            <li><a href="#">Messages</a></li>
+                            <li><a href="#">Mes amis</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                        <li><a href="#"><i class="icon-off"></i>Deconnexion</a></li>
+                        </ul>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            {% block footer %}
+            <div class="navbar navbar">
+                <div class="navbar-inner">
+                        <ul class="nav">
+                            <li><a href="#">A Propos</a></li>
+                            <li><a href="#">© Copyright 2013 </a></li>
+                        </ul>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>

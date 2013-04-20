@@ -1,1 +1,6 @@
-Hello {{ name }}!
+{% extends '::social.html.twig' %}
+
+
+{% block body %}
+<p class="alert alert-info" >Hello {{ name }}!</p>
+{% endblock %}
