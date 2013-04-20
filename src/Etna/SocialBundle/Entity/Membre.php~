@@ -104,6 +104,11 @@ class Membre
     private $groupes;
 
     /**
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="membre")
+     */
+    private $photos;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -392,5 +397,38 @@ class Membre
     public function getMyFriends()
     {
         return $this->myFriends;
+    }
+
+    /**
+     * Add groupes
+     *
+     * @param \Etna\SocialBundle\Entity\Groupe $groupes
+     * @return Membre
+     */
+    public function addGroupe(\Etna\SocialBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes[] = $groupes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove groupes
+     *
+     * @param \Etna\SocialBundle\Entity\Groupe $groupes
+     */
+    public function removeGroupe(\Etna\SocialBundle\Entity\Groupe $groupes)
+    {
+        $this->groupes->removeElement($groupes);
+    }
+
+    /**
+     * Get groupes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroupes()
+    {
+        return $this->groupes;
     }
 }

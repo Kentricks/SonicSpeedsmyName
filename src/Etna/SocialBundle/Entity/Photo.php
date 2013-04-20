@@ -24,9 +24,9 @@ class Photo
     /**
      * @var string
      *
-     * @ORM\Column(name="p_nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $p_nom;
+    private $nom;
 
     /**
      * @var \DateTime
@@ -42,6 +42,12 @@ class Photo
      */
     private $url;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="photos")
+     * @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
+     */
+    protected $membre;
+
 
     /**
      * Get id
@@ -54,26 +60,26 @@ class Photo
     }
 
     /**
-     * Set p_nom
+     * Set nom
      *
-     * @param string $pNom
+     * @param string $nom
      * @return Photo
      */
-    public function setPNom($pNom)
+    public function setNom($nom)
     {
-        $this->p_nom = $pNom;
+        $this->nom = $nom;
     
         return $this;
     }
 
     /**
-     * Get p_nom
+     * Get nom
      *
      * @return string 
      */
-    public function getPNom()
+    public function getNom()
     {
-        return $this->p_nom;
+        return $this->nom;
     }
 
     /**
@@ -120,5 +126,28 @@ class Photo
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membre
+     * @return Photo
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }
