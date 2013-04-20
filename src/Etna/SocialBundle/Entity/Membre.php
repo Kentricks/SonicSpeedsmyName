@@ -85,6 +85,21 @@ class Membre
     private $date_inscription;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Membre", mappedBy="mesAmis")
+     */
+    private $friendsWithMe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Membre", inversedBy="AmiAvecMoi")
+     * @ORM\JoinTable(name="Amis",
+     *      joinColumns={@ORM\JoinColumn(name="membre_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ami_membre_id", referencedColumnName="id")}
+     *      )
+     */
+    private $myFriends;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -299,5 +314,167 @@ class Membre
     public function getDateInscription()
     {
         return $this->date_inscription;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->amis = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add amis
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $amis
+     * @return Membre
+     */
+    public function addAmi(\Etna\SocialBundle\Entity\Membre $amis)
+    {
+        $this->amis[] = $amis;
+    
+        return $this;
+    }
+
+    /**
+     * Remove amis
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $amis
+     */
+    public function removeAmi(\Etna\SocialBundle\Entity\Membre $amis)
+    {
+        $this->amis->removeElement($amis);
+    }
+
+    /**
+     * Get amis
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAmis()
+    {
+        return $this->amis;
+    }
+
+    /**
+     * Add membres
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membres
+     * @return Membre
+     */
+    public function addMembre(\Etna\SocialBundle\Entity\Membre $membres)
+    {
+        $this->membres[] = $membres;
+    
+        return $this;
+    }
+
+    /**
+     * Remove membres
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membres
+     */
+    public function removeMembre(\Etna\SocialBundle\Entity\Membre $membres)
+    {
+        $this->membres->removeElement($membres);
+    }
+
+    /**
+     * Get membres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMembres()
+    {
+        return $this->membres;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $membre
+     * @return Membre
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
+    }
+
+    /**
+     * Add friendsWithMe
+     *
+     * @param \Etna\SocialBundle\Entity\Member $friendsWithMe
+     * @return Membre
+     */
+    public function addFriendsWithMe(\Etna\SocialBundle\Entity\Member $friendsWithMe)
+    {
+        $this->friendsWithMe[] = $friendsWithMe;
+    
+        return $this;
+    }
+
+    /**
+     * Remove friendsWithMe
+     *
+     * @param \Etna\SocialBundle\Entity\Member $friendsWithMe
+     */
+    public function removeFriendsWithMe(\Etna\SocialBundle\Entity\Member $friendsWithMe)
+    {
+        $this->friendsWithMe->removeElement($friendsWithMe);
+    }
+
+    /**
+     * Get friendsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * Add myFriends
+     *
+     * @param \Etna\SocialBundle\Entity\Member $myFriends
+     * @return Membre
+     */
+    public function addMyFriend(\Etna\SocialBundle\Entity\Member $myFriends)
+    {
+        $this->myFriends[] = $myFriends;
+    
+        return $this;
+    }
+
+    /**
+     * Remove myFriends
+     *
+     * @param \Etna\SocialBundle\Entity\Member $myFriends
+     */
+    public function removeMyFriend(\Etna\SocialBundle\Entity\Member $myFriends)
+    {
+        $this->myFriends->removeElement($myFriends);
+    }
+
+    /**
+     * Get myFriends
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMyFriends()
+    {
+        return $this->myFriends;
     }
 }
