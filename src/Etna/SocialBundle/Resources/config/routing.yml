@@ -1,3 +1,6 @@
 etna_social_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: EtnaSocialBundle:Default:index }
+etna_social_ajoututi:
+    pattern: /creer_un_compte
+    defaults: { _controller: EtnaSocialBundle:Default:ajouter }
