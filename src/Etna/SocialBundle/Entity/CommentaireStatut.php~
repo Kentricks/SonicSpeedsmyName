@@ -5,12 +5,12 @@ namespace Etna\SocialBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire_statut
+ * CommentaireStatut
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Commentaire_statut
+class CommentaireStatut
 {
     /**
      * @var integer

@@ -54,7 +54,7 @@ class Photo
     private $albums;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire_photo", mappedBy="photo")
+     * @ORM\OneToMany(targetEntity="CommentairePhoto", mappedBy="photo")
      */
     private $commentaires;
 

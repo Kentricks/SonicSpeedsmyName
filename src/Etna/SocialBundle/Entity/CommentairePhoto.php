@@ -5,12 +5,12 @@ namespace Etna\SocialBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire_statut
+ * CommentairePhoto
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Commentaire_statut
+class CommentairePhoto
 {
     /**
      * @var integer
@@ -35,6 +35,11 @@ class Commentaire_statut
      */
     private $date_creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
+     */
+    protected $membre;
 
     /**
      * Get id
@@ -47,16 +52,10 @@ class Commentaire_statut
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="commentaires")
-     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
-     */
-    protected $statut;
-
-    /**
      * Set contenu
      *
      * @param string $contenu
-     * @return Commentaire_statut
+     * @return Commentaire_photo
      */
     public function setContenu($contenu)
     {
@@ -79,7 +78,7 @@ class Commentaire_statut
      * Set date_creation
      *
      * @param \DateTime $dateCreation
-     * @return Commentaire_statut
+     * @return Commentaire_photo
      */
     public function setDateCreation($dateCreation)
     {
@@ -96,5 +95,28 @@ class Commentaire_statut
     public function getDateCreation()
     {
         return $this->date_creation;
+    }
+
+    /**
+     * Set membre
+     *
+     * @param \Etna\SocialBundle\Entity\Photo $membre
+     * @return Commentaire_photo
+     */
+    public function setMembre(\Etna\SocialBundle\Entity\Photo $membre = null)
+    {
+        $this->membre = $membre;
+    
+        return $this;
+    }
+
+    /**
+     * Get membre
+     *
+     * @return \Etna\SocialBundle\Entity\Photo 
+     */
+    public function getMembre()
+    {
+        return $this->membre;
     }
 }

@@ -5,12 +5,12 @@ namespace Etna\SocialBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Commentaire_photo
+ * CommentaireStatut
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Commentaire_photo
+class CommentaireStatut
 {
     /**
      * @var integer
@@ -35,11 +35,6 @@ class Commentaire_photo
      */
     private $date_creation;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
-     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
-     */
-    protected $membre;
 
     /**
      * Get id
@@ -52,10 +47,16 @@ class Commentaire_photo
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
+     */
+    protected $statut;
+
+    /**
      * Set contenu
      *
      * @param string $contenu
-     * @return Commentaire_photo
+     * @return Commentaire_statut
      */
     public function setContenu($contenu)
     {
@@ -78,7 +79,7 @@ class Commentaire_photo
      * Set date_creation
      *
      * @param \DateTime $dateCreation
-     * @return Commentaire_photo
+     * @return Commentaire_statut
      */
     public function setDateCreation($dateCreation)
     {
@@ -98,25 +99,25 @@ class Commentaire_photo
     }
 
     /**
-     * Set membre
+     * Set statut
      *
-     * @param \Etna\SocialBundle\Entity\Photo $membre
-     * @return Commentaire_photo
+     * @param \Etna\SocialBundle\Entity\Statut $statut
+     * @return Commentaire_statut
      */
-    public function setMembre(\Etna\SocialBundle\Entity\Photo $membre = null)
+    public function setStatut(\Etna\SocialBundle\Entity\Statut $statut = null)
     {
-        $this->membre = $membre;
+        $this->statut = $statut;
     
         return $this;
     }
 
     /**
-     * Get membre
+     * Get statut
      *
-     * @return \Etna\SocialBundle\Entity\Photo 
+     * @return \Etna\SocialBundle\Entity\Statut 
      */
-    public function getMembre()
+    public function getStatut()
     {
-        return $this->membre;
+        return $this->statut;
     }
 }

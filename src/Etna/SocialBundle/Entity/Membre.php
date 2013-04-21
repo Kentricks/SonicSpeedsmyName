@@ -2,6 +2,7 @@
 
 namespace Etna\SocialBundle\Entity;
 
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Membre
+class Membre extends BaseUser
 {
+
+
     /**
      * @var integer
      *
@@ -19,68 +22,62 @@ class Membre
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=255)
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255,  nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255)
+     * @ORM\Column(name="genre", type="string", length=255, nullable=true)
      */
     private $genre;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_naissance", type="date")
+     * @ORM\Column(name="date_naissance", type="date", nullable=true)
      */
     private $date_naissance;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=255)
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
      */
     private $adresse;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="code_postale", type="integer")
+     * @ORM\Column(name="code_postale", type="integer", nullable=true)
      */
     private $code_postale;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true)
      */
     private $ville;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_inscription", type="date")
+     * @ORM\Column(name="date_inscription", type="date", nullable=true)
      */
     private $date_inscription;
 
@@ -119,7 +116,7 @@ class Membre
     private $statuts;
 
     
-
+        
     /**
      * Get id
      *
@@ -341,8 +338,10 @@ class Membre
      */
     public function __construct()
     {
+        parent::__construct();
         $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
         $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+        //parent::__construct();
     }
     
     /**

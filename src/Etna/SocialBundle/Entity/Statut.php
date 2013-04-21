@@ -42,7 +42,7 @@ class Statut
     protected $membre;
 
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire_statut", mappedBy="statut")
+     * @ORM\OneToMany(targetEntity="CommentaireStatut", mappedBy="statut")
      */
     private $commentaires;
 
