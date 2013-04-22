@@ -4,3 +4,7 @@ etna_social_homepage:
 etna_social_ajoututi:
     pattern: /creer_un_compte
     defaults: { _controller: EtnaSocialBundle:Default:ajouter }
+
+etna_social_login:
+    pattern: /login
+    defaults: { _controller: EtnaSocialBundle:Security:login }
