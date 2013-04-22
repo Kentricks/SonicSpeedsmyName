@@ -1,8 +1,13 @@
+etna_social_home:
+    pattern:  /home
+    defaults: { _controller: EtnaSocialBundle:Default:index }
+
 etna_social_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: EtnaSocialBundle:Default:index }
-etna_social_ajoututi:
-    pattern: /creer_un_compte
+
+etna_social_ajout_user:
+    pattern: /register
     defaults: { _controller: EtnaSocialBundle:Default:ajouter }
 
 etna_social_login:
