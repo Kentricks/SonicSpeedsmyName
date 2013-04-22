@@ -1,0 +1,19 @@
+{% extends '::social.html.twig' %}
+
+{% block title %}
+	Creer un nouveau compte - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <h3> Nouveau compte :</h3>
+
+    <hr>
+	<div class="well">
+		<form method="post" {{ form_enctype(form) }}>
+			{{ form_widget(form) }}
+    		<input type="submit" class="btn btn-primary" />
+  		</form>
+	</div>
+
+{% endblock%}
