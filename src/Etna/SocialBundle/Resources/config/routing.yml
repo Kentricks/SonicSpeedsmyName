@@ -1,5 +1,5 @@
 etna_social_home:
-    pattern:  /home
+    pattern:  /
     defaults: { _controller: EtnaSocialBundle:Default:index }
 
 etna_social_homepage:

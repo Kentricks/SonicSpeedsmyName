@@ -25,12 +25,15 @@ security:
     #Securite des pages
         #login_firewall:
          #   pattern:    ^/login$ | ^/register$  
-          #  anonymous:  ~
+         #   anonymous:  ~
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                #redirect apres login
+                default_target_path: /hello/toi
+                always_use_default_target_path: true
             logout:       true
             anonymous:    true
         dev:
@@ -55,5 +58,3 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        #Securite des pages
-        #- { path: ^/, roles: ROLE_ADMIN }
