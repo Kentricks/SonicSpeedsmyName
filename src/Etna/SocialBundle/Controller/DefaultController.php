@@ -20,7 +20,7 @@ class DefaultController extends Controller
     		->add('nom', 'text')
     		->add('prenom', 'text')
     		->add('genre', 'choice', array(
-    'choices'   => array('m' => 'Masculin', 'f' => 'Féminin'),
+    'choices'   => array('m' => 'Homme', 'f' => 'Femme'),
     ))
     		->add('email', 'email')
     		->add('password', 'password');
