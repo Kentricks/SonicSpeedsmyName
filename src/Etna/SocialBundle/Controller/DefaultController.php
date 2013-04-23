@@ -17,14 +17,28 @@ class DefaultController extends Controller
 
     	$formBuilder = $this->createFormBuilder($membre);
     	$formBuilder
+            ->add('username', 'text')
     		->add('nom', 'text')
     		->add('prenom', 'text')
     		->add('genre', 'choice', array(
-    'choices'   => array('m' => 'Homme', 'f' => 'Femme'),
-    ))
+                'choices'   => array('m' => 'Homme', 'f' => 'Femme'),
+                ))
     		->add('email', 'email')
     		->add('password', 'password');
 		$form = $formBuilder->getForm();
+        $request = $this->get('request');
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($membre);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('etna_social_login'));
+            }     
+        }
+        $form->bind($request);
 		return $this->render('EtnaSocialBundle:Default:newcompte.html.twig', array('form' => $form->createView(),
 			));
     }
