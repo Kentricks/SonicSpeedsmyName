@@ -5,6 +5,7 @@
         <title>{% block title %}2SN{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type='text/css' />
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}" type='text/css' />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -16,7 +17,14 @@
                     <img src="{{ asset('img/logo2sn.png') }}" alt="Logo 2SN" style="height:80px; position: absolute;" />
                     <div class="navbar-inner" style="padding-left: 130px; padding-top: 20px; border: 0;">
                         <ul class="nav">
-                            <li><a  class="brand" href=" {{ path('etna_social_login') }}">Accueil</a></li>
+                            <li>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a class="brand" href="#">Accueil</a>
+                                {% else %}
+                                <a class="brand" href=" {{ path('etna_social_login') }}">Accueil</a>
+                                {% endif %}
+                            </li>
+
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li class="active"><a href="#">Mon compte</a></li>
                             <li><a href="#">Messages</a></li>

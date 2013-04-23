@@ -1,0 +1,21 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+	<div class="container-fluid">
+	    <div class="row-fluid">
+	        <div class="span2">
+	        <img  class="img-rounded" src="../images/inco.png" alt="inco" height="140px"/>
+	    </div>
+
+	    <div class="span10 info_perso">
+        	<h3>{{ prenom }} {{ nom }} </h3><p>(Informations de profil)</p>
+	        <div class="btn-group">
+	          <button class="btn">Mes Amis</button>
+	          <button class="btn">Mes Photos</button>
+	          <button class="btn">Mes paramètres</button>
+	        </div>
+	    </div>
+	</div>
+{% endblock body %}
