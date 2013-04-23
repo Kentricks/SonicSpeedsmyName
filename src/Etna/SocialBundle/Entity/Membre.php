@@ -82,6 +82,13 @@ class Membre extends BaseUser
     private $date_inscription;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url_photo", type="string", length=255, nullable=true)
+     */
+    private $url_photo;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Membre", mappedBy="mesAmis")
      */
     private $friendsWithMe;
@@ -114,7 +121,6 @@ class Membre extends BaseUser
      * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre")
      */
     private $statuts;
-
     
         
     /**
@@ -540,5 +546,28 @@ class Membre extends BaseUser
     public function getStatuts()
     {
         return $this->statuts;
+    }
+
+    /**
+     * Set url_photo
+     *
+     * @param string $urlPhoto
+     * @return Membre
+     */
+    public function setUrlPhoto($urlPhoto)
+    {
+        $this->url_photo = $urlPhoto;
+    
+        return $this;
+    }
+
+    /**
+     * Get url_photo
+     *
+     * @return string 
+     */
+    public function getUrlPhoto()
+    {
+        return $this->url_photo;
     }
 }

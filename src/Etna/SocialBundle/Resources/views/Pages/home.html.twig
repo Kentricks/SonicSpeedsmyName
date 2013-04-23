@@ -2,15 +2,26 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}{{ prenom }} {{ nom }}{% endblock %}
+
 {% block body %}
 	<div class="container-fluid">
 	    <div class="row-fluid">
 	        <div class="span2">
-	        <img  class="img-rounded" src="../images/inco.png" alt="inco" height="140px"/>
+	        {% if img == "" %}
+	        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
+	        {% else %}
+	        <img  class="img-rounded" src="{{ img }}" alt="inco" height="140px"/>
+	        {% endif %}
 	    </div>
 
-	    <div class="span10 info_perso">
-        	<h3>{{ prenom }} {{ nom }} </h3><p>(Informations de profil)</p>
+	    <div class="span7 info_perso">
+        	<h3>{{ prenom }} {{ nom }} </h3>
+        	<p>
+        		{% if genre == "Femme" %}
+        		<i class="icon-user"></i> {{ genre }}
+        		{% endif %}
+        	</p>
 	        <div class="btn-group">
 	          <button class="btn">Mes Amis</button>
 	          <button class="btn">Mes Photos</button>

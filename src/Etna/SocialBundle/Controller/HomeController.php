@@ -22,9 +22,14 @@ class HomeController extends Controller
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		$nom = $user->getNom();
 		$prenom = $user->getPrenom();
+		$genre = $user->getGenre();
+		$img = $user->getUrlPhoto();
 		return $this->render('EtnaSocialBundle:Pages:home.html.twig', array(
 			'nom' => $nom,
-			'prenom' => $prenom));
+			'prenom' => $prenom,
+			'genre' => $genre,
+			'img' => $img			
+		));
 	}
 }
 ?>

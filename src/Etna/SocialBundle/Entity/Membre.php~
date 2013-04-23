@@ -82,6 +82,13 @@ class Membre extends BaseUser
     private $date_inscription;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="url_photo", type="string", length=255, nullable=true)
+     */
+    private $url_photo;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Membre", mappedBy="mesAmis")
      */
     private $friendsWithMe;
@@ -114,7 +121,6 @@ class Membre extends BaseUser
      * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre")
      */
     private $statuts;
-
     
         
     /**
