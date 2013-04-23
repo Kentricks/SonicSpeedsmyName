@@ -34,7 +34,9 @@ security:
                 #redirect apres login
                 default_target_path: /hello/toi
                 always_use_default_target_path: true
-            logout:       true
+            logout: 
+                path:   /logout
+                target: /login
             anonymous:    true
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

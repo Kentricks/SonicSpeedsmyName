@@ -17,13 +17,19 @@
                     <div class="navbar-inner" style="padding-left: 130px; padding-top: 20px; border: 0;">
                         <ul class="nav">
                             <li><a  class="brand" href=" {{ path('etna_social_login') }}">Accueil</a></li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li class="active"><a href="#">Mon compte</a></li>
                             <li><a href="#">Messages</a></li>
                             <li><a href="#">Mes amis</a></li>
+                            {% endif %}
+
+                        
                         </ul>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <ul class="nav pull-right">
-                        <li><a href="#"><i class="icon-off"></i>Deconnexion</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i>Deconnexion</a></li>
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
