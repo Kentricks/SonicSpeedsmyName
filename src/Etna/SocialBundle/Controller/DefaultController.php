@@ -4,6 +4,7 @@ namespace Etna\SocialBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Etna\SocialBundle\Entity\Membre;
+use FOS\UserBundle\Controller\RegistrationController as SonicController;
 
 class DefaultController extends Controller
 {
