@@ -19,7 +19,9 @@ class DefaultController extends Controller
     	$formBuilder
     		->add('nom', 'text')
     		->add('prenom', 'text')
-    		->add('genre', 'checkbox')
+    		->add('genre', 'choice', array(
+    'choices'   => array('m' => 'Masculin', 'f' => 'Féminin'),
+    ))
     		->add('email', 'email')
     		->add('password', 'password');
 		$form = $formBuilder->getForm();
