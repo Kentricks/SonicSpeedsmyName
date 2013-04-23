@@ -9,20 +9,21 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-
         <div id="navbar">
             {% block navbar %}
             <div class="navbar navbar">
-                <div class="navbar-inner">
-                        <ul class="nav">
-                            <li><a  class="brand" href=" {{ path('etna_social_login') }}">Accueil</a></li>
-                            <li class="active"><a href="#">Mon compte</a></li>
-                            <li><a href="#">Messages</a></li>
-                            <li><a href="#">Mes amis</a></li>
-                        </ul>
-                        <ul class="nav pull-right">
-                        <li><a href="#"><i class="icon-off"></i>Deconnexion</a></li>
-                        </ul>
+                <img src="{{ asset('img/logo2sn.png') }}" alt="Logo 2SN" style="height:80px;" />
+
+                <div class="navbar-inner" style="display:inline-block; border: none; vertical-align:middle;">
+                    <ul class="nav">
+                        <li><a  class="brand" href=" {{ path('etna_social_login') }}">Accueil</a></li>
+                        <li class="active"><a href="#">Mon compte</a></li>
+                        <li><a href="#">Messages</a></li>
+                        <li><a href="#">Mes amis</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                    <li><a href="#"><i class="icon-off"></i>Deconnexion</a></li>
+                    </ul>
                 </div>
             </div>
             {% endblock %}
@@ -32,7 +33,7 @@
             {% block body %}{% endblock %}
         </div>
 
-        <div id="footer">
+        <footer>
             {% block footer %}
             <div class="navbar navbar">
                 <div class="navbar-inner">
@@ -43,7 +44,7 @@
                 </div>
             </div>
             {% endblock %}
-        </div>
+        </footer>
 
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
