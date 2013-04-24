@@ -1,3 +1,4 @@
+<?php  use FOS\UserBundle\FOSUserEvents;  ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,14 +20,14 @@
                         <ul class="nav">
                             <li>
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <a class="brand" href="#">Accueil</a>
+                                <a class="brand" href="{{ path('etna_social_home') }}">Accueil</a>
                                 {% else %}
                                 <a class="brand" href=" {{ path('etna_social_login') }}">Accueil</a>
                                 {% endif %}
                             </li>
 
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('etna_social_home') }}">Mon compte</a></li>
+                            <li><a href="{{ path('etna_social_profile', {'username': app.user.username }) }}">Mon compte</a></li>
                             <li><a href="#">Messages</a></li>
                             <li><a href="#">Mes amis</a></li>
                             {% endif %}
