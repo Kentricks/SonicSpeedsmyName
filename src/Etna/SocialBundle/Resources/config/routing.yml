@@ -8,7 +8,7 @@ etna_social_homepage:
 
 etna_social_ajout_user:
     pattern: /register
-    defaults: { _controller: EtnaSocialBundle:Default:ajouter }
+    defaults: { _controller: EtnaSocialBundle:Regist:register }
 
 etna_social_login:
     pattern: /login
