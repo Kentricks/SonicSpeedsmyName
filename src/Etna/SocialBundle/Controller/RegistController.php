@@ -44,8 +44,8 @@
 
 
                     if (null === $response = $event->getResponse()) {
-                        $url = $this->container->get('router')->generate('fos_user_registration_confirmed');
-                        $response = new RedirectResponse($this->generateUrl('etna_social_login'));
+                        $url = $this->container->get('router')->generate('etna_social_home');
+                        $response = new RedirectResponse($url);
                     }
 
                     $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
