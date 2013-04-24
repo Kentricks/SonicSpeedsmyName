@@ -28,5 +28,11 @@
                 <button class="btn">Mes paramètres</button>
             </div>
         </div>
+
+
     </div>
+
+    {% for statut in statuts %}
+        {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut': statut} %}
+    {% endfor %}
     {% endblock body %}

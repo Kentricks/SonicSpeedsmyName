@@ -37,9 +37,9 @@ class Statut
 
     /**
      * @ORM\ManyToOne(targetEntity="Membre", inversedBy="statut")
-     * @ORM\JoinColumn(name="membre_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
      */
-    protected $membre;
+    protected $expediteur;
 
     /**
      * @ORM\OneToMany(targetEntity="CommentaireStatut", mappedBy="statut")
@@ -136,10 +136,10 @@ class Statut
     /**
      * Add commentaires
      *
-     * @param \Etna\SocialBundle\Entity\Commentaire_statut $commentaires
+     * @param \Etna\SocialBundle\Entity\CommentaireStatut $commentaires
      * @return Statut
      */
-    public function addCommentaire(\Etna\SocialBundle\Entity\Commentaire_statut $commentaires)
+    public function addCommentaire(\Etna\SocialBundle\Entity\CommentaireStatut $commentaires)
     {
         $this->commentaires[] = $commentaires;
     
@@ -149,9 +149,9 @@ class Statut
     /**
      * Remove commentaires
      *
-     * @param \Etna\SocialBundle\Entity\Commentaire_statut $commentaires
+     * @param \Etna\SocialBundle\Entity\CommentaireStatut $commentaires
      */
-    public function removeCommentaire(\Etna\SocialBundle\Entity\Commentaire_statut $commentaires)
+    public function removeCommentaire(\Etna\SocialBundle\Entity\CommentaireStatut $commentaires)
     {
         $this->commentaires->removeElement($commentaires);
     }
@@ -164,5 +164,51 @@ class Statut
     public function getCommentaires()
     {
         return $this->commentaires;
+    }
+
+    /**
+     * Set expediteur
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $expediteur
+     * @return Statut
+     */
+    public function setExpediteur(\Etna\SocialBundle\Entity\Membre $expediteur = null)
+    {
+        $this->expediteur = $expediteur;
+    
+        return $this;
+    }
+
+    /**
+     * Get expediteur
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getExpediteur()
+    {
+        return $this->expediteur;
+    }
+
+    /**
+     * Set destinataire
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $destinataire
+     * @return Statut
+     */
+    public function setDestinataire(\Etna\SocialBundle\Entity\Membre $destinataire = null)
+    {
+        $this->destinataire = $destinataire;
+    
+        return $this;
+    }
+
+    /**
+     * Get destinataire
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getDestinataire()
+    {
+        return $this->destinataire;
     }
 }

@@ -15,12 +15,12 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Etna\SocialBundle\Entity\Membre;
+use Etna\SocialBundle\Entity\Statut;
 
 class ProfileController extends Controller
 {
     public function indexAction($username)
     {
-
         $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
         //$userManager = $this->loadUserByUsername($userManage);
         //$user = $this->loadUserByUsername($userManager);
@@ -30,13 +30,21 @@ class ProfileController extends Controller
         $prenom = $user->getPrenom();
         $genre = $user->getGenre();
         $img = $user->getUrlPhoto();
+        $statut = new Statut();
+        $statut->setContenu("Hello ti");
+        $statuts = $user->addStatut($statut);
+        $statuts = $user->getStatuts();
+
+        //Statut
         return $this->render('EtnaSocialBundle:Pages:profile.html.twig', array(
             'username' => $username,
             'nom' => $nom,
             'prenom' => $prenom,
             'genre' => $genre,
-            'img' => $img
+            'img' => $img,
+            'statuts' => $statuts
         ));
     }
+
 }
 ?>

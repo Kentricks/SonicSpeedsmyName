@@ -34,7 +34,7 @@ class Membre extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255,  nullable=true)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
      */
     private $nom;
 
@@ -118,7 +118,7 @@ class Membre extends BaseUser
     private $albums;
 
     /**
-     * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre")
+     * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre", cascade={"persist"})
      */
     private $statuts;
     
@@ -347,6 +347,7 @@ class Membre extends BaseUser
         parent::__construct();
         $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
         $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->statuts = new \Doctrine\Common\Collections\ArrayCollection();
         //parent::__construct();
     }
     
