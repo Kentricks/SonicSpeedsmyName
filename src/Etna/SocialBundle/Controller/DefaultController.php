@@ -40,7 +40,7 @@ class DefaultController extends Controller
             }     
         }
         $form->bind($request);
-		return $this->render('EtnaSocialBundle:Default:newcompte.html.twig', array('form' => $form->createView(),
+		return $this->render('EtnaSocialBundle:Form :newcompte.html.twig', array('form' => $form->createView(),
 			));
     }
 

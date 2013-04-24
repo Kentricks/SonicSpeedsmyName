@@ -69,3 +69,6 @@ fos_user:
     firewall_name: main
     user_class: Etna\SocialBundle\Entity\Membre
     #user_class: FOS\UserBundle\Entity\User
+    registration:
+        form:
+            type: etna_user_registration
