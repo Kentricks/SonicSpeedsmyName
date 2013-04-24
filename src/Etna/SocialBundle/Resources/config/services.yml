@@ -2,6 +2,11 @@ parameters:
 #    etna_social.example.class: Etna\SocialBundle\Example
 
 services:
+    etna_user.registration.form.type:
+            class: Etna\SocialBundle\Form\Type\RegistrationFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: etna_user_registration }
 #    etna_social.example:
 #        class: %etna_social.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
