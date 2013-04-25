@@ -18,6 +18,18 @@ etna_social_forgot_password:
     pattern: /forgot
     defaults: { _controller: EtnaSocialBundle:Default:forgot }
 
+etna_social_oubli:
+    pattern: /oubli
+    defaults: { _controller: EtnaSocialBundle:Forgot:request}
+etna_social_oubli_send_email:
+    pattern: /send-email
+    defaults: { _controller: EtnaSocialBundle:Forgot:sendEmail}
+etna_social_oubli_check_email:
+    pattern: /check-email
+    defaults: { _controller: EtnaSocialBundle:Forgot:checkEmail}
+etna_social_resetting_reset:
+    pattern: /reset/{token}
+    defaults: { _controller: EtnaSocialBundle:Forgot:reset}
 
 etna_social_profile:
     pattern:  /{username}

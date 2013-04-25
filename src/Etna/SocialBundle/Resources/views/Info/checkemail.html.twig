@@ -1,0 +1,16 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+    <div class="container">
+		<div class="container row-fluid well span3">
+			<h3> Check email : </h3>
+	    	<hr>
+
+			<p>
+			{{ 'resetting.check_email'|trans({'%email%': email}) }}
+			</p>
+
+		</div>
+	</div>
+{% endblock%}
