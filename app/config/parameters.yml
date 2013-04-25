@@ -5,10 +5,10 @@ parameters:
     database_name: social_base
     database_user: root
     database_password: root
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_transport: gmail
+    mailer_host: 
+    mailer_user: 2sn.supteam@gmail.com
+    mailer_password: etnateam
     locale: en
     secret: d06e08d56e80ed257c6baa4cec54f9334bd5ebe7
     database_path: null

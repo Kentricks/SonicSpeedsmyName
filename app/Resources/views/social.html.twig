@@ -7,6 +7,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type='text/css' />
             <link rel="stylesheet" href="{{ asset('css/main.css') }}" type='text/css' />
+            <link rel="stylesheet" href="{{ asset('css/public.css') }}" type='text/css' />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -45,7 +46,7 @@
             {% endblock %}
         </div>
 
-        <div id="content">
+        <div class="main-content container-fluid">
             {% block body %}{% endblock %}
         </div>
 

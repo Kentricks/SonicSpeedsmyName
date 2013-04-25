@@ -71,6 +71,19 @@ fos_user:
     service:
             mailer: fos_user.mailer.twig_swift
     #user_class: FOS\UserBundle\Entity\User
+    from_email:
+        address:        2sn.supteam@gmail.com
+        sender_name:    No reply 2SN support team
     registration:
         form:
             type: etna_user_registration
+        confirmation:
+            enabled: true
+            from_email:
+                address:        2sn.supteam@gmail.com
+                sender_name:    2SN Registration
+    resetting:
+        email:
+            from_email:
+                address:        resetting@acmedemo.com
+                sender_name:    2SN Resetting

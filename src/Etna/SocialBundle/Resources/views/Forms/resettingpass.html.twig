@@ -1,0 +1,19 @@
+{% extends "::social.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+
+    <div class="container">
+		<div class="container row-fluid well span3">
+			<h3> Nouveau Mot de Passe :</h3>
+	    	<hr>
+			<form action="{{ path('etna_social_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST"  class="offset4">
+			    {{ form_widget(form) }}
+			    <div>
+	  		      <input type="submit" class="btn btn-primary" value="{{ 'resetting.reset.submit'|trans }}" />
+			    </div>
+			</form>
+		
+		</div>
+	</div>
+
+{% endblock%}

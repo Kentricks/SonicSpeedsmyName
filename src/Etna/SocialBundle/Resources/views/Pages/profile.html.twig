@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span2 offset1">
+        <div class="span2">
             {% if img == "" %}
                 <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
             {% else %}
@@ -17,20 +17,20 @@
             <p id="change_photo" class="btn">Changer ma photo</p>
         </div>
 
-        <div class="span6 info_perso">
+        <div class="span7 info_perso">
             <h3>{{ prenom }} {{ nom }} </h3>
             <p>
                 <i class="icon-user"></i> {{ genre }}
             </p>
             <div class="btn-group">
-                <button class="btn">Amis</button>
-                <button class="btn">Photos</button>
-                <button class="btn">Paramètres</button>
-            </div>
+                <button class="btn">Mes Amis</button>
+                <button class="btn">Mes Photos</button>
+                <button class="btn">Mes paramètres</button>
+            </div> 
         </div>
-
-
     </div>
+</div>
+
 
 
     <div class="span9 offset2 group-status">

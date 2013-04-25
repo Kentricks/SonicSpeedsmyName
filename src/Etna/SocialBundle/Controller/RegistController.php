@@ -40,9 +40,6 @@
 
                     $userManager->updateUser($user);
 
-
-
-
                     if (null === $response = $event->getResponse()) {
                         $url = $this->container->get('router')->generate('etna_social_home');
                         $response = new RedirectResponse($url);
@@ -58,37 +55,5 @@
                 'form' => $form->createView(),
             ));
         }
-
-         /*
-        public function registerAction()
-        {
-            $form = $this->container->get('fos_user.registration.form');
-            $formHandler = $this->container->get('fos_user.registration.form.handler');
-            $confirmationEnabled = $this->container->getParameter('fos_user.registration.confirmation.enabled');
-
-            $process = $formHandler->process($confirmationEnabled);
-            if ($process) {
-                $user = $form->getData();
-                $this->container->get('logger')->info(
-                    sprintf('New user registration: %s', $user)
-                );
-
-                if ($confirmationEnabled) {
-                    $this->container->get('session')->set('fos_user_send_confirmation_email/email', $user->getEmail());
-                    $route = 'fos_user_registration_check_email';
-                } else {
-                    $this->authenticateUser($user);
-                    $route = 'fos_user_registration_confirmed';
-                }
-
-                $this->setFlash('fos_user_success', 'registration.flash.user_created');
-                $url = $this->container->get('router')->generate($route);
-
-                return new RedirectResponse($this->generateUrl('etna_social_login'));
-            }
-
-            return $this->container->get('templating')->renderResponse('EtnaSocialBundle:Form :newcompte.html.twig', array('form' => $form->createView(),
-            ));
-        }
-          */
     }
+?>
