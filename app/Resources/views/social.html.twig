@@ -30,10 +30,11 @@
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                             <li><a href="{{ path('etna_social_profile', {'username': app.user.username }) }}">Mon compte</a></li>
                             <li><a href="#">Messages</a></li>
-                            <li><a href="#">Mes amis</a></li>
-                            {% endif %}
+                            <li><a href=" {{ path('etna_social_get_friend', {'username': app.user.username}) }}">Mes amis</a></li>
+			    <li><a href=" {{ path('etna_social_find_friend', {'username': app.user.username}) }}">Trouver des amis</a></li>
+			    {% endif %}
 
-                        
+
                         </ul>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <ul class="nav pull-right">

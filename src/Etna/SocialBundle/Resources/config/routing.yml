@@ -44,3 +44,7 @@ etna_social_statut:
 etna_social_get_friend:
     pattern: /{username}/friends
     defaults: { _controller: EtnaSocialBundle:Friend:getfriend }
+
+etna_social_find_friend:
+    pattern: /{username}/find_friends
+    defaults: { _controller: EtnaSocialBundle:Friend:findfriend }

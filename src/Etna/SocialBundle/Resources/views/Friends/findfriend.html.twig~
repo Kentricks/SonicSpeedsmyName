@@ -1,0 +1,26 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+      <h1>Amis</h1>
+      <div>
+      {% for Allmembers in allmembers %}
+        <div class="span1" style="float:left">
+            {% if img == "" %}
+                <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
+            {% else %}
+                <img  class="img-rounded" src="{{ Allmembers.img }}" alt="inco" height="100px" width="100px"/>
+            {% endif %}
+        </div>
+
+        <div class="span1">
+            <div> {{ Allmembers.nom }} {{Allmembers.prenom}} </div>
+	    <div><i class="icon-remove"></i></div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock body %}
