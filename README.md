@@ -2,7 +2,8 @@ Projet 2SN
 
 A faire dans l'ordre :
 
-  Si un nouveau fichier a été crée : 
+  Si un nouveau fichier a été crée :
+  
 	-  git add [fichier]
 	
   Dans tous les cas :
