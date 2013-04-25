@@ -278,6 +278,7 @@ class Membre extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->date_inscription = new \DateTime();
         $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
         $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
         $this->statuts = new \Doctrine\Common\Collections\ArrayCollection();
@@ -480,5 +481,97 @@ class Membre extends BaseUser
     public function getStatuts()
     {
         return $this->statuts;
+    }
+
+    /**
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     * @return Membre
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime 
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set codePostale
+     *
+     * @param integer $codePostale
+     * @return Membre
+     */
+    public function setCodePostale($codePostale)
+    {
+        $this->codePostale = $codePostale;
+    
+        return $this;
+    }
+
+    /**
+     * Get codePostale
+     *
+     * @return integer 
+     */
+    public function getCodePostale()
+    {
+        return $this->codePostale;
+    }
+
+    /**
+     * Set dateInscription
+     *
+     * @param \DateTime $dateInscription
+     * @return Membre
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInscription = $dateInscription;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateInscription
+     *
+     * @return \DateTime 
+     */
+    public function getDateInscription()
+    {
+        return $this->dateInscription;
+    }
+
+    /**
+     * Set urlPhoto
+     *
+     * @param string $urlPhoto
+     * @return Membre
+     */
+    public function setUrlPhoto($urlPhoto)
+    {
+        $this->urlPhoto = $urlPhoto;
+    
+        return $this;
+    }
+
+    /**
+     * Get urlPhoto
+     *
+     * @return string 
+     */
+    public function getUrlPhoto()
+    {
+        return $this->urlPhoto;
     }
 }

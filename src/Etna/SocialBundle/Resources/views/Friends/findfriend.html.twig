@@ -1,26 +1,26 @@
-{% extends 'EtnaSocialBundle::Pages/profile.html.twig' %}
+{% extends '::social.html.twig' %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block friends %}
+{% block body %}
 <div class="container-fluid">
     <div class="row-fluid">
       <h1>Amis</h1>
       <div>
-      {% for Test in test %}
+      {% for Allmembers in allmembers %}
         <div class="span1" style="float:left">
-            {% if img == "" %}
+            {% if Allmembers.img == "" %}
                 <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
             {% else %}
-                <img  class="img-rounded" src="{{ Test.img }}" alt="inco" height="100px" width="100px"/>
+                <img  class="img-rounded" src="{{ Allmembers.img }}" alt="inco" height="100px" width="100px"/>
             {% endif %}
         </div>
 
         <div class="span1">
-            <div> {{ Test.prenom }} {{Test.prenom}} </div>
-	    <div><i class="icon-remove"></i></div>
+            <div> {{ Allmembers.prenom }} {{Allmembers.nom}} </div>
+	    <div><a href="#">Ajouter</a></div>
         </div>
     {% endfor %}
     </div>
 </div>
-{% endblock friends %}
+{% endblock body %}
