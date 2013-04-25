@@ -48,9 +48,9 @@ class Membre extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_naissance", type="date", nullable=true)
+     * @ORM\Column(name="dateNaissance", type="date", nullable=true)
      */
-    private $date_naissance;
+    private $dateNaissance;
 
 
     /**
@@ -63,9 +63,9 @@ class Membre extends BaseUser
     /**
      * @var integer
      *
-     * @ORM\Column(name="code_postale", type="integer", nullable=true)
+     * @ORM\Column(name="codePostale", type="integer", nullable=true)
      */
-    private $code_postale;
+    private $codePostale;
 
     /**
      * @var string
@@ -77,16 +77,16 @@ class Membre extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_inscription", type="date", nullable=true)
+     * @ORM\Column(name="dateInscription", type="date", nullable=true)
      */
-    private $date_inscription;
+    private $dateInscription;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url_photo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="urlPhoto", type="string", length=255, nullable=true)
      */
-    private $url_photo;
+    private $urlPhoto;
 
     /**
      * @ORM\ManyToMany(targetEntity="Membre", mappedBy="mesAmis")
@@ -118,7 +118,7 @@ class Membre extends BaseUser
     private $albums;
 
     /**
-     * @ORM\OneToMany(targetEntity="Statut", mappedBy="membre", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Statut", mappedBy="destinataire")
      */
     private $statuts;
     
@@ -202,28 +202,6 @@ class Membre extends BaseUser
         return $this->genre;
     }
 
-    /**
-     * Set date_naissance
-     *
-     * @param \DateTime $dateNaissance
-     * @return Membre
-     */
-    public function setDateNaissance($dateNaissance)
-    {
-        $this->date_naissance = $dateNaissance;
-    
-        return $this;
-    }
-
-    /**
-     * Get date_naissance
-     *
-     * @return \DateTime 
-     */
-    public function getDateNaissance()
-    {
-        return $this->date_naissance;
-    }
 
     /**
      * Set email
@@ -272,29 +250,6 @@ class Membre extends BaseUser
     }
 
     /**
-     * Set code_postale
-     *
-     * @param integer $codePostale
-     * @return Membre
-     */
-    public function setCodePostale($codePostale)
-    {
-        $this->code_postale = $codePostale;
-    
-        return $this;
-    }
-
-    /**
-     * Get code_postale
-     *
-     * @return integer 
-     */
-    public function getCodePostale()
-    {
-        return $this->code_postale;
-    }
-
-    /**
      * Set ville
      *
      * @param string $ville
@@ -317,28 +272,6 @@ class Membre extends BaseUser
         return $this->ville;
     }
 
-    /**
-     * Set date_inscription
-     *
-     * @param \DateTime $dateInscription
-     * @return Membre
-     */
-    public function setDateInscription($dateInscription)
-    {
-        $this->date_inscription = $dateInscription;
-    
-        return $this;
-    }
-
-    /**
-     * Get date_inscription
-     *
-     * @return \DateTime 
-     */
-    public function getDateInscription()
-    {
-        return $this->date_inscription;
-    }
     /**
      * Constructor
      */
@@ -550,25 +483,94 @@ class Membre extends BaseUser
     }
 
     /**
-     * Set url_photo
+     * Set dateNaissance
+     *
+     * @param \DateTime $dateNaissance
+     * @return Membre
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateNaissance
+     *
+     * @return \DateTime 
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * Set codePostale
+     *
+     * @param integer $codePostale
+     * @return Membre
+     */
+    public function setCodePostale($codePostale)
+    {
+        $this->codePostale = $codePostale;
+    
+        return $this;
+    }
+
+    /**
+     * Get codePostale
+     *
+     * @return integer 
+     */
+    public function getCodePostale()
+    {
+        return $this->codePostale;
+    }
+
+    /**
+     * Set dateInscription
+     *
+     * @param \DateTime $dateInscription
+     * @return Membre
+     */
+    public function setDateInscription($dateInscription)
+    {
+        $this->dateInscription = $dateInscription;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateInscription
+     *
+     * @return \DateTime 
+     */
+    public function getDateInscription()
+    {
+        return $this->dateInscription;
+    }
+
+    /**
+     * Set urlPhoto
      *
      * @param string $urlPhoto
      * @return Membre
      */
     public function setUrlPhoto($urlPhoto)
     {
-        $this->url_photo = $urlPhoto;
+        $this->urlPhoto = $urlPhoto;
     
         return $this;
     }
 
     /**
-     * Get url_photo
+     * Get urlPhoto
      *
      * @return string 
      */
     public function getUrlPhoto()
     {
-        return $this->url_photo;
+        return $this->urlPhoto;
     }
 }

@@ -18,7 +18,11 @@ etna_social_forgot_password:
     pattern: /forgot
     defaults: { _controller: EtnaSocialBundle:Default:forgot }
 
-
 etna_social_profile:
     pattern:  /{username}
     defaults: { _controller: EtnaSocialBundle:Profile:index }
+
+etna_social_statut:
+    pattern:  /login_check
+    defaults: { _controller: EtnaSocialBundle:Statut:new }
+

@@ -1,2 +1,18 @@
+<div class="status">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                {% if statut.expediteur.urlPhoto == "" %}
+                        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
+                {% else %}
+                        <img  class="img-rounded" src="{{ img }}" alt="inco" height="140px"/>
+                {% endif %}
+            </div>
+            <div class="span9 statut_content">
+                <h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}</h4>
+                <div class="statut_content">{{ statut.contenu }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>      {{ statut.contenu }}   <p>

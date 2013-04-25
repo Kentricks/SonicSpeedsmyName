@@ -22,17 +22,12 @@ class ProfileController extends Controller
     public function indexAction($username)
     {
         $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
-        //$userManager = $this->loadUserByUsername($userManage);
-        //$user = $this->loadUserByUsername($userManager);
-        //$user = UserManager->findUserByUsername($username);
-        //$user = $this->container->get('security.context')->getToken()->getUser();
+
         $nom = $user->getNom();
         $prenom = $user->getPrenom();
         $genre = $user->getGenre();
         $img = $user->getUrlPhoto();
-        $statut = new Statut();
-        $statut->setContenu("Hello ti");
-        $statuts = $user->addStatut($statut);
+
         $statuts = $user->getStatuts();
 
         //Statut
