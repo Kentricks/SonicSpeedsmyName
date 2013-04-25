@@ -23,11 +23,14 @@
                 <i class="icon-user"></i> {{ genre }}
             </p>
             <div class="btn-group">
-                <button class="btn">Mes Amis</button>
+                <a href=" {{ path('etna_social_get_friend', {'username': username}) }}"><button class="btn">Mes Amis</button></a>
                 <button class="btn">Mes Photos</button>
                 <button class="btn">Mes paramètres</button>
             </div>
         </div>
     </div>
+</div>
+<div>
+{% block friends %}{% endblock %}
 </div>
 {% endblock body %}

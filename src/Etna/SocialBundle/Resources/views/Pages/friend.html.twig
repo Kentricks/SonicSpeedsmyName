@@ -1,0 +1,26 @@
+{% extends 'EtnaSocialBundle::Pages/profile.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block friends %}
+<div class="container-fluid">
+    <div class="row-fluid">
+      <h1>Amis</h1>
+      <div>
+      {% for Test in test %}
+        <div class="span1" style="float:left">
+            {% if img == "" %}
+                <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
+            {% else %}
+                <img  class="img-rounded" src="{{ Test.img }}" alt="inco" height="100px" width="100px"/>
+            {% endif %}
+        </div>
+
+        <div class="span1">
+            <div> {{ Test.prenom }} {{Test.prenom}} </div>
+	    <div><i class="icon-remove"></i></div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock friends %}
