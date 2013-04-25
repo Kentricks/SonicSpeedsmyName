@@ -13,7 +13,8 @@ class RegistrationFormType extends BaseType
             ->add('prenom', 'text')
             ->add('genre', 'choice', array(
                 'choices'   => array('Homme' => 'Homme', 'Femme' => 'Femme'),
-            ));
+            ))
+            ->add('date_naissance', 'birthday');
     }
     public function getName()
     {

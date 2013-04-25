@@ -345,6 +345,7 @@ class Membre extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->date_inscription = new \DateTime();
         $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
         $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
         //parent::__construct();
