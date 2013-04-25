@@ -9,6 +9,6 @@ parameters:
     mailer_host: 
     mailer_user: 2sn.supteam@gmail.com
     mailer_password: etnateam
-    locale: en
+    locale: fr
     secret: d06e08d56e80ed257c6baa4cec54f9334bd5ebe7
     database_path: null
