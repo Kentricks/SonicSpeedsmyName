@@ -31,16 +31,16 @@ etna_social_resetting_reset:
     pattern: /reset/{token}
     defaults: { _controller: EtnaSocialBundle:Forgot:reset}
 
+
 etna_social_profile:
     pattern:  /{username}
     defaults: { _controller: EtnaSocialBundle:Profile:index }
 
-etna_social_statut:
-    pattern:  /statut
+etna_social_status:
+    pattern:  /new/statut
     defaults: { _controller: EtnaSocialBundle:Statut:new }
-
-    defaults: { _controller: EtnaSocialBundle:Profile:index }
 
 etna_social_get_friend:
     pattern: /{username}/friends
     defaults: { _controller: EtnaSocialBundle:Friend:getfriend }
+

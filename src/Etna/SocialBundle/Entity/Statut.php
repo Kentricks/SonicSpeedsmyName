@@ -3,6 +3,7 @@
 namespace Etna\SocialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Etna\SocialBundle\Entity\Membre;
 
 /**
  * Statut
@@ -115,7 +116,7 @@ class Statut
      * @param \Etna\SocialBundle\Entity\Membre $membre
      * @return Statut
      */
-    public function setMembre(\Etna\SocialBundle\Entity\Membre $membre = null)
+    public function setMembre(Membre $membre = null)
     {
         $this->membre = $membre;
     
@@ -178,7 +179,7 @@ class Statut
      * @param \Etna\SocialBundle\Entity\Membre $expediteur
      * @return Statut
      */
-    public function setExpediteur(\Etna\SocialBundle\Entity\Membre $expediteur = null)
+    public function setExpediteur(Membre $expediteur = null)
     {
         $this->expediteur = $expediteur;
     
@@ -201,7 +202,7 @@ class Statut
      * @param \Etna\SocialBundle\Entity\Membre $destinataire
      * @return Statut
      */
-    public function setDestinataire(\Etna\SocialBundle\Entity\Membre $destinataire = null)
+    public function setDestinataire(Membre $destinataire = null)
     {
         $this->destinataire = $destinataire;
     

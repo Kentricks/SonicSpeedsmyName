@@ -39,7 +39,11 @@
             <textarea class="status">
         </textarea>
 
+        <form action="{{ path('etna_social_status') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
 
+            <input type="submit" />
+        </form>
 
 
         {% for statut in statuts %}
