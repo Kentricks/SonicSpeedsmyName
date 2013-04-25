@@ -31,18 +31,13 @@
     </div>
 </div>
 
-
-
     <div class="span9 offset2 group-status">
-
-        <form action="{{ path('etna_social_statut') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-            <button type="submit" class="btn">Sign in</button>
-        </form>
-
         <legend>Ecrire</legend>
-        <textarea class="status">
+            <textarea class="status">
         </textarea>
+
+
+
 
         {% for statut in statuts %}
             {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut': statut} %}

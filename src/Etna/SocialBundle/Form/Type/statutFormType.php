@@ -10,8 +10,8 @@ class StatutFormType extends Base
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('text2', 'textarea', array(
-        'attr' => array('rows' => 3)
+        $builder->add('statut', 'textarea', array(
+        'attr' => array('rows' => 10)
         ));
     }
 

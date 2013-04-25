@@ -36,6 +36,6 @@ etna_social_profile:
     defaults: { _controller: EtnaSocialBundle:Profile:index }
 
 etna_social_statut:
-    pattern:  /login_check
+    pattern:  /statut
     defaults: { _controller: EtnaSocialBundle:Statut:new }
 
