@@ -28,7 +28,7 @@ etna_social_oubli_check_email:
     pattern: /check-email
     defaults: { _controller: EtnaSocialBundle:Forgot:checkEmail}
 etna_social_resetting_reset:
-    pattern: /reset/{token}
+    pattern: /resetting/reset/{token}
     defaults: { _controller: EtnaSocialBundle:Forgot:reset}
 
 etna_social_profile:
