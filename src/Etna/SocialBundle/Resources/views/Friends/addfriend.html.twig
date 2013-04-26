@@ -1,0 +1,13 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+      <h2>Ami ajout&eacute;</h2>
+	<div class="span12">{{ username_friend }} est ton nouvel ami :)</div>
+	<!--<div class="span12"><a href="{{ path('etna_social_find_friend', {'username': username}) }}">Retourner sur la page Trouver amis</a></div>-->
+    </div>
+</div>
+{% endblock body %}

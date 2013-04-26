@@ -37,7 +37,7 @@ class Statut
     private $date_creation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="statuts")
+     * @ORM\ManyToOne(targetEntity="Membre")
      * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
      */
     protected $expediteur;

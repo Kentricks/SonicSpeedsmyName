@@ -38,14 +38,15 @@ class FriendController extends Controller
       }
       foreach($all_friend as $friend)
 	{
-	  $id_friend = $friend->getId();
+	  $username_friend = $friend->getUsername();
 	  $name_friend = $friend->getNom();
 	  $prenom_friend = $friend->getPrenom();
 	  $img_friend = $friend->getUrlPhoto();
+	  $info_friend['username'] = $username_friend;
 	  $info_friend['nom'] = $name_friend;
 	  $info_friend['prenom'] = $prenom_friend;
 	  $info_friend['img'] = $img_friend;
-	  $allfriends[$id_friend] = $info_friend;
+	  $allfriends[$username_friend] = $info_friend;
 	  $info_friend = array();
 	  $nofriend = true;
 	}
@@ -72,24 +73,68 @@ class FriendController extends Controller
       foreach($member_doctrine as $member) {
 	$username_member = $member->getUsername();
 	if ($username_member != $username) {
-	  $id_member = $member->getId();
 	  $name_member = $member->getNom();
 	  $prenom_member = $member->getPrenom();
 	  $img_member = $member->getUrlPhoto();
+	  $info_member['username'] = $username_member;
 	  $info_member['nom'] = $name_member;
 	  $info_member['prenom'] = $prenom_member;
 	  $info_member['img'] = $img_member;
-	  $allmembers[$id_member] = $info_member;
+	  $allmembers[$username_member] = $info_member;
 	  $info_member = array();
 	  $nomember = true;
 	}
       }
-      //$all_friend = $friend_doctrine->getMyfriends();
-
+      /* To delete my friends of members  */
+      $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+      $id = $user->getId();
+      $friend_doctrine = $this->getDoctrine()
+        ->getRepository('EtnaSocialBundle:Membre')
+        ->find($id);
+      $all_friend = $friend_doctrine->getMyfriends();
+      foreach($all_friend as $friend) {
+	foreach($allmembers as $key => $value)
+	  {
+	    if ($key == $friend)
+	      unset($allmembers[$key]);
+	  }
+      }
       return $this->render('EtnaSocialBundle:Friends:findfriend.html.twig', array(
+										  'username' => $username_member,
 									    'allmembers' => $allmembers
-                                                                            ));
+									    ));
     }
 
+    public function removeFriendAction($username, $username_friend)
+    {
+      /* To delete my friends of members  */
+      $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
+      $id = $user->getId();
+      $friend_doctrine = $this->getDoctrine()
+        ->getRepository('EtnaSocialBundle:Membre')
+        ->find($id);
+      //echo $friend_doctrine;
+      $friend_doctrine->removeMyFriend($friend_doctrine);
+      return $this->render('EtnaSocialBundle:Friends:removefriend.html.twig', array(
+										    'username' => $username,
+										    'username_friend' => $username_friend
+										    ));
+    }
+
+    public function addFriendAction($username, $username_friend)
+    {
+      /* To delete my friends of members  */
+      $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
+      $id = $user->getId();
+      $friend_doctrine = $this->getDoctrine()
+        ->getRepository('EtnaSocialBundle:Membre')
+        ->find($id);
+      //echo $friend_doctrine;
+      $friend_doctrine->addMyFriend($friend_doctrine);
+      return $this->render('EtnaSocialBundle:Friends:addfriend.html.twig', array(
+                                                                                    'username' => $username,
+                                                                                    'username_friend' => $username_friend
+                                                                                    ));
+    }
 }
 ?>
