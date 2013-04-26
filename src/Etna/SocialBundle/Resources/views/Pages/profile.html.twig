@@ -5,7 +5,6 @@
 {% block title %}{{ prenom }} {{ nom }}{% endblock %}
 
 {% block body %}
-
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span2">
@@ -33,15 +32,7 @@
 
     <div class="span9 offset2 group-status">
         <legend>Ecrire</legend>
-            <textarea class="status">
-        </textarea>
-
-        <form action="{{ path('etna_social_status') }}" method="post" {{ form_enctype(form) }}>
-            {{ form_widget(form) }}
-
-            <input type="submit" />
-        </form>
-
+        {% render controller('EtnaSocialBundle:Statut:new', {url : app.request.pathInfo})  %}
 
         {% for statut in statuts %}
             {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut': statut} %}
