@@ -4,7 +4,7 @@ parameters:
     database_port: null
     database_name: social_base
     database_user: root
-    database_password: root
+    database_password: null
     mailer_transport: gmail
     mailer_host: 
     mailer_user: 2sn.supteam@gmail.com
