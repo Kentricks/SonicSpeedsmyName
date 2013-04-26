@@ -39,8 +39,6 @@ etna_social_status:
     pattern:  /statut/
     defaults: { _controller: EtnaSocialBundle:Statut:new }
 
-    defaults: { _controller: EtnaSocialBundle:Profile:index }
-
 etna_social_get_friend:
     pattern: /{username}/friends
     defaults: { _controller: EtnaSocialBundle:Friend:getfriend }

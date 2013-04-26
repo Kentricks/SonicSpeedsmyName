@@ -10,10 +10,12 @@ class StatutFormType extends Base
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('statut', 'textarea', array(
-        'attr' => array('rows' => 10)
+
+        $builder->add('contenu', 'textarea', array(
+        'attr' => array('rows' => 3), 'label' => false
         ));
     }
+
 
     /**
      * Returns the name of this type.
@@ -22,6 +24,6 @@ class StatutFormType extends Base
      */
     public function getName()
     {
-        return 'etna_social_statut';
+        return 'etna_social_status';
     }
 }

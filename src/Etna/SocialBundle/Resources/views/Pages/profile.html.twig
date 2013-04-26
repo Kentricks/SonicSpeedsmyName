@@ -32,7 +32,7 @@
 
     <div class="span9 offset2 group-status">
         <legend>Ecrire</legend>
-        {% render controller('EtnaSocialBundle:Statut:new', {url : app.request.pathInfo})  %}
+        {% render controller('EtnaSocialBundle:Statut:new', {'url' : app.request.pathInfo})  %}
 
         {% for statut in statuts %}
             {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut': statut} %}
