@@ -17,6 +17,7 @@
       </div>
 
       <div class="span1">
+	<div>{{ Allmembers.username }}</div>
         <div> {{ Allmembers.prenom }} {{Allmembers.nom}} </div>
 	<div><a href="{{ path('etna_social_add_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Ajouter</a></div>
       </div>
