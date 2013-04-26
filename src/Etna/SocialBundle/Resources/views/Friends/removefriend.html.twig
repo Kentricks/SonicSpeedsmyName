@@ -1,0 +1,13 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+      <h2>Ami supprim&eacute;</h2>
+	<div class="span12">{{ username_friend }} n'est plus ton ami :(</div>
+	<!--<div class="span12"><a href="{{ path('etna_social_get_friend', {'username': username}) }}">Retourner sur la page Mes amis</a></div>-->
+    </div>
+</div>
+{% endblock body %}

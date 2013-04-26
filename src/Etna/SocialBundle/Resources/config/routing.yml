@@ -48,3 +48,11 @@ etna_social_get_friend:
 etna_social_find_friend:
     pattern: /{username}/find_friends
     defaults: { _controller: EtnaSocialBundle:Friend:findfriend }
+
+etna_social_remove_friend:
+    pattern: /{username}/remove_friends/{username_friend}
+    defaults: { _controller: EtnaSocialBundle:Friend:removefriend }
+
+etna_social_add_friend:
+    pattern: /{username}/add_friends/{username_friend}
+    defaults: { _controller: EtnaSocialBundle:Friend:addfriend }
