@@ -31,7 +31,7 @@ class CommentaireStatut
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="date_creation", type="datetime")
      */
     private $date_creation;
 
@@ -51,6 +51,12 @@ class CommentaireStatut
      * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
      */
     protected $statut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
+     */
+    protected $expediteur;
 
     /**
      * Set contenu
@@ -119,5 +125,28 @@ class CommentaireStatut
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Set expediteur
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $expediteur
+     * @return CommentaireStatut
+     */
+    public function setExpediteur(\Etna\SocialBundle\Entity\Membre $expediteur = null)
+    {
+        $this->expediteur = $expediteur;
+    
+        return $this;
+    }
+
+    /**
+     * Get expediteur
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getExpediteur()
+    {
+        return $this->expediteur;
     }
 }

@@ -26,7 +26,6 @@ class FriendController extends Controller
       $prenom = $user->getPrenom();
       $genre = $user->getGenre();
       $img = $user->getUrlPhoto();
-      $statuts = $user->getStatuts();
       /* To get all friends  */
       $friend_doctrine = $this->getDoctrine()
 	->getRepository('EtnaSocialBundle:Membre')
@@ -58,7 +57,6 @@ class FriendController extends Controller
 									    'genre' => $genre,
 									    'img' => $img,
 									    'id' => $id,
-									    'statuts' => $statuts,
 									    'allfriends' => $allfriends,
 									    'nofriend' => $nofriend
 									    ));
@@ -82,7 +80,6 @@ class FriendController extends Controller
 	  $info_member['img'] = $img_member;
 	  $allmembers[$username_member] = $info_member;
 	  $info_member = array();
-	  $nomember = true;
 	}
       }
       /* To delete my friends of members  */
@@ -100,21 +97,26 @@ class FriendController extends Controller
 	  }
       }
       return $this->render('EtnaSocialBundle:Friends:findfriend.html.twig', array(
-										  'username' => $username_member,
-									    'allmembers' => $allmembers
-									    ));
+										  'username' => $username,
+										  'allmembers' => $allmembers
+										  ));
     }
 
     public function removeFriendAction($username, $username_friend)
     {
-      /* To delete my friends of members  */
-      $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
-      $id = $user->getId();
-      $friend_doctrine = $this->getDoctrine()
-        ->getRepository('EtnaSocialBundle:Membre')
-        ->find($id);
-      //echo $friend_doctrine;
-      $friend_doctrine->removeMyFriend($friend_doctrine);
+      /* To get Ids */
+      $user_a = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+      $id = $user_a->getId();
+      $user_friend = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
+      $id_friend = $user_friend->getId();
+
+      /* Delete */
+      $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+      $friend = $em->getRepository('EtnaSocialBundle:Membre')->find($id_friend);
+      $friend->removeMyFriend($user);
+      $user->removeMyFriend($friend);
+      $em->flush();
       return $this->render('EtnaSocialBundle:Friends:removefriend.html.twig', array(
 										    'username' => $username,
 										    'username_friend' => $username_friend
@@ -123,14 +125,19 @@ class FriendController extends Controller
 
     public function addFriendAction($username, $username_friend)
     {
-      /* To delete my friends of members  */
-      $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
-      $id = $user->getId();
-      $friend_doctrine = $this->getDoctrine()
-        ->getRepository('EtnaSocialBundle:Membre')
-        ->find($id);
-      //echo $friend_doctrine;
-      $friend_doctrine->addMyFriend($friend_doctrine);
+      /* To get Ids */
+      $user_a = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+      $id = $user_a->getId();
+      $user_friend = $this->container->get('fos_user.user_manager')->loadUserByUsername($username_friend);
+      $id_friend = $user_friend->getId();
+
+      /* Insert */
+      $em = $this->getDoctrine()->getManager();
+      $user = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+      $friend = $em->getRepository('EtnaSocialBundle:Membre')->find($id_friend);
+      $friend->addMyFriend($user);
+      $user->addMyFriend($friend);
+      $em->flush();
       return $this->render('EtnaSocialBundle:Friends:addfriend.html.twig', array(
                                                                                     'username' => $username,
                                                                                     'username_friend' => $username_friend
