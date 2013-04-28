@@ -110,8 +110,6 @@ class FriendController extends Controller
 	      $allmembers[$key]['deloradd'] = 'del';
 	  }
       }
-      if (!isset($allmembers[$key]['deloradd']))
-      print_r($allmembers);
       $nomembers = false;
       if (count($allmembers) == 0)
 	$nomembers = true;
