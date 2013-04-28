@@ -58,4 +58,20 @@ class StatutController extends Controller
         ));
 
     }
+
+    public function removeAction(Request $request,$statut='defaut')
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $statut = $request->get('statut');
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('EtnaSocialBundle:Statut');
+
+        $statut = $repository->find($statut);
+
+        $em->remove($statut);
+        $em->flush();
+        return $this->redirect($this->generateUrl('etna_social_profile',array('username'=> $user)));
+    }
 }

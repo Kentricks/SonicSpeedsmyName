@@ -39,6 +39,10 @@ etna_social_status:
     pattern:  /statut/
     defaults: { _controller: EtnaSocialBundle:Statut:new }
 
+etna_social_remove_status:
+    pattern:  /statut/remove/
+    defaults: { _controller: EtnaSocialBundle:Statut:remove }
+
 etna_social_get_friend:
     pattern: /{username}/friends
     defaults: { _controller: EtnaSocialBundle:Friend:getfriend }
@@ -54,3 +58,7 @@ etna_social_remove_friend:
 etna_social_add_friend:
     pattern: /{username}/add_friends/{username_friend}
     defaults: { _controller: EtnaSocialBundle:Friend:addfriend }
+
+etna_social_com_status:
+    pattern:  /statut/com
+    defaults: { _controller: EtnaSocialBundle:ComStatut:new }

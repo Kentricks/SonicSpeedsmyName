@@ -212,7 +212,7 @@ class Statut
     /**
      * Get destinataire
      *
-     * @return \Etna\SocialBundle\Entity\Membre 
+     * @return \Etna\SocialBundle\Entity\Membre
      */
     public function getDestinataire()
     {

@@ -53,6 +53,12 @@ class CommentaireStatut
     protected $statut;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
+     */
+    protected $expediteur;
+
+    /**
      * Set contenu
      *
      * @param string $contenu
@@ -119,5 +125,28 @@ class CommentaireStatut
     public function getStatut()
     {
         return $this->statut;
+    }
+
+    /**
+     * Set expediteur
+     *
+     * @param \Etna\SocialBundle\Entity\Membre $expediteur
+     * @return CommentaireStatut
+     */
+    public function setExpediteur(\Etna\SocialBundle\Entity\Membre $expediteur = null)
+    {
+        $this->expediteur = $expediteur;
+    
+        return $this;
+    }
+
+    /**
+     * Get expediteur
+     *
+     * @return \Etna\SocialBundle\Entity\Membre 
+     */
+    public function getExpediteur()
+    {
+        return $this->expediteur;
     }
 }
