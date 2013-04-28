@@ -33,8 +33,13 @@ class FriendController extends Controller
       $all_friend = $friend_doctrine->getMyfriends();
       if (count($all_friend) == 0) {
 	$nofriend = false;
-	$allfriends = false;
+	$allfriends = array();
       }
+      $notmyfriend = 0;
+      if (isset($_GET['myusername']))
+        $myusername = $_GET['myusername'];
+      else
+	$myusername = false;
       foreach($all_friend as $friend)
 	{
 	  $username_friend = $friend->getUsername();
@@ -48,7 +53,14 @@ class FriendController extends Controller
 	  $allfriends[$username_friend] = $info_friend;
 	  $info_friend = array();
 	  $nofriend = true;
+	  //echo $friend.' '.$myusername;
+	  if ($myusername == $friend)
+	    $notmyfriend++;
 	}
+      //if (!in_array($username, $allfriends))
+      //$notmyfriend++;
+      //print_r($allfriends);
+      //echo $notmyfriend;
       //print_r($test);
       return $this->render('EtnaSocialBundle:Friends:friend.html.twig', array(
 									    'username' => $username,
@@ -58,7 +70,8 @@ class FriendController extends Controller
 									    'img' => $img,
 									    'id' => $id,
 									    'allfriends' => $allfriends,
-									    'nofriend' => $nofriend
+									    'nofriend' => $nofriend,
+									    'notmyfriend' => $notmyfriend
 									    ));
     }
 

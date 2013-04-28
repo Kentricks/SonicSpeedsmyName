@@ -14,16 +14,19 @@
       {% for Allfriends in allfriends %}
       <div class="span1" style="float:left">
         {% if Allfriends.img == "" %}
-        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
+        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px"/>
         {% else %}
-        <img  class="img-rounded" src="{{ Allfriends.img }}" alt="inco" height="100px" width="100px"/>
+        <img  class="img-rounded" src="{{ Allfriends.img }}" alt="inco" height="140px" width="140px"/>
         {% endif %}
       </div>
 
       <div class="span1">
-	<div> {{Allfriends.username}} </div>
-        <div> {{ Allfriends.prenom }} {{Allfriends.nom}} </div>
+	<div> {{ Allfriends.username }} </div>
+        <div> {{ Allfriends.prenom }} {{ Allfriends.nom }} </div>
+	{% if notmyfriend == 0 %}
 	<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allfriends.username, 'username': username}) }}">Supprimer</a></div>
+	<div><a href="{{ path('etna_social_get_friend', {'username': Allfriends.username, 'myusername': username}) }}">Ses amis</a></div>
+	{% endif %}
       </div>
       {% endfor %}
     </div>
