@@ -14,36 +14,35 @@
     <body>
         <div id="navbar">
             {% block navbar %}
-            <div class="navbar navbar">
-                <div class="row-fluid">
-                    <img src="{{ asset('img/logo2sn.png') }}" alt="Logo 2SN" style="height:80px; position: absolute;" />
-                    <div class="navbar-inner" style="padding-left: 130px; padding-top: 20px; border: 0;">
-                        <ul class="nav">
-                            <li>
+                <div class="navbar navbar">
+                    <div class="row-fluid">
+                        <img src="{{ asset('img/logo2sn.png') }}" alt="Logo 2SN" style="height:80px; position: absolute;" />
+                        <div class="navbar-inner" style="padding-left: 130px; padding-top: 20px; border: 0;">
+                            <ul class="nav">
+                                <li>
+                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a class="brand" href="{{ path('etna_social_home') }}">Accueil</a>
+                                    {% else %}
+                                    <a class="brand" href=" {{ path('etna_social_login') }}">Accueil</a>
+                                    {% endif %}
+                                </li>
+
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <a class="brand" href="{{ path('etna_social_home') }}">Accueil</a>
-                                {% else %}
-                                <a class="brand" href=" {{ path('etna_social_login') }}">Accueil</a>
+                                    <li><a href="{{ path('etna_social_profile', {'username': app.user.username }) }}">Mon compte</a></li>
+                                    <li><a href="#">Messages</a></li>
+                                    <li><a href=" {{ path('etna_social_get_friend', {'username': app.user.username}) }}">Mes amis</a></li>
+                                    <li><a href=" {{ path('etna_social_get_albums', {'username': app.user.username}) }}">Mes photos</a></li>
+                                    <li><a href=" {{ path('etna_social_find_friend', {'username': app.user.username}) }}">Trouver des amis</a></li>
                                 {% endif %}
-                            </li>
-
+                            </ul>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('etna_social_profile', {'username': app.user.username }) }}">Mon compte</a></li>
-                            <li><a href="#">Messages</a></li>
-                            <li><a href=" {{ path('etna_social_get_friend', {'username': app.user.username}) }}">Mes amis</a></li>
-			    <li><a href=" {{ path('etna_social_find_friend', {'username': app.user.username}) }}">Trouver des amis</a></li>
-			    {% endif %}
-
-
-                        </ul>
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <ul class="nav pull-right">
-                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> Deconnexion</a></li>
-                        </ul>
-                        {% endif %}
+                                <ul class="nav pull-right">
+                                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> Deconnexion</a></li>
+                                </ul>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endblock %}
         </div>
 
