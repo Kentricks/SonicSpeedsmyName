@@ -22,11 +22,12 @@ class AlbumController extends Controller {
         {
             $id_album = $album->getId();
             $info_album['nom'] = $album->getNom();
+            $info_album['photos'] = $album->getPhotos();
+            $info_album['cover'] = $info_album['photos'][0];
             $allalbums[$id_album] = $info_album;
             $info_album = array();
             $noalbum = true;
         }
-        //print_r($test);
         return $this->render('EtnaSocialBundle:Albums:albums.html.twig', array(
             'username' => $username,
             'id' => $id,
