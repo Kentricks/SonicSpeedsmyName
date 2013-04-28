@@ -54,3 +54,7 @@ etna_social_remove_friend:
 etna_social_add_friend:
     pattern: /{username}/add_friends/{username_friend}
     defaults: { _controller: EtnaSocialBundle:Friend:addfriend }
+
+etna_social_get_albums:
+    pattern: /{username}/albums
+    defaults: { _controller: EtnaSocialBundle:Album:getalbum }
