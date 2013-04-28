@@ -35,7 +35,7 @@
         {% render controller('EtnaSocialBundle:Statut:new', {'url' : app.request.pathInfo})  %}
 
         {% for statut in statuts %}
-            {% include 'EtnaSocialBundle:Elements:statut.html.twig' %}
+            {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut' : statut} %}
         {% endfor %}
     </div>
 

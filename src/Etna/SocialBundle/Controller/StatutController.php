@@ -23,7 +23,6 @@ class StatutController extends Controller
             $response->headers->setCookie(new Cookie('url', $url));
             $response->sendHeaders();
         }
-
         if ($request->getMethod() == 'POST') {
             $url = $request->cookies->get('url');
         }
@@ -54,12 +53,12 @@ class StatutController extends Controller
         }
 
         return $this->render('EtnaSocialBundle:Elements:statutForm.html.twig', array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
 
     }
 
-    public function removeAction(Request $request,$statut='defaut')
+    public function removeAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
 
@@ -67,11 +66,11 @@ class StatutController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('EtnaSocialBundle:Statut');
-
         $statut = $repository->find($statut);
 
         $em->remove($statut);
         $em->flush();
+
         return $this->redirect($this->generateUrl('etna_social_profile',array('username'=> $user)));
     }
 }

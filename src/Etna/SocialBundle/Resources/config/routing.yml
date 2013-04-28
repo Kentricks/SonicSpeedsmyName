@@ -61,7 +61,7 @@ etna_social_add_friend:
 
 etna_social_com_status:
     pattern:  /statut/com
-    defaults: { _controller: EtnaSocialBundle:ComStatut:new }    defaults: { _controller: EtnaSocialBundle:Friend:addfriend }
+    defaults: { _controller: EtnaSocialBundle:ComStatut:new }
 
 etna_social_get_albums:
     pattern: /{username}/albums

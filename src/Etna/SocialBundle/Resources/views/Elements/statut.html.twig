@@ -15,10 +15,10 @@
                     <div class="span4 outils_statut">
                         {% if statut.destinataire.username == app.user.username %}
                             <div>
-                            <a href="#myModal" role="button" data-toggle="modal" alt="Supprimer">
+                            <a href="#myModal{{ statut.id }}" role="button" data-toggle="modal" alt="Supprimer">
                                     <i class="icon-remove"></i>
                             </a>
-                                    <div class="modal hide fade" id="myModal">
+                                    <div class="modal hide fade" id="myModal{{ statut.id }}">
                                       <div class="modal-body">
                                         <p>Voulez-vous supprimer ce statut ?</p>
                                       </div>
@@ -39,7 +39,9 @@
     </div>
 </div>
 <div class="group-commentaires">
+
         {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
         {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
+
 </div>
 </div>
