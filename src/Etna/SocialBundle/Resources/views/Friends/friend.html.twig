@@ -7,9 +7,17 @@
   <div class="row-fluid">
     <h2>Mes amis</h2>
     <div>
+      {% if notmyfriend == 0 %}
+      <div class="span12" style="padding-bottom:20px;"><form class="navbar-search pull-left" action="{{ path('etna_social_get_friend', {'username': username}) }}" method="post">
+        <input type="text" class="search-query" placeholder="Search" name="username_search">
+      </div>
+      {% endif %}
+      {% if searchnotfound != false %}
+      <div class="span12">{{ searchnotfound }} ne fait pas partie de tes amis</div>
+      {% endif %}
       {% if nofriend == false %}
-      <div>Tu n'as pas d'amis !!!</div>
-      <a href="{{ path('etna_social_find_friend', {'username': username}) }}">Clique ici pour en avoir</a>
+      <div class="span12">Tu n'as pas d'amis !!!</div>
+      <div class="span12"><a href="{{ path('etna_social_find_friend', {'username': username}) }}">Clique ici pour en avoir</a></div>
       {% endif %}
       {% for Allfriends in allfriends %}
       <div class="span1" style="float:left">

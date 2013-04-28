@@ -22,10 +22,6 @@ class FriendController extends Controller
     {
       $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
       $id = $user->getId();
-      $nom = $user->getNom();
-      $prenom = $user->getPrenom();
-      $genre = $user->getGenre();
-      $img = $user->getUrlPhoto();
       /* To get all friends  */
       $friend_doctrine = $this->getDoctrine()
 	->getRepository('EtnaSocialBundle:Membre')
@@ -35,6 +31,7 @@ class FriendController extends Controller
 	$nofriend = false;
 	$allfriends = array();
       }
+      /* Friends of friends */
       $notmyfriend = 0;
       if (isset($_GET['myusername']))
         $myusername = $_GET['myusername'];
@@ -53,25 +50,28 @@ class FriendController extends Controller
 	  $allfriends[$username_friend] = $info_friend;
 	  $info_friend = array();
 	  $nofriend = true;
-	  //echo $friend.' '.$myusername;
+	  /* Friends of friends */
 	  if ($myusername == $friend)
 	    $notmyfriend++;
 	}
-      //if (!in_array($username, $allfriends))
-      //$notmyfriend++;
-      //print_r($allfriends);
-      //echo $notmyfriend;
-      //print_r($test);
+      /* Search friend */
+      $searchnotfound = false;
+      if (isset($_POST['username_search'])) {
+        foreach($allfriends as $key => $value)
+          {
+            if ($_POST['username_search'] != $key)
+              unset($allfriends[$key]);
+          }
+	if (empty($allfriends))
+	  $searchnotfound = $_POST['username_search'];
+      }
       return $this->render('EtnaSocialBundle:Friends:friend.html.twig', array(
 									    'username' => $username,
-									    'nom' => $nom,
-									    'prenom' => $prenom,
-									    'genre' => $genre,
-									    'img' => $img,
 									    'id' => $id,
 									    'allfriends' => $allfriends,
 									    'nofriend' => $nofriend,
-									    'notmyfriend' => $notmyfriend
+									    'notmyfriend' => $notmyfriend,
+									    'searchnotfound' => $searchnotfound
 									    ));
     }
 
@@ -91,11 +91,12 @@ class FriendController extends Controller
 	  $info_member['nom'] = $name_member;
 	  $info_member['prenom'] = $prenom_member;
 	  $info_member['img'] = $img_member;
+	  $info_member['deloradd'] = 'add';
 	  $allmembers[$username_member] = $info_member;
 	  $info_member = array();
 	}
       }
-      /* To delete my friends of members  */
+      /* To remove my friends of members  */
       $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
       $id = $user->getId();
       $friend_doctrine = $this->getDoctrine()
@@ -106,12 +107,30 @@ class FriendController extends Controller
 	foreach($allmembers as $key => $value)
 	  {
 	    if ($key == $friend)
+	      $allmembers[$key]['deloradd'] = 'del';
+	  }
+      }
+      if (!isset($allmembers[$key]['deloradd']))
+      print_r($allmembers);
+      $nomembers = false;
+      if (count($allmembers) == 0)
+	$nomembers = true;
+      /* Search friend */
+      $searchnotfound = false;
+      if (isset($_POST['username_search'])) {
+	foreach($allmembers as $key => $value)
+	  {
+	    if ($_POST['username_search'] != $key)
 	      unset($allmembers[$key]);
 	  }
+	if (empty($allmembers))
+          $searchnotfound = $_POST['username_search'];
       }
       return $this->render('EtnaSocialBundle:Friends:findfriend.html.twig', array(
 										  'username' => $username,
-										  'allmembers' => $allmembers
+										  'allmembers' => $allmembers,
+										  'nomembers' => $nomembers,
+										  'searchnotfound' => $searchnotfound
 										  ));
     }
 
