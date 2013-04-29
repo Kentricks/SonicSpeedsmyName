@@ -32,7 +32,7 @@ class Statut
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="date_creation", type="datetime")
      */
     private $date_creation;
 
@@ -49,7 +49,7 @@ class Statut
     protected $destinataire;
 
     /**
-     * @ORM\OneToMany(targetEntity="CommentaireStatut", mappedBy="statut")
+     * @ORM\OneToMany(targetEntity="CommentaireStatut", mappedBy="statut", cascade="remove")
      */
     private $commentaires;
 
@@ -212,7 +212,7 @@ class Statut
     /**
      * Get destinataire
      *
-     * @return \Etna\SocialBundle\Entity\Membre 
+     * @return \Etna\SocialBundle\Entity\Membre
      */
     public function getDestinataire()
     {
