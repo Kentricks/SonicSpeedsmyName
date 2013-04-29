@@ -1,0 +1,15 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h2>Ajouter un album</h2>
+    <div>
+        <input type="input" name="album_name" />
+	    <a href="{{ path('etna_social_add_album', {'username': username}) }}">Créer un album</a></div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
