@@ -21,9 +21,11 @@
                 {% if (i == 1) %}
                     <div class="row-fluid">
                 {% endif %}
-                <div class="span2 photo-thumbnail">
-                    <img src="{{ Allphoto.url }}" />
-                </div>
+                <a href={{ path('etna_social_display_photo', {'username': username, 'albumname' : albumname, 'photoid' : Allphoto.id}) }}>
+                    <div class="span2 photo-thumbnail">
+                        <img src="{{ Allphoto.url }}" />
+                    </div>
+                </a>
                 {% if (i == 6) %}
                     </div>
                     {% set i = 0 %}
