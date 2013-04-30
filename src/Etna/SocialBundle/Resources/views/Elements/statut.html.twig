@@ -6,7 +6,7 @@
                 {% if statut.expediteur.urlPhoto == "" %}
                         <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
                 {% else %}
-                        <img  class="img-rounded" src="{{ img }}"  height="140px"/>
+                        <img  class="img-rounded" src="{{ statut.expediteur.urlPhoto }}"  height="140px"/>
                 {% endif %}
             </div>
             <div class="span10 statut_content">
