@@ -13,9 +13,21 @@
                 <div class="row-fluid">
                     <div class="span8">
                         {% if app.request.pathInfo == "/home" %}
-                            <h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }} <i class="icon-forward"></i> {{ statut.destinataire.prenom }} {{ statut.destinataire.nom }}</h4>
+                            <h4>
+                                <a href="{{ path('etna_social_profile', {'username' : statut.expediteur.username}) }}" >
+                                    {{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}
+                                </a>
+                                <i class="icon-forward"></i>
+                                <a href="{{ path('etna_social_profile', {'username' : statut.destinataire.username}) }}" >
+                                    {{ statut.destinataire.prenom }} {{ statut.destinataire.nom }}
+                                </a>
+                            </h4>
                         {% else %}
-                        <h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}</h4>
+                        <h4>
+                            <a href="{{ path('etna_social_profile', {'username' : statut.expediteur.username}) }}" >
+                                {{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}
+                            </a>
+                        </h4>
                         {% endif %}
                     </div>
                     <div class="span4 outils_statut">
