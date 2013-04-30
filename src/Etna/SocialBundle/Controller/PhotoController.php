@@ -27,6 +27,7 @@ class PhotoController extends Controller {
         foreach($photos as $photo)
         {
             $id_photo = $photo->getId();
+            $info_photo['id'] = $photo->getId();
             $info_photo['nom'] = $photo->getNom();
             $info_photo['url'] = $photo->getUrl();
             $info_photo['commentaires'] = $photo->getCommentaires();
@@ -94,6 +95,18 @@ class PhotoController extends Controller {
             'username' => $username,
             'albumname' => $albumname,
             'form' => $form->createView()
+        ));
+    }
+
+    public function displayPhotoAction($photoid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $photo = $em->getRepository('EtnaSocialBundle:Photo')->find($photoid);
+        $url = $photo->getUrl();
+
+        return $this->render('EtnaSocialBundle:Photos:displayphoto.html.twig', array(
+            'photoid' => $photoid,
+            'url' => $url
         ));
     }
 }

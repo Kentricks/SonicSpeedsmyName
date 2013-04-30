@@ -86,6 +86,10 @@ etna_social_add_photo:
     pattern: /{username}/albums/{albumname}/add_photo
     defaults: { _controller: EtnaSocialBundle:Photo:addPhoto }
 
+etna_social_display_photo:
+    pattern: /{username}/albums/{albumname}/{photoid}
+    defaults: { _controller: EtnaSocialBundle:Photo:displayPhoto }
+
 etna_social_remove_photo:
-    pattern: /{username}/albums/{albumname}/remove_photo
+    pattern: /{username}/albums/{albumname}/{photoid}/remove_photo
     defaults: { _controller: EtnaSocialBundle:Photo:removePhoto }
