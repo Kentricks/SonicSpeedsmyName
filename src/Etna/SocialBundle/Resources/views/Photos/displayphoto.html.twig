@@ -5,7 +5,29 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row-fluid">
-        <img src="{{ url }}" />
+        <a href="{{ path('etna_social_get_photos', {'username': username, 'albumname' : albumname}) }}">Retour aux albums</a>
+    </div>
+    <div class="row-fluid">
+        <div class="span12 display-image">
+            <img src="{{ url }}" />
+        </div>
+    </div>
+    <div class="row-fluid">
+        <a href="#modalRemovePhoto" data-toggle="modal">Supprimer la photo</a>
+    </div>
+</div>
+
+<div id="modalRemovePhoto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Supprimer une photo</h3>
+    </div>
+    <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer cette photo ?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <a class="btn btn-primary" href="{{ path('etna_social_remove_photo', {'username': username, 'albumname' : albumname, 'photoid' : photoid}) }}">Supprimer la photo</a>
     </div>
 </div>
 {% endblock body %}

@@ -98,15 +98,37 @@ class PhotoController extends Controller {
         ));
     }
 
-    public function displayPhotoAction($photoid)
+    public function displayPhotoAction($username, $albumname, $photoid)
     {
         $em = $this->getDoctrine()->getManager();
         $photo = $em->getRepository('EtnaSocialBundle:Photo')->find($photoid);
         $url = $photo->getUrl();
 
         return $this->render('EtnaSocialBundle:Photos:displayphoto.html.twig', array(
+            'username' => $username,
+            'albumname' => $albumname,
             'photoid' => $photoid,
             'url' => $url
         ));
+    }
+
+    public function removePhotoAction($username, $albumname, $photoid)
+    {
+        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+        $id = $user->getId();
+        $album = $user->getAlbumFrom($albumname);
+        $album_id = $album->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+        $album = $em->getRepository('EtnaSocialBundle:Album')->find($album_id);
+        $photo = $em->getRepository('EtnaSocialBundle:Photo')->find($photoid);
+        $user->removePhoto($photo);
+        $album->removePhoto($photo);
+        $photo->setMembre(null);
+        $em->flush();
+        return $this->redirect($this->generateUrl('etna_social_get_photos',array(
+            'username'=> $username, 'albumname' => $albumname, 'photoid' => $photoid
+        )));
     }
 }

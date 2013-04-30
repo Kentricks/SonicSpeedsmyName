@@ -44,6 +44,17 @@ body {
   max-height: 180px;
   vertical-align: middle;
 }
+.display-image {
+  text-align: center;
+  height: 450px;
+  line-height: 450px;
+  background: #ddd;
+  border: #999;
+}
+.display-image img {
+  max-height: 450px;
+  vertical-align: middle;
+}
 .album-thumbnail {
   margin-bottom: 20px;
   height: 200px;
