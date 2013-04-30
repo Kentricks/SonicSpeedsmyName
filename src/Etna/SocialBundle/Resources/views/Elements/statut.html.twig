@@ -11,7 +11,13 @@
             </div>
             <div class="span10 statut_content">
                 <div class="row-fluid">
-                    <div class="span8"><h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}</h4></div>
+                    <div class="span8">
+                        {% if app.request.pathInfo == "/home" %}
+                            <h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }} <i class="icon-forward"></i> {{ statut.destinataire.prenom }} {{ statut.destinataire.nom }}</h4>
+                        {% else %}
+                        <h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}</h4>
+                        {% endif %}
+                    </div>
                     <div class="span4 outils_statut">
                         {% if statut.destinataire.username == app.user.username %}
                             <div>
@@ -33,15 +39,25 @@
                     </div>
 
                 <div class="statut_content">{{ statut.contenu }}</div>
-                <div>{{ statut.dateCreation | date('j F Y H:i:s') }}</div>
+                <div>{{ statut.dateCreation | date('j F Y H:i:s') }}
+                    <a href="#myModal2{{ statut.id }}" role="button" data-toggle="modal" alt="Commentaire">
+                        <i class="icon-pencil"></i>
+                    </a>
+                    <div class="modal hide fade" id="myModal2{{ statut.id }}">
+                        <div class="modal-body">
+                            <div class="group-commentaires">
+                                {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
+                            <a data-dismiss="modal" class="btn">Ok</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="group-commentaires">
-
-        {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-        {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-
 </div>
 </div>

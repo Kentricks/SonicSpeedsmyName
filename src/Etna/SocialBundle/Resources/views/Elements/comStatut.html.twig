@@ -1,4 +1,6 @@
-{% for com in coms %}
-    <p>{{ com.contenu }}</p>
+<table class="table table-bordered">
+    {% for com in coms %}
+        <tr><td>photo</td><td>{{ com.expediteur.prenom }} {{ com.expediteur.nom }} : {{ com.contenu }}<br />{{ com.dateCreation | date('j F Y H:i:s') }}</td></tr>
 
-{% endfor %}
+    {% endfor %}
+</table>

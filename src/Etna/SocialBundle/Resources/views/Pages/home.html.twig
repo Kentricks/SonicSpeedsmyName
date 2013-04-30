@@ -6,4 +6,7 @@
 
 {% block body %}
 	<h1 class="alert alert-info" >Hello {{ prenom }}</h1>
+    {% for com in coms %}
+        {% include 'EtnaSocialBundle:Elements:statut.html.twig' with {'statut' : com} %}
+    {% endfor %}
 {% endblock body %}

@@ -22,8 +22,23 @@ class HomeController extends Controller
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		$prenom = $user->getPrenom();
 
+		//Recup amis
+        $friend_doctrine = $this->getDoctrine()
+        	->getRepository('EtnaSocialBundle:Membre')
+        	->find($user);
+        $all_friend = $friend_doctrine->getMyfriends();
+
+        //Recup Status
+        $statutRep = $this->getDoctrine()
+            ->getRepository('EtnaSocialBundle:Statut');
+        $coms = array();
+        foreach($all_friend as $friend) {
+            $coms = array_merge($coms, $statutRep->findBy(array("expediteur" => $friend)));
+        }
+
 		return $this->render('EtnaSocialBundle:Pages:home.html.twig', array(
-			'prenom' => $prenom
+			'prenom' => $prenom,
+            'coms' => $coms
 		));
 	}
 }
