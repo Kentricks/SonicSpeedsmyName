@@ -114,7 +114,7 @@ class Membre extends BaseUser
     private $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="membre")
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="membre", cascade="persist")
      */
     private $albums;
 
