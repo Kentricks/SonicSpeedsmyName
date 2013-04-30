@@ -8,7 +8,7 @@
         <h2>{{ albumname }}</h2>
         <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
         <br />
-        <a href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}"><i class="icon-trash"></i>Supprimer cet album</a>
+        <a href="#modalRemoveAlbum" data-toggle="modal"><i class="icon-trash"></i>Supprimer cet album</a>
 
         <div id="photo_gallery">
             {% if nophoto == false %}
@@ -35,6 +35,20 @@
                 </div>
             {% endif %}
         </div>
+    </div>
+</div>
+
+<div id="modalRemoveAlbum" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Supprimer un album</h3>
+    </div>
+    <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer cet album ?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <a href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}">Supprimer l'album</a>
     </div>
 </div>
 {% endblock body %}
