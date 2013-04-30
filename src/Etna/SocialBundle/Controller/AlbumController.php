@@ -77,4 +77,18 @@ class AlbumController extends Controller {
         ));
     }
 
+    public function removeAlbumAction($username, $albumname)
+    {
+        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+        $id = $user->getId();
+        $album = $user->getAlbumFrom($albumname);
+        $album_id = $album->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+        $album = $em->getRepository('EtnaSocialBundle:Album')->find($album_id);
+        $user->removeAlbum($album);
+        $album->setMembre(null);
+        $em->flush();
+        return $this->redirect($this->generateUrl('etna_social_get_albums',array('username'=> $username, 'albumname' => $albumname)));    }
 }

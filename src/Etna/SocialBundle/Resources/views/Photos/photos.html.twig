@@ -5,7 +5,10 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row-fluid">
-        <h2>{{ albumname }}</h2> <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}">Ajouter une photo</a>
+        <h2>{{ albumname }}</h2>
+        <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
+        <br />
+        <a href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}"><i class="icon-trash"></i>Supprimer cet album</a>
 
         <div id="photo_gallery">
             {% if nophoto == false %}

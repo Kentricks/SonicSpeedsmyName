@@ -44,3 +44,21 @@ body {
   max-height: 180px;
   vertical-align: middle;
 }
+.album-thumbnail {
+  margin-bottom: 20px;
+  height: 200px;
+  background: #eee;
+  border: #999 1px solid;
+  text-align: center;
+}
+.album-thumbnail .album-name {
+  color: #000;
+  font-weight: bold;
+}
+.album-thumbnail .album-cover {
+  line-height: 180px;
+}
+.album-thumbnail .album-cover img {
+  max-height: 180px;
+  vertical-align: middle;
+}
