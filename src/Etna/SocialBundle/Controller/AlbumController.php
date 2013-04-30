@@ -3,7 +3,9 @@
 namespace Etna\SocialBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Etna\SocialBundle\Entity\Photo;
+use Symfony\Component\HttpFoundation\Response;
+use Etna\SocialBundle\Form\Type\CreateAlbumFormType;
 
 class AlbumController extends Controller {
     public function getAlbumAction($username)
@@ -33,6 +35,30 @@ class AlbumController extends Controller {
             'id' => $id,
             'allalbums' => $allalbums,
             'noalbum' => $noalbum
+        ));
+    }
+
+    public function addalbumAction(Request $request)
+    {
+        $photo = new Photo();
+        $form = $this->createForm(new CreateAlbumFormType(), $photo);
+        $form->setData($photo);
+
+        if ($this->getRequest()->isMethod('POST'))
+        {
+            $form->bind($this->getRequest());
+            if ($form->isValid())
+            {
+                $em = $this->getDoctrine()->getManager();
+
+                $photo->upload();
+
+                $em->persist($photo);
+                $em->flush();
+            }
+        }
+        return $this->render('EtnaSocialBundle:Albums:addalbum.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 }

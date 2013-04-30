@@ -3,6 +3,7 @@
 namespace Etna\SocialBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Photo
@@ -41,6 +42,11 @@ class Photo
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
 
     /**
      * @ORM\ManyToOne(targetEntity="Membre", inversedBy="photos")
@@ -203,10 +209,10 @@ class Photo
     /**
      * Add commentaires
      *
-     * @param \Etna\SocialBundle\Entity\Commentaire_photo $commentaires
+     * @param \Etna\SocialBundle\Entity\CommentairePhoto $commentaires
      * @return Photo
      */
-    public function addCommentaire(\Etna\SocialBundle\Entity\Commentaire_photo $commentaires)
+    public function addCommentaire(\Etna\SocialBundle\Entity\CommentairePhoto $commentaires)
     {
         $this->commentaires[] = $commentaires;
     
@@ -216,9 +222,9 @@ class Photo
     /**
      * Remove commentaires
      *
-     * @param \Etna\SocialBundle\Entity\Commentaire_photo $commentaires
+     * @param \Etna\SocialBundle\Entity\CommentairePhoto $commentaires
      */
-    public function removeCommentaire(\Etna\SocialBundle\Entity\Commentaire_photo $commentaires)
+    public function removeCommentaire(\Etna\SocialBundle\Entity\CommentairePhoto $commentaires)
     {
         $this->commentaires->removeElement($commentaires);
     }
@@ -231,5 +237,51 @@ class Photo
     public function getCommentaires()
     {
         return $this->commentaires;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->url ? null : $this->getUploadRootDir().'/'.$this->url;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->url ? null : $this->getUploadDir().'/'.$this->url;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads';
+    }
+
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // la méthode « move » prend comme arguments le répertoire cible et
+        // le nom de fichier cible où le fichier doit être déplacé
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // définit la propriété « path » comme étant le nom de fichier où vous
+        // avez stocké le fichier
+        $this->path = $this->file->getClientOriginalName();
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
     }
 }
