@@ -47,8 +47,8 @@
         <p>Voulez-vous vraiment supprimer cet album ?</p>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <a href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}">Supprimer l'album</a>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+        <a class="btn btn-primary" href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}">Supprimer l'album</a>
     </div>
 </div>
 {% endblock body %}
