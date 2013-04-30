@@ -6,17 +6,33 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h2>{{ albumname }}</h2>
-        <div>
+        <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
+        <br />
+        <a href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}"><i class="icon-trash"></i>Supprimer cet album</a>
+
+        <div id="photo_gallery">
             {% if nophoto == false %}
                 <div>Tu n'as pas de photo dans cet album.</div>
             {% endif %}
+
+            {% set i = 0 %}
             {% for Allphoto in allphoto %}
-                <div class="span2">
+                {% set i = i + 1 %}
+                {% if (i == 1) %}
+                    <div class="row-fluid">
+                {% endif %}
+                <div class="span2 photo-thumbnail">
                     <img src="{{ Allphoto.url }}" />
                 </div>
+                {% if (i == 6) %}
+                    </div>
+                    {% set i = 0 %}
+                {% endif %}
             {% endfor %}
+            {% if i > 0 %}
+                </div>
+            {% endif %}
         </div>
-        <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}">Ajouter une photo</a>
     </div>
 </div>
 {% endblock body %}

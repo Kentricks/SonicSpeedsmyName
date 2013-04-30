@@ -75,7 +75,7 @@ etna_social_add_album:
     defaults: { _controller: EtnaSocialBundle:Album:addAlbum }
 
 etna_social_remove_album:
-    pattern: /{username}/remove_album
+    pattern: /{username}/albums/{albumname}/remove_album
     defaults: { _controller: EtnaSocialBundle:Album:removeAlbum }
 
 etna_social_get_photos:

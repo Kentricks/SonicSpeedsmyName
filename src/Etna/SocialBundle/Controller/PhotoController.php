@@ -16,8 +16,9 @@ class PhotoController extends Controller {
         $album_doctrine = $this->getDoctrine()
             ->getRepository('EtnaSocialBundle:Membre')
             ->find($id);
-        $all_album = $album_doctrine->getAlbums();
-        $album = $all_album[0];
+//        $all_album = $album_doctrine->getAlbums();
+//        $album = $all_album[0];
+        $album = $album_doctrine->getAlbumFrom($albumname);
         $photos = $album->getPhotos();
         if (count($photos) == 0) {
             $nophoto = false;
@@ -69,7 +70,7 @@ class PhotoController extends Controller {
                 $isset_default = false;
                 foreach ($albums as $album)
                 {
-                    if ($album->getNom() == 'Default')
+                    if ($album->getNom() == $albumname)
                     {
                         $album->addPhoto($photo);
                         $isset_default = true;
@@ -87,6 +88,7 @@ class PhotoController extends Controller {
                 $user->addPhoto($photo);
                 $em->flush();
             }
+            return $this->redirect($this->generateUrl('etna_social_get_photos',array('username'=> $username, 'albumname' => $albumname)));
         }
         return $this->render('EtnaSocialBundle:Photos:addphoto.html.twig', array(
             'username' => $username,
