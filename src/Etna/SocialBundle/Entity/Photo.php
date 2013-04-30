@@ -170,6 +170,7 @@ class Photo
      */
     public function __construct()
     {
+
         $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
@@ -239,9 +240,9 @@ class Photo
         return $this->commentaires;
     }
 
-    public function getAbsolutePath()
+    public function getAbsolutePath($username)
     {
-        return null === $this->url ? null : $this->getUploadRootDir().'/'.$this->url;
+        return null === $this->url ? null : $this->getUploadRootDir($username).'/'.$this->url;
     }
 
     public function getWebPath()
@@ -249,39 +250,29 @@ class Photo
         return null === $this->url ? null : $this->getUploadDir().'/'.$this->url;
     }
 
-    protected function getUploadRootDir()
+    protected function getUploadRootDir($username)
     {
         // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../web/'.$this->getUploadDir().$username;
     }
 
     protected function getUploadDir()
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return 'uploads';
+        return 'uploads/';
     }
 
-    public function upload()
+    public function upload($username)
     {
-        // la propriété « file » peut être vide si le champ n'est pas requis
         if (null === $this->file) {
             return;
         }
 
-        // utilisez le nom de fichier original ici mais
-        // vous devriez « l'assainir » pour au moins éviter
-        // quelconques problèmes de sécurité
+        $this->file->move($this->getUploadRootDir($username), $this->file->getClientOriginalName());
 
-        // la méthode « move » prend comme arguments le répertoire cible et
-        // le nom de fichier cible où le fichier doit être déplacé
-        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
-
-        // définit la propriété « path » comme étant le nom de fichier où vous
-        // avez stocké le fichier
         $this->path = $this->file->getClientOriginalName();
 
-        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
     }
 }

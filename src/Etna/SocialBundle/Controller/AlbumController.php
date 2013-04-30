@@ -38,8 +38,13 @@ class AlbumController extends Controller {
         ));
     }
 
-    public function addalbumAction(Request $request)
+    public function addalbumAction($username)
     {
+        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+        $id = $user->getId();
+        $user = $this->getDoctrine()
+            ->getRepository('EtnaSocialBundle:Membre')
+            ->find($id);
         $photo = new Photo();
         $form = $this->createForm(new CreateAlbumFormType(), $photo);
         $form->setData($photo);
@@ -50,14 +55,18 @@ class AlbumController extends Controller {
             if ($form->isValid())
             {
                 $em = $this->getDoctrine()->getManager();
-
-                $photo->upload();
+                $photo->setUrl(__DIR__.'/../../../../web/uploads'.$username);
+                $photo->setDateCreation(new \DateTime('now'));
+                $photo->setMembre($user);
+                $photo->upload($username);
 
                 $em->persist($photo);
+                $user->addPhoto($photo);
                 $em->flush();
             }
         }
         return $this->render('EtnaSocialBundle:Albums:addalbum.html.twig', array(
+            'username' => $username,
             'form' => $form->createView()
         ));
     }

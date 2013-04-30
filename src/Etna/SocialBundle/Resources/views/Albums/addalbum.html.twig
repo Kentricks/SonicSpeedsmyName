@@ -7,10 +7,10 @@
     <div class="row-fluid">
         <h2>Créer un album</h2>
 
-        <form action="{{ path('etna_social_com_status') }}" method="post" {{ form_enctype(form) }}>
+        <form action="{{ path('etna_social_add_album', {'username' : username})}}" method="post" {{ form_enctype(form) }}>
             {{ form_widget(form) }}
 
-            <input type="submit" value="Uploader fichier" />
+            <input type="submit" class="btn btn-small" value="Uploader fichier" />
         </form>
     </div>
 </div>
