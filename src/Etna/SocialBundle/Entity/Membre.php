@@ -451,6 +451,18 @@ class Membre extends BaseUser
         return $this->albums;
     }
 
+    public function getAlbumFrom($albumname)
+    {
+        $album_list = $this->albums;
+        for ($i = 0; $i < count($album_list); $i++)
+        {
+            if ($album_list[$i]->getNom() == $albumname)
+            {
+                return $album_list[$i];
+            }
+        }
+    }
+
     /**
      * Add statuts
      *

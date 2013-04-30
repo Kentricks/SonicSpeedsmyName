@@ -1,4 +1,16 @@
 /* Will be compiled down to a single stylesheet with your sass files */
+/* Will be compiled down to a single stylesheet with your sass files */
+.group-status {
+  margin-top: 50px;
+}
+.status {
+  padding: 7px;
+  margin-bottom: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #d4d4d4;
+}
 .info_perso {
   border: 1px solid #d4d4d4;
   -webkit-border-radius: 4px;
@@ -19,4 +31,16 @@ body {
   width: 90%;
   margin: 0 auto;
   min-height: 82%;
+}
+.photo-thumbnail {
+  margin-bottom: 20px;
+  height: 200px;
+  line-height: 200px;
+  background: #eee;
+  border: #999 1px solid;
+  text-align: center;
+}
+.photo-thumbnail img {
+  max-height: 180px;
+  vertical-align: middle;
 }
