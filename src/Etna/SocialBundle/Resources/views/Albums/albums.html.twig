@@ -19,8 +19,10 @@
                     {% endif %}
                 </div>#}
                 <div class="span1">
-                    <div> {{Allalbums.nom}} </div>
-                    <img src="{{ Allalbums.cover }}" />
+                    <a href="{{ path('etna_social_get_photos', {'username' : username, 'albumname' : Allalbums.nom}) }}">
+                        <div> {{Allalbums.nom}} </div>
+                        <img src="{{ Allalbums.cover }}" />
+                    </a>
                     {#<div> {{ Allfriends.prenom }} {{Allfriends.nom}} </div>#}
 	                {#<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allfriends.username, 'username': username}) }}">Supprimer</a></div>#}
                 </div>

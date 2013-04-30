@@ -68,12 +68,24 @@ etna_social_com_status:
 
 etna_social_get_albums:
     pattern: /{username}/albums
-    defaults: { _controller: EtnaSocialBundle:Album:getalbum }
+    defaults: { _controller: EtnaSocialBundle:Album:getAlbum }
 
 etna_social_add_album:
     pattern: /{username}/add_album
-    defaults: { _controller: EtnaSocialBundle:Album:addalbum }
+    defaults: { _controller: EtnaSocialBundle:Album:addAlbum }
 
 etna_social_remove_album:
     pattern: /{username}/remove_album
-    defaults: { _controller: EtnaSocialBundle:Album:removealbum }
+    defaults: { _controller: EtnaSocialBundle:Album:removeAlbum }
+
+etna_social_get_photos:
+    pattern: /{username}/albums/{albumname}
+    defaults: { _controller: EtnaSocialBundle:Photo:getPhotos }
+
+etna_social_add_photo:
+    pattern: /{username}/albums/{albumname}/add_photo
+    defaults: { _controller: EtnaSocialBundle:Photo:addPhoto }
+
+etna_social_remove_photo:
+    pattern: /{username}/albums/{albumname}/remove_photo
+    defaults: { _controller: EtnaSocialBundle:Photo:removePhoto }

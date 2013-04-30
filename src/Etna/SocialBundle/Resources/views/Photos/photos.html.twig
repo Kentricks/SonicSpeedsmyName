@@ -1,0 +1,22 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h2>{{ albumname }}</h2>
+        <div>
+            {% if nophoto == false %}
+                <div>Tu n'as pas de photo dans cet album.</div>
+            {% endif %}
+            {% for Allphoto in allphoto %}
+                <div class="span2">
+                    <img src="{{ Allphoto.url }}" />
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}">Ajouter une photo</a>
+    </div>
+</div>
+{% endblock body %}

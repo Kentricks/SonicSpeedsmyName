@@ -4,7 +4,7 @@ namespace Etna\SocialBundle\Form\Type;
 use Symfony\Component\Form\AbstractType as Base;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CreateAlbumFormType extends Base
+class CreatePhotoFormType extends Base
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -15,7 +15,7 @@ class CreateAlbumFormType extends Base
 
     public function getName()
     {
-        return 'etna_social_add_album';
+        return 'etna_social_add_photo';
     }
 }
 
