@@ -3,7 +3,25 @@
         <tr>
             <td><img class="img_com" src="{{ com.expediteur.urlPhoto }}"/></td>
             <td>
-                <a href="{{ path('etna_social_profile', {username : com.expediteur.username} ) }}">{{ com.expediteur.prenom }} {{ com.expediteur.nom }}</a> : {{ com.contenu }}<br />{{ com.dateCreation | date('j F Y H:i:s') }}
+                <div class="span12 statut_content">
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <a href="{{ path('etna_social_profile', {username : com.expediteur.username} ) }}">
+                                {{ com.expediteur.prenom }} {{ com.expediteur.nom }}
+                            </a>
+                            : {{ com.contenu }}
+                            <br />
+                            {{ com.dateCreation | date('j F Y H:i:s') }}
+                        </div>
+                        <div class="span4 outils_statut">
+                            {% if statut.destinataire.username == app.user.username %}
+                                <a class="remove_com" data="{{ modal }}" href="{{ path('etna_social_remove_com_status', {'com': com.id, 'url' : url }) }}">
+                                    <i class="icon-remove"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
     {% endfor %}

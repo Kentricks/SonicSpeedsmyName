@@ -17,11 +17,10 @@ use Etna\SocialBundle\Entity\Membre;
 
 class HomeController extends Controller
 {
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		$prenom = $user->getPrenom();
-
 		//Recup amis
         $friend_doctrine = $this->getDoctrine()
         	->getRepository('EtnaSocialBundle:Membre')
@@ -38,7 +37,8 @@ class HomeController extends Controller
 
 		return $this->render('EtnaSocialBundle:Pages:home.html.twig', array(
 			'prenom' => $prenom,
-            'coms' => $coms
+            'coms' => $coms,
+            'url' => $request->getPathInfo(),
 		));
 	}
 }

@@ -59,10 +59,19 @@
 
 .textarea_com
 {
+    margin-top: 20px;;
     width: 100%;
 }
 
-.textarea_com
+
+.menu_profil a:hover, .menu_profil a{
+     text-decoration: none;
+    color: black;
+}
+
+.icon-amis
 {
-   text-align: left;
+    background: url("../img/glyphicons_043_group.png");
+    background-size: 13px 13px;
+    background-repeat: no-repeat;
 }

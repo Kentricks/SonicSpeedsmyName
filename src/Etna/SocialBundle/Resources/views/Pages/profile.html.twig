@@ -21,17 +21,16 @@
             <p>
                 <i class="icon-user"></i> {{ genre }}
             </p>
-            <div class="btn-group">
-                <a href=" {{ path('etna_social_get_friend', {'username': username}) }}"><button class="btn">Mes Amis</button></a>
-                <a href=" {{ path('etna_social_get_albums', {'username': username}) }}"><button class="btn">Mes Photos</button></a>
-                <button class="btn">Mes paramètres</button>
+            <div class="btn-group menu_profil">
+                <button class="btn"><i class="icon-amis"></i> <a href=" {{ path('etna_social_get_friend', {'username': username}) }}">Mes Amis</a></button>
+                <button class="btn"><i class="icon-picture"></i> <a href=" {{ path('etna_social_get_albums', {'username': username}) }}">Mes Photos</a></button>
+                <button class="btn"><i class="icon-cog"></i> Mes paramètres</button>
             </div>
         </div>
     </div>
 </div>
 
     <div class="span9 offset2 group_status">
-        <legend>Ecrire</legend>
         {% render controller('EtnaSocialBundle:Statut:new', {'url' : app.request.pathInfo})  %}
 
         {% for statut in statuts %}

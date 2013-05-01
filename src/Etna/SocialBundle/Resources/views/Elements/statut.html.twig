@@ -42,34 +42,35 @@
                                       </div>
                                       <div class="modal-footer">
                                         <a data-dismiss="modal" class="btn">Annuler</a>
-                                        <a href="{{ path('etna_social_remove_status', {'statut': statut.id}) }}" class="btn btn-primary">Supprimer</a>
+                                        <a href="{{ path('etna_social_remove_status', {'statut': statut.id, 'url' : app.request.pathInfo}) }}" class="btn btn-primary">Supprimer</a>
                                       </div>
                                     </div>
                             </div>
                         {% endif %}
+                        <a href="#myModal2{{ statut.id }}" role="button" data-toggle="modal" alt="Commentaire">
+                            <i class="icon-pencil"></i>
+                        </a>
+                        <div class="modal hide fade" id="myModal2{{ statut.id }}">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 id="myModalLabel">Commentaires</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="group-commentaires">
+                                    {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id, 'modal' : statut.id })  %}
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
+                            </div>
+                        </div>
                     </div>
                     </div>
 
                 <div class="statut_content">{{ statut.contenu }}</div>
                 <div>{{ statut.dateCreation | date('j F Y H:i:s') }}
-                    <a href="#myModal2{{ statut.id }}" role="button" data-toggle="modal" alt="Commentaire">
-                        <i class="icon-pencil"></i>
-                    </a>
-                    <div class="modal hide fade" id="myModal2{{ statut.id }}">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 id="myModalLabel">Commentaires</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="group-commentaires">
-                                {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
 
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

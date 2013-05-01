@@ -12,7 +12,7 @@ class StatutFormType extends Base
     {
 
         $builder->add('contenu', 'textarea', array(
-        'attr' => array('rows' => 3), 'label' => false
+        'attr' => array('rows' => 2, 'class' => 'textarea_com', 'placeholder' => 'Ecrire'), 'label' => false
         ));
     }
 

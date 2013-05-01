@@ -1,4 +1,4 @@
-<form action="{{ path('etna_social_com_status', {'statut' : statut}) }}" method="post" {{ form_enctype(form) }}>
+<form class="form_com_statut" action="{{ path('etna_social_com_status', {'statut' : statut}) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form.contenu) }}
-    <input class="btn btn-small" type="submit" value="Ajouter un commentaire" />
+    <input class="btn btn-small" type="submit" value="Ajouter" />
 </form>

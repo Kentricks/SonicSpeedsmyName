@@ -68,14 +68,45 @@ class ComStatutController extends Controller
 
     public function showAction(Request $request, $url='default', $statut='default')
     {
+        $url = $request->get('url');
+        $modal = $request->get('modal');
         $statut = $request->attributes->get('statut');
+
+        /* Pour destinataire */
+        $em = $this->getDoctrine()->getManager();
+        $rep = $em->getRepository('EtnaSocialBundle:Statut');
+        $stat = $rep->find($statut);
+        /* Fin pour dest */
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('EtnaSocialBundle:CommentaireStatut');
         $coms = $repository->findBy(array('statut' => $statut));
 
         return $this->render('EtnaSocialBundle:Elements:comStatut.html.twig', array(
-            'coms' => $coms,
+            'coms' => $coms, 'statut' => $stat, 'url' => $url, 'modal' => $modal
         ));
     }
+
+    public function removeAction(Request $request)
+    {
+        $url = $request->get('url');
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        $com = $request->get('com');
+
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('EtnaSocialBundle:CommentaireStatut');
+        $com = $repository->find($com);
+
+        $em->remove($com);
+        $em->flush();
+        if ($url == '/home')
+            return $this->redirect($this->generateUrl('etna_social_home'));
+        else
+            return $this->redirect($this->generateUrl('etna_social_profile',array('username'=> $user)));
+    }
+
+
+
 }

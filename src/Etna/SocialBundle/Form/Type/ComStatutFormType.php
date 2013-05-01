@@ -11,7 +11,7 @@ class ComStatutFormType extends Base
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('contenu', 'textarea', array(
-            'attr' => array('rows' => 1, 'class' => 'textarea_com'), 'label' => false,
+            'attr' => array('rows' => 1, 'class' => 'textarea_com', 'placeholder' => 'Commenter'), 'label' => false,
         ));
     }
 
