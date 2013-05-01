@@ -4,6 +4,6 @@ $(document).ready(function() {
         $.cookie("id", null);
     }
     $("form").submit(function() {
-        $.cookie("id", $(this).parent().parent().parent().attr("id"));//.modal('show');
+        $.cookie("id", $(this).parent().parent().attr("id"));//.modal('show');
     });
 });

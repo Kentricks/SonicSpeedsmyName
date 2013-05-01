@@ -1,6 +1,10 @@
-<table class="table table-bordered">
+<table class="table table-bordered table_com_statut">
     {% for com in coms %}
-        <tr><td>photo</td><td>{{ com.expediteur.prenom }} {{ com.expediteur.nom }} : {{ com.contenu }}<br />{{ com.dateCreation | date('j F Y H:i:s') }}</td></tr>
-
+        <tr>
+            <td><img class="img_com" src="{{ com.expediteur.urlPhoto }}"/></td>
+            <td>
+                <a href="{{ path('etna_social_profile', {username : com.expediteur.username} ) }}">{{ com.expediteur.prenom }} {{ com.expediteur.nom }}</a> : {{ com.contenu }}<br />{{ com.dateCreation | date('j F Y H:i:s') }}
+            </td>
+        </tr>
     {% endfor %}
 </table>

@@ -4,9 +4,9 @@
         <div class="row-fluid">
             <div class="span2">
                 {% if statut.expediteur.urlPhoto == "" %}
-                        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
+                        <img  class="img_statut" src="{{ asset('img/inco.png') }}" alt="inco" />
                 {% else %}
-                        <img  class="img-rounded" src="{{ statut.expediteur.urlPhoto }}"  height="140px"/>
+                        <img  class="img_statut" src="{{ statut.expediteur.urlPhoto }}" />
                 {% endif %}
             </div>
             <div class="span10 statut_content">
@@ -56,6 +56,10 @@
                         <i class="icon-pencil"></i>
                     </a>
                     <div class="modal hide fade" id="myModal2{{ statut.id }}">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 id="myModalLabel">Commentaires</h4>
+                        </div>
                         <div class="modal-body">
                             <div class="group-commentaires">
                                 {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
@@ -64,7 +68,6 @@
                         </div>
                         <div class="modal-footer">
                             {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-                            <a data-dismiss="modal" class="btn">Ok</a>
                         </div>
                     </div>
                 </div>
