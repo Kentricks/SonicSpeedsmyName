@@ -12,11 +12,13 @@
             <img src="{{ url }}" />
         </div>
     </div>
+    {% if app.user.username == username %}
     <div class="row-fluid">
         <a href="#modalRemovePhoto" data-toggle="modal"><i class="icon-trash"></i> Supprimer la photo</a>
         <br />
         <a href="{{ path('etna_social_set_photo', {'username': username, 'albumname': albumname, 'photoid': photoid}) }}">Utiliser comme photo de profil</a>
     </div>
+    {% endif %}
 </div>
 
 <div id="modalRemovePhoto" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
