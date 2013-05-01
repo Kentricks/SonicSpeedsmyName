@@ -1,33 +1,33 @@
 /* Will be compiled down to a single stylesheet with your sass files */
 .group-status
 {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 .status
 {
-  padding: 7px;
-  margin-bottom: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  border : 1px solid #d4d4d4;
+    padding: 7px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border : 1px solid #d4d4d4;
 }
 
 .info_perso
 {
-  border : 1px solid #d4d4d4;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  padding: 7px;
+    border : 1px solid #d4d4d4;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 7px;
 //background: #d9edf7;
 }
 
 #change_photo
 {
-  font-size: 13px;
-  margin-left : 5px;
+    font-size: 13px;
+    margin-left : 5px;
 }
 
 html, body {
@@ -42,44 +42,61 @@ html, body {
 }
 
 .photo-thumbnail {
-  margin-bottom: 20px;
-  height: 200px;
-  line-height:200px;
-  background: #eee;
-  border: #999 1px solid;
-  text-align: center;
-  img {
-    max-height: 180px;
-    vertical-align: middle;
-  }
+    margin-bottom: 20px;
+    height: 200px;
+    line-height:200px;
+    background: #eee;
+    border: #999 1px solid;
+    text-align: center;
+    img {
+        max-height: 180px;
+        vertical-align: middle;
+    }
 }
 
 .display-image {
-  text-align: center;
-  height: 450px;
-  line-height: 450px;
-  background: #ddd;
-  border: #999;
-  img {
-    max-height: 450px;
-    vertical-align: middle;
-  }
+    text-align: center;
+    height: 450px;
+    line-height: 450px;
+    background: #ddd;
+    border: #999;
+    img {
+        max-height: 450px;
+        vertical-align: middle;
+    }
 }
 .album-thumbnail {
-  margin-bottom: 20px;
-  height: 200px;
-  background: #eee;
-  border: #999 1px solid;
-  text-align: center;
-  .album-name {
-    color: #000;
-    font-weight: bold;
-  }
-  .album-cover {
-    line-height:180px;
-    img {
-      max-height: 180px;
-      vertical-align: middle;
+    margin-bottom: 20px;
+    height: 200px;
+    background: #eee;
+    border: #999 1px solid;
+    text-align: center;
+    .album-name {
+        color: #000;
+        font-weight: bold;
     }
-  }
+    .album-cover {
+        line-height:180px;
+        img {
+            max-height: 180px;
+            vertical-align: middle;
+        }
+    }
+}
+
+.top-navbar {
+    padding-left: 130px;
+    padding-top: 20px;
+    border: 0;
+    background: #fff;
+    ul.nav {
+        li {
+            a {
+                color: #000;
+                &:hover {
+                    color: #999;
+                }
+            }
+        }
+    }
 }

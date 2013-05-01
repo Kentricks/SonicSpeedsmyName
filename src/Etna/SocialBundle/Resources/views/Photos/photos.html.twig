@@ -6,9 +6,13 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h2>{{ albumname }}</h2>
-        <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
-        <br />
-        <a href="#modalRemoveAlbum" data-toggle="modal"><i class="icon-trash"></i>Supprimer cet album</a>
+        <a href="{{ path('etna_social_get_albums', {'username' : username}) }}">Retour aux albums</a>
+        {% if app.user.username == username %}
+            <br />
+            <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
+            <br />
+            <a href="#modalRemoveAlbum" data-toggle="modal"><i class="icon-trash"></i>Supprimer cet album</a>
+        {% endif %}
 
         <div id="photo_gallery">
             {% if nophoto == false %}
