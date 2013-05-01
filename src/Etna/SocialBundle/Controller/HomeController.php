@@ -32,8 +32,9 @@ class HomeController extends Controller
             ->getRepository('EtnaSocialBundle:Statut');
         $coms = array();
         foreach($all_friend as $friend) {
-            $coms = array_merge($coms, $statutRep->findBy(array("expediteur" => $friend)));
+            $coms = array_merge($coms, $statutRep->findBy(array("expediteur" => $friend), array('date_creation' => 'DESC')));
         }
+
 
 		return $this->render('EtnaSocialBundle:Pages:home.html.twig', array(
 			'prenom' => $prenom,
