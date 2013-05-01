@@ -73,3 +73,15 @@ body {
   max-height: 180px;
   vertical-align: middle;
 }
+.top-navbar {
+  padding-left: 130px;
+  padding-top: 20px;
+  border: 0;
+  background: #fff;
+}
+.top-navbar ul.nav li a {
+  color: #000;
+}
+.top-navbar ul.nav li a:hover {
+  color: #999;
+}

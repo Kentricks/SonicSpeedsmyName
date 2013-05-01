@@ -461,6 +461,7 @@ class Membre extends BaseUser
                 return $album_list[$i];
             }
         }
+        return false;
     }
 
     /**

@@ -5,8 +5,12 @@
 {% block body %}
 <div class="container-fluid">
     <div class="row-fluid">
-        <h2>Mes albums</h2>
-        <a href="{{ path('etna_social_add_album', {'username': username}) }}">Créer un album</a>
+        {% if app.user.username == username %}
+            <h2>Mes albums</h2>
+            <a href="{{ path('etna_social_add_album', {'username': username}) }}">Créer un album</a>
+        {% else %}
+            <h2>Albums de {{ username }}</h2>
+        {% endif %}
 
         <div id="album_gallery">
             {% if noalbum == false %}

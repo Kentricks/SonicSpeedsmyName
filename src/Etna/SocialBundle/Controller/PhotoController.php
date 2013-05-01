@@ -185,4 +185,42 @@ class PhotoController extends Controller {
             'form' => $form->createView()
         ));
     }
+
+    public function setProfilePhotoAction($username, $photoid)
+    {
+        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+        $id = $user->getId();
+        if (($album = $user->getAlbumFrom('Profile Pictures')) === false)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $album = new Album();
+            $album->setNom('Profile Pictures');
+            $album->setMembre($user);
+            $album->setDateCreation(new \DateTime('now'));
+            $em->persist($album);
+            $user->addAlbum($album);
+            $em->flush();
+        }
+        $album_id = $album->getId();
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+        $album = $em->getRepository('EtnaSocialBundle:Album')->find($album_id);
+        $photo = $em->getRepository('EtnaSocialBundle:Photo')->find($photoid);
+        $user->setUrlPhoto($photo->getUrl());
+        $photo_already = false;
+        $album_photos = $album->getPhotos();
+        for ($i = 0; $i < count($album_photos); $i++) {
+            if ($photo == $album_photos[$i]) {
+                $photo_already = true;
+            }
+        }
+        if ($photo_already == false)
+        {
+            $album->addPhoto($photo);
+        }
+        $photo->setMembre($user);
+        $em->flush();
+        return $this->redirect($this->generateUrl('etna_social_profile',array('username'=> $username)));
+    }
 }
