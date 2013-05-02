@@ -61,7 +61,7 @@ class PhotoController extends Controller {
             if ($form->isValid())
             {
                 $em = $this->getDoctrine()->getManager();
-                $photo->setUrl('/2sn/web/uploads/'.$username.'/'.$photo->file->getClientOriginalName());
+                $photo->setUrl('/web/uploads/'.$username.'/'.$photo->file->getClientOriginalName());
                 $photo->setDateCreation(new \DateTime('now'));
                 $photo->setMembre($user);
                 $photo->upload($username);
@@ -149,7 +149,7 @@ class PhotoController extends Controller {
             if ($form->isValid())
             {
                 $em = $this->getDoctrine()->getManager();
-                $photo->setUrl('/2sn/web/uploads/'.$username.'/'.$photo->file->getClientOriginalName());
+                $photo->setUrl('/web/uploads/'.$username.'/'.$photo->file->getClientOriginalName());
                 $photo->setDateCreation(new \DateTime('now'));
                 $photo->setMembre($user);
                 $photo->upload($username);

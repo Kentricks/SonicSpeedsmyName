@@ -67,6 +67,10 @@ body {
 .top-navbar ul.nav li a:hover {
   color: #999;
 }
+#fos_user_registration_form select {
+  width: auto;
+  margin-right: 20px;
+}
 .error_logo {
   text-align: center;
 }

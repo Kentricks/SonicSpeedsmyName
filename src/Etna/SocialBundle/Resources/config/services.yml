@@ -7,6 +7,11 @@ services:
             arguments: [%fos_user.model.user.class%]
             tags:
                 - { name: form.type, alias: etna_user_registration }
+    et_user.modifierc.form.type:
+            class: Etna\SocialBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name : form.type, alias: etna_user_modifierc }
 
 #    etna_social.example:
 #        class: %etna_social.example.class%

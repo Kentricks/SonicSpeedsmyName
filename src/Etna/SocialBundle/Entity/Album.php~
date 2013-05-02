@@ -42,7 +42,7 @@ class Album
     protected $membre;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Photo", inversedBy="albums")
+     * @ORM\ManyToMany(targetEntity="Photo", inversedBy="albums", cascade="remove")
      */
     private $photos;
 
