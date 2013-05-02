@@ -113,3 +113,11 @@ etna_social_profil_modif:
 etna_social_profil_mdp:
     pattern: /{username}/change-password
     defaults: { _controller: EtnaSocialBundle:Changepass:changePassword}
+    
+etna_social_message:
+    pattern: /{username}/messages
+    defaults: { _controller: EtnaSocialBundle:Message:index }
+
+etna_social_ecrire_message:
+    pattern: /{username}/messages
+    defaults: { _controller: EtnaSocialBundle:Message:form }

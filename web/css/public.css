@@ -1,4 +1,5 @@
 /* Will be compiled down to a single stylesheet with your sass files */
+/* Will be compiled down to a single stylesheet with your sass files */
 #change_photo {
   font-size: 13px;
   margin-left: 5px;
@@ -69,4 +70,7 @@ body {
 #fos_user_registration_form select {
   width: auto;
   margin-right: 20px;
+}
+.error_logo {
+  text-align: center;
 }
