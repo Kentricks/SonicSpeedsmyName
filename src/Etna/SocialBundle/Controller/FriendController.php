@@ -78,6 +78,7 @@ class FriendController extends Controller
     public function findFriendAction($username)
     {
         /* To get all members  */
+        $allmembers = array();
         $member_doctrine = $this->getDoctrine()
             ->getRepository('EtnaSocialBundle:Membre')
             ->findAll();
@@ -103,7 +104,6 @@ class FriendController extends Controller
             ->getRepository('EtnaSocialBundle:Membre')
             ->find($id);
         $all_friend = $friend_doctrine->getMyfriends();
-        $allmembers = array();
         foreach($all_friend as $friend) {
             foreach($allmembers as $key => $value)
             {
