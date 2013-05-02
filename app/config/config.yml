@@ -87,3 +87,6 @@ fos_user:
             from_email:
                 address:        resetting@acmedemo.com
                 sender_name:    2SN Resetting
+    profile:
+        form:
+            type : etna_user_modifierc

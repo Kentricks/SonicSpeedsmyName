@@ -1,0 +1,22 @@
+{% extends '::social.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}
+    Changer de mot de passe - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="container row-fluid well span3">
+        <h3> Changer son mot de passe :</h3>
+        <hr>
+        <form  class="offset4" action="{{ path('etna_social_profil_mdp',{'username': username}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_change_password">
+        {{ form_widget(form) }}
+        <div>
+        <input type="submit" class="btn btn-primary" value="{{ 'change_password.submit'|trans }}" />
+    </div>
+    </div>
+</div>
+</form>
+{% endblock%}
