@@ -108,4 +108,4 @@ etna_social_set_photo:
 
 etna_social_profil_modif:
     pattern: /{username}/modifier
-    defaults: { _controller: EtnaSocialBundle:Profile:modifier}
+    defaults: { _controller: EtnaSocialBundle:ModifcompteController:edit}

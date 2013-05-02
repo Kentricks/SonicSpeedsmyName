@@ -43,11 +43,7 @@ class ProfileController extends Controller
             'statuts' => $statuts
         ));
     }
-    public function modifierAction($username)
-    {
-        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
-        
-    }
+
 
 
 
