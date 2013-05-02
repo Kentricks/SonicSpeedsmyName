@@ -31,15 +31,15 @@ class CommentairePhoto
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="date_creation", type="datetime")
      */
     private $date_creation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
-     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
      */
-    protected $membre;
+    protected $expediteur;
 
     /**
      * Get id
@@ -98,25 +98,25 @@ class CommentairePhoto
     }
 
     /**
-     * Set membre
+     * Set expediteur
      *
-     * @param \Etna\SocialBundle\Entity\Photo $membre
-     * @return Commentaire_photo
+     * @param \Etna\SocialBundle\Entity\Membre $expediteur
+     * @return CommentairePhoto
      */
-    public function setMembre(\Etna\SocialBundle\Entity\Photo $membre = null)
+    public function setExpediteur(\Etna\SocialBundle\Entity\Membre $expediteur = null)
     {
-        $this->membre = $membre;
+        $this->expediteur = $expediteur;
     
         return $this;
     }
 
     /**
-     * Get membre
+     * Get expediteur
      *
-     * @return \Etna\SocialBundle\Entity\Photo 
+     * @return \Etna\SocialBundle\Entity\Membre 
      */
-    public function getMembre()
+    public function getExpediteur()
     {
-        return $this->membre;
+        return $this->expediteur;
     }
 }
