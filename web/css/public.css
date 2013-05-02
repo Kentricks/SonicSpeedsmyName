@@ -1,5 +1,4 @@
 /* Will be compiled down to a single stylesheet with your sass files */
-/* Will be compiled down to a single stylesheet with your sass files */
 #change_photo {
   font-size: 13px;
   margin-left: 5px;
@@ -66,4 +65,8 @@ body {
 }
 .top-navbar ul.nav li a:hover {
   color: #999;
+}
+#fos_user_registration_form select {
+  width: auto;
+  margin-right: 20px;
 }
