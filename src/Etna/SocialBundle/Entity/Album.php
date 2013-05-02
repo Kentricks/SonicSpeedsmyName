@@ -164,4 +164,17 @@ class Album
     {
         return $this->photos;
     }
+
+    public function getPhotoById($id)
+    {
+        $photos = $this->photos;
+        foreach ($photos as $photo)
+        {
+            if ($photo->getId() == $id)
+            {
+                return $photo;
+            }
+        }
+        return false;
+    }
 }

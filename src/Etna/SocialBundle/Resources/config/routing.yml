@@ -117,3 +117,7 @@ etna_social_message:
 etna_social_ecrire_message:
     pattern: /{username}/messages
     defaults: { _controller: EtnaSocialBundle:Message:form }
+
+etna_social_add_com_photo:
+    pattern: /{username}/albums/{albumname}/{photoid}/add_comment
+    defaults: { _controller: EtnaSocialBundle:ComPhoto:addCom }
