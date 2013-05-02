@@ -1,12 +1,4 @@
 /* Will be compiled down to a single stylesheet with your sass files */
-/* Will be compiled down to a single stylesheet with your sass files */
-.info_perso {
-  border: 1px solid #d4d4d4;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  padding: 7px;
-}
 #change_photo {
   font-size: 13px;
   margin-left: 5px;
@@ -73,4 +65,8 @@ body {
 }
 .top-navbar ul.nav li a:hover {
   color: #999;
+}
+#fos_user_registration_form select {
+  width: auto;
+  margin-right: 20px;
 }

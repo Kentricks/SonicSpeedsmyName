@@ -3,39 +3,54 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
-<div class="container-fluid">
-  <div class="row-fluid">
-    <h2>Membres</h2>
-    <div>
-      <div class="span12" style="padding-bottom:20px;"><form class="navbar-search pull-left" action="{{ path('etna_social_find_friend', {'username': username}) }}" method="post">
-	<input type="text" class="search-query" placeholder="Search" name="username_search">
-      </form></div>
-      {% if searchnotfound != false %}
-      <div class="span12">{{ searchnotfound }} n'existe pas</div>
-      {% endif %}
-      {% if nomembers == true %}
-      <div class="span12">Tu as d&eacute;j&agrave; tous les membres en amis</div>
-      {% endif %}
-      {% for Allmembers in allmembers %}
-      <div class="span1" style="float:left">
-        {% if Allmembers.img == "" %}
-        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
-        {% else %}
-        <img  class="img-rounded" src="{{ Allmembers.img }}" alt="inco" height="100px" width="100px"/>
-        {% endif %}
-      </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <h2>Membres</h2>
+            <div>
+                <div class="span12" style="padding-bottom:20px;">
+                    <form class="navbar-search pull-left" action="{{ path('etna_social_find_friend', {'username': username}) }}" method="post">
+                        <input type="text" class="search-query" placeholder="Search" name="username_search">
+                    </form></div>
+                {% if searchnotfound != false %}
+                    <div class="span12">{{ searchnotfound }} n'existe pas</div>
+                {% endif %}
+                {% if nomembers == true %}
+                    <div class="span12">Tu as d&eacute;j&agrave; tous les membres en amis</div>
+                {% endif %}
+                {% set i = 0 %}
+                {% for Allmembers in allmembers %}
+                    {% set i = i + 1 %}
+                    {% if (i == 1) %}
+                        <div class="row-fluid">
+                    {% endif %}
+                    <div class="span2">
+                        <div class="span6">
+                            {% if Allmembers.img == "" %}
+                                <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
+                            {% else %}
+                                <img  class="img-rounded" src="{{ Allmembers.img }}" alt="inco" height="100px" width="100px"/>
+                            {% endif %}
+                        </div>
 
-      <div class="span1">
-	<div>{{ Allmembers.username }}</div>
-        <div> {{ Allmembers.prenom }} {{Allmembers.nom}} </div>
-	{% if Allmembers.deloradd == 'del' %}
-	<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Supprimer</a></div>
-	{% else %}
-	<div><a href="{{ path('etna_social_add_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Ajouter</a></div>
-	{% endif %}
-      </div>
-      {% endfor %}
+                        <div class="span6">
+                            <div><a href="{{ path('etna_social_profile', {'username': Allmembers.username})}}"> {{ Allmembers.username }} </a></div>
+                            <div> {{ Allmembers.prenom }} {{Allmembers.nom}} </div>
+                            {% if Allmembers.deloradd == 'del' %}
+                                <div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Supprimer</a></div>
+                            {% else %}
+                                <div><a href="{{ path('etna_social_add_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Ajouter</a></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if (i == 6) %}
+                        </div>
+                        {% set i = 0 %}
+                    {% endif %}
+                {% endfor %}
+                {% if i > 0 %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endblock body %}
