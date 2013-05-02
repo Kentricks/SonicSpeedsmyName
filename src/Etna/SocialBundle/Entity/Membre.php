@@ -90,12 +90,12 @@ class Membre extends BaseUser
     private $urlPhoto;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Membre", mappedBy="mesAmis")
+     * @ORM\ManyToMany(targetEntity="Membre", mappedBy="myFriends")
      */
     private $friendsWithMe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Membre", inversedBy="AmiAvecMoi")
+     * @ORM\ManyToMany(targetEntity="Membre", inversedBy="friendsWithMe")
      * @ORM\JoinTable(name="Amis",
      *      joinColumns={@ORM\JoinColumn(name="membre_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="ami_membre_id", referencedColumnName="id")}
