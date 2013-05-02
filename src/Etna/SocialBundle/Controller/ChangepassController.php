@@ -1,21 +1,18 @@
 <?php
-
     namespace Etna\SocialBundle\Controller;
+    use FOS\UserBundle\FOSUserEvents;
+    use FOS\UserBundle\Event\FormEvent;
+    use FOS\UserBundle\Event\FilterUserResponseEvent;
+    use FOS\UserBundle\Event\GetResponseUserEvent;
+    use FOS\UserBundle\Model\UserInterface;
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\RedirectResponse;
+    use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+    use FOS\UserBundle\Controller\ChangePasswordController as BaseController;
 
-	use FOS\UserBundle\FOSUserEvents;
-	use FOS\UserBundle\Event\FormEvent;
-	use FOS\UserBundle\Event\FilterUserResponseEvent;
-	use FOS\UserBundle\Event\GetResponseUserEvent;
-	use FOS\UserBundle\Model\UserInterface;
-	use Symfony\Component\DependencyInjection\ContainerAware;
-	use Symfony\Component\HttpFoundation\Request;
-	use Symfony\Component\HttpFoundation\RedirectResponse;
-	use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-    use FOS\UserBundle\Controller\ProfileController as BaseController;
-
-	class ModifcompteController extends BaseController {
-		public function editAction(Request $request)
-		{
+    class ChangepassController extends BaseController{
+        public function changePasswordAction(Request $request)
+        {
             $user = $this->container->get('security.context')->getToken()->getUser();
             $username = $user->getUsername();
             if (!is_object($user) || !$user instanceof UserInterface) {
@@ -26,19 +23,19 @@
             $dispatcher = $this->container->get('event_dispatcher');
 
             $event = new GetResponseUserEvent($user, $request);
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
+            $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_INITIALIZE, $event);
 
             if (null !== $event->getResponse()) {
                 return $event->getResponse();
             }
 
             /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-            $formFactory = $this->container->get('fos_user.profile.form.factory');
+            $formFactory = $this->container->get('fos_user.change_password.form.factory');
 
             $form = $formFactory->createForm();
             $form->setData($user);
 
-            if ('POST' === $request->getMethod()) {
+            if ($request->isMethod('POST')) {
                 $form->bind($request);
 
                 if ($form->isValid()) {
@@ -46,7 +43,7 @@
                     $userManager = $this->container->get('fos_user.user_manager');
 
                     $event = new FormEvent($form, $request);
-                    $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
+                    $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_SUCCESS, $event);
 
                     $userManager->updateUser($user);
 
@@ -55,15 +52,15 @@
                         $response = new RedirectResponse($url);
                     }
 
-                    $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+                    $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
                     return $response;
                 }
             }
 
             return $this->container->get('templating')->renderResponse(
-                'EtnaSocialBundle:Forms:edit.html.twig',
+                'EtnaSocialBundle:Forms:changepass.html.twig',
                 array('form' => $form->createView(), 'username' => $username)
             );
-		}
-	}
+        }
+    }

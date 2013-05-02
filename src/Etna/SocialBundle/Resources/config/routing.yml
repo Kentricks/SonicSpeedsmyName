@@ -108,7 +108,11 @@ etna_social_set_photo:
 
 etna_social_profil_modif:
     pattern: /{username}/modifier
-    defaults: { _controller: EtnaSocialBundle:ModifcompteController:edit}
+    defaults: { _controller: EtnaSocialBundle:Modifcompte:edit}
+
+etna_social_profil_mdp:
+    pattern: /{username}/change-password
+    defaults: { _controller: EtnaSocialBundle:Changepass:changePassword}
     
 etna_social_message:
     pattern: /{username}/messages
@@ -117,3 +121,7 @@ etna_social_message:
 etna_social_ecrire_message:
     pattern: /{username}/messages
     defaults: { _controller: EtnaSocialBundle:Message:form }
+
+etna_social_add_com_photo:
+    pattern: /{username}/albums/{albumname}/{photoid}/add_comment
+    defaults: { _controller: EtnaSocialBundle:ComPhoto:addCom }

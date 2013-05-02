@@ -1,0 +1,4 @@
+<form action="{{ path('etna_social_add_com_photo', {'username' : username, 'albumname' : albumname, 'photoid' : photoid}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input class="btn btn-small" type="submit" value="Ecrire"/>
+</form>

@@ -36,6 +36,12 @@ class CommentairePhoto
     private $date_creation;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="commentaires")
+     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id")
+     */
+    protected $photo;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Membre")
      * @ORM\JoinColumn(name="expediteur_id", referencedColumnName="id")
      */
@@ -118,5 +124,28 @@ class CommentairePhoto
     public function getExpediteur()
     {
         return $this->expediteur;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param \Etna\SocialBundle\Entity\Photo $photo
+     * @return Commentaire_photo
+     */
+    public function setPhoto(\Etna\SocialBundle\Entity\Photo $photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return \Etna\SocialBundle\Entity\Photo
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

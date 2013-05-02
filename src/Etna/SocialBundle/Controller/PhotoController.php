@@ -103,12 +103,28 @@ class PhotoController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $photo = $em->getRepository('EtnaSocialBundle:Photo')->find($photoid);
         $url = $photo->getUrl();
+        $commentaires = $photo->getCommentaires();
+        $allComments = array();
+        $comment = array();
+        $hasComment = false;
+        foreach($commentaires as $commentaire)
+        {
+            $comment['id'] = $commentaire->getId();
+            $comment['contenu'] = $commentaire->getContenu();
+            $comment['date'] = $commentaire->getDateCreation();
+            $comment['expediteur'] = $commentaire->getExpediteur();
+            $allComments[$commentaire->getId()] = $comment;
+            $comment = array();
+            $hasComment = true;
+        }
 
         return $this->render('EtnaSocialBundle:Photos:displayphoto.html.twig', array(
             'username' => $username,
             'albumname' => $albumname,
             'photoid' => $photoid,
-            'url' => $url
+            'url' => $url,
+            'allComments' => $allComments,
+            'hasComment' => $hasComment
         ));
     }
 
