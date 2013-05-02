@@ -45,23 +45,27 @@ class MessageController extends Controller
 
         $user_exp = $this->container->get('security.context')->getToken()->getUser();
 
+        //$friends = $user_exp->getMyFriends();
+
         $mess = new Message();
 
         $mess->setDateCreation(new \DateTime('now'));
         $mess->setExpediteur($user_exp);
+        $mess->addDestinataire($user_exp);
 
         $form = $this->createForm(new MessageFormType(), $mess);
 
         if ($request->getMethod() == 'POST') {
 
             $form->bind($request);
-
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($mess);
                 $em->flush();
                 return $this->redirect($this->generateUrl('etna_social_profile',array('username'=> $name_dest)));
             }
+            else
+                return $this->redirect($this->generateUrl('etna_social_home'));
         }
 
         return $this->render('EtnaSocialBundle:Elements:messageForm.html.twig', array(
