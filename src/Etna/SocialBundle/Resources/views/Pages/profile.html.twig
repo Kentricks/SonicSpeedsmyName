@@ -27,7 +27,7 @@
                 <button class="btn"><i class="icon-amis"></i> <a href=" {{ path('etna_social_get_friend', {'username': username}) }}">Mes Amis</a></button>
                 <button class="btn"><i class="icon-picture"></i> <a href=" {{ path('etna_social_get_albums', {'username': username}) }}">Mes Photos</a></button>
                 {% if app.user.username == username %}
-                    <button class="btn"><i class="icon-cog"></i> Mes paramètres</button>
+                    <button class="btn"><i class="icon-cog"></i> <a href="{{ path('etna_social_profil_modif', {'username': username}) }}"> Mes paramètres</a></button>
                 {% endif %}
             </div>
         </div>
