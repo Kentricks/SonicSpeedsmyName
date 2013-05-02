@@ -17,13 +17,29 @@ use Etna\SocialBundle\Entity\Membre;
 
 class HomeController extends Controller
 {
-	public function indexAction()
+	public function indexAction(Request $request)
 	{
 		$user = $this->container->get('security.context')->getToken()->getUser();
 		$prenom = $user->getPrenom();
+		//Recup amis
+        $friend_doctrine = $this->getDoctrine()
+        	->getRepository('EtnaSocialBundle:Membre')
+        	->find($user);
+        $all_friend = $friend_doctrine->getMyfriends();
+
+        //Recup Status
+        $statutRep = $this->getDoctrine()
+            ->getRepository('EtnaSocialBundle:Statut');
+        $coms = array();
+        foreach($all_friend as $friend) {
+            $coms = array_merge($coms, $statutRep->findBy(array("expediteur" => $friend), array('date_creation' => 'DESC')));
+        }
+
 
 		return $this->render('EtnaSocialBundle:Pages:home.html.twig', array(
-			'prenom' => $prenom
+			'prenom' => $prenom,
+            'coms' => $coms,
+            'url' => $request->getPathInfo(),
 		));
 	}
 }

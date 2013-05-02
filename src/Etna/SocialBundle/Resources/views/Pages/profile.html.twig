@@ -13,25 +13,28 @@
             {% else %}
                 <img  class="img-rounded" src="{{ img }}" alt="inco" height="140px"/>
             {% endif %}
-            <p id="change_photo" class="btn">Changer ma photo</p>
+            {% if app.user.username == username %}
+                <a href="{{ path('etna_social_change_photo', {'username': username}) }}"><button id="change_photo" class="btn">Changer ma photo</button></a>
+            {% endif %}
         </div>
 
         <div class="span7 info_perso">
-            <h3>{{ prenom }} {{ nom }} </h3>
+            <h3><a href="{{ path('etna_social_profile', {'username': username}) }}">{{ prenom }} {{ nom }}</a></h3>
             <p>
                 <i class="icon-user"></i> {{ genre }}
             </p>
-            <div class="btn-group">
-                <a href=" {{ path('etna_social_get_friend', {'username': username}) }}"><button class="btn">Mes Amis</button></a>
-                <button class="btn">Mes Photos</button>
-                <button class="btn">Mes paramètres</button>
+            <div class="btn-group menu_profil">
+                <button class="btn"><i class="icon-amis"></i> <a href=" {{ path('etna_social_get_friend', {'username': username}) }}">Mes Amis</a></button>
+                <button class="btn"><i class="icon-picture"></i> <a href=" {{ path('etna_social_get_albums', {'username': username}) }}">Mes Photos</a></button>
+                {% if app.user.username == username %}
+                    <button class="btn"><i class="icon-cog"></i> Mes paramètres</button>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
 
     <div class="span9 offset2 group_status">
-        <legend>Ecrire</legend>
         {% render controller('EtnaSocialBundle:Statut:new', {'url' : app.request.pathInfo})  %}
 
         {% for statut in statuts %}

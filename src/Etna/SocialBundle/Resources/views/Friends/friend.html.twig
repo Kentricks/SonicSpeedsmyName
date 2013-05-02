@@ -10,6 +10,7 @@
       {% if notmyfriend == 0 %}
       <div class="span12" style="padding-bottom:20px;"><form class="navbar-search pull-left" action="{{ path('etna_social_get_friend', {'username': username}) }}" method="post">
         <input type="text" class="search-query" placeholder="Search" name="username_search">
+	</form>
       </div>
       {% endif %}
       {% if searchnotfound != false %}
@@ -29,7 +30,7 @@
       </div>
 
       <div class="span1">
-	<div> {{ Allfriends.username }} </div>
+	<div><a href="{{ path('etna_social_profile', {'username': username})}}"> {{ Allfriends.username }} </a></div>
         <div> {{ Allfriends.prenom }} {{ Allfriends.nom }} </div>
 	{% if notmyfriend == 0 %}
 	<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allfriends.username, 'username': username}) }}">Supprimer</a></div>

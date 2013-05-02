@@ -1,0 +1,17 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h2>Modifier votre photo de profil</h2>
+
+        <form action="{{ path('etna_social_change_photo', {'username' : username})}}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn btn-small" value="Uploader photo" />
+        </form>
+    </div>
+</div>
+{% endblock body %}

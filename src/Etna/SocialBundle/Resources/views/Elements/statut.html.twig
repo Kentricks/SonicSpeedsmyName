@@ -4,14 +4,32 @@
         <div class="row-fluid">
             <div class="span2">
                 {% if statut.expediteur.urlPhoto == "" %}
-                        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="140px"/>
+                        <img  class="img_statut" src="{{ asset('img/inco.png') }}" alt="inco" />
                 {% else %}
-                        <img  class="img-rounded" src="{{ img }}"  height="140px"/>
+                        <img  class="img_statut" src="{{ statut.expediteur.urlPhoto }}" />
                 {% endif %}
             </div>
             <div class="span10 statut_content">
                 <div class="row-fluid">
-                    <div class="span8"><h4>{{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}</h4></div>
+                    <div class="span8">
+                        {% if app.request.pathInfo == "/home" %}
+                            <h4>
+                                <a href="{{ path('etna_social_profile', {'username' : statut.expediteur.username}) }}" >
+                                    {{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}
+                                </a>
+                                <i class="icon-forward"></i>
+                                <a href="{{ path('etna_social_profile', {'username' : statut.destinataire.username}) }}" >
+                                    {{ statut.destinataire.prenom }} {{ statut.destinataire.nom }}
+                                </a>
+                            </h4>
+                        {% else %}
+                        <h4>
+                            <a href="{{ path('etna_social_profile', {'username' : statut.expediteur.username}) }}" >
+                                {{ statut.expediteur.prenom }} {{ statut.expediteur.nom }}
+                            </a>
+                        </h4>
+                        {% endif %}
+                    </div>
                     <div class="span4 outils_statut">
                         {% if statut.destinataire.username == app.user.username %}
                             <div>
@@ -24,24 +42,38 @@
                                       </div>
                                       <div class="modal-footer">
                                         <a data-dismiss="modal" class="btn">Annuler</a>
-                                        <a href="{{ path('etna_social_remove_status', {'statut': statut.id}) }}" class="btn btn-primary">Supprimer</a>
+                                        <a href="{{ path('etna_social_remove_status', {'statut': statut.id, 'url' : app.request.pathInfo}) }}" class="btn btn-primary">Supprimer</a>
                                       </div>
                                     </div>
                             </div>
                         {% endif %}
+                        <a href="#myModal2{{ statut.id }}" role="button" data-toggle="modal" alt="Commentaire">
+                            <i class="icon-pencil"></i>
+                        </a>
+                        <div class="modal hide fade" id="myModal2{{ statut.id }}">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 id="myModalLabel">Commentaires</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="group-commentaires">
+                                    {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id, 'modal' : statut.id })  %}
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
+                            </div>
+                        </div>
                     </div>
                     </div>
 
                 <div class="statut_content">{{ statut.contenu }}</div>
-                <div>{{ statut.dateCreation | date('j F Y H:i:s') }}</div>
+                <div>{{ statut.dateCreation | date('j F Y H:i:s') }}
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="group-commentaires">
-
-        {% render controller('EtnaSocialBundle:ComStatut:show', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-        {% render controller('EtnaSocialBundle:ComStatut:new', {'url' : app.request.pathInfo, 'statut' : statut.id})  %}
-
 </div>
 </div>

@@ -4,29 +4,42 @@
 
 {% block body %}
 <div class="container-fluid">
-  <div class="row-fluid">
-    <h2>Mes albums</h2>
-    <div>
-      {% if noalbum == false %}
-      <div>Tu n'as pas d'album !!!</div>
-      {#<a href="{{ path('etna_social_find_friend', {'username': username}) }}">Clique ici pour en avoir</a>#}
-      {% endif %}
-      {% for Allalbums in allalbums %}
-      {#<div class="span1" style="float:left">
-        {% if Allfriends.img == "" %}
-        <img  class="img-rounded" src="{{ asset('img/inco.png') }}" alt="inco" height="100px" width="100px"/>
+    <div class="row-fluid">
+        {% if app.user.username == username %}
+            <h2>Mes albums</h2>
+            <a href="{{ path('etna_social_add_album', {'username': username}) }}">Créer un album</a>
         {% else %}
-        <img  class="img-rounded" src="{{ Allfriends.img }}" alt="inco" height="100px" width="100px"/>
+            <h2>Albums de {{ username }}</h2>
         {% endif %}
-      </div>#}
 
-      <div class="span1">
-	<div> {{Allalbums.nom}} </div>
-        {#<div> {{ Allfriends.prenom }} {{Allfriends.nom}} </div>#}
-	{#<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allfriends.username, 'username': username}) }}">Supprimer</a></div>#}
-      </div>
-      {% endfor %}
+        <div id="album_gallery">
+            {% if noalbum == false %}
+                <div>Tu n'as pas d'album !!!</div>
+            {% endif %}
+
+            {% set i = 0 %}
+            {% for Allalbums in allalbums %}
+                {% set i = i + 1 %}
+                {% if (i == 1) %}
+                    <div class="row-fluid">
+                {% endif %}
+                <div class="span2 album-thumbnail">
+                    <a href="{{ path('etna_social_get_photos', {'username' : username, 'albumname' : Allalbums.nom}) }}">
+                        <div class="album-cover">
+                            <img src="{{ Allalbums.cover }}" />
+                        </div>
+                        <div class="album-name"> {{Allalbums.nom}} </div>
+                    </a>
+                </div>
+                {% if (i == 6) %}
+                    </div>
+                    {% set i = 0 %}
+                {% endif %}
+            {% endfor %}
+            {% if i > 0 %}
+                </div>
+            {% endif %}
+        </div>
     </div>
-  </div>
 </div>
 {% endblock body %}

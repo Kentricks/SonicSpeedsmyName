@@ -114,7 +114,7 @@ class Membre extends BaseUser
     private $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity="Album", mappedBy="membre")
+     * @ORM\OneToMany(targetEntity="Album", mappedBy="membre", cascade="persist")
      */
     private $albums;
 
@@ -449,6 +449,19 @@ class Membre extends BaseUser
     public function getAlbums()
     {
         return $this->albums;
+    }
+
+    public function getAlbumFrom($albumname)
+    {
+        $album_list = $this->albums;
+        for ($i = 0; $i < count($album_list); $i++)
+        {
+            if ($album_list[$i]->getNom() == $albumname)
+            {
+                return $album_list[$i];
+            }
+        }
+        return false;
     }
 
     /**

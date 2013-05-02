@@ -28,7 +28,10 @@ class ProfileController extends Controller
         $genre = $user->getGenre();
         $img = $user->getUrlPhoto();
 
-        $statuts = $user->getStatuts();
+        $repository = $this->getDoctrine()->getManager()
+            ->getRepository('EtnaSocialBundle:Statut');
+        $statuts = $repository->findBy(array('destinataire' => $user), array('date_creation' => 'desc'));
+
 
         //Statut
         return $this->render('EtnaSocialBundle:Pages:profile.html.twig', array(

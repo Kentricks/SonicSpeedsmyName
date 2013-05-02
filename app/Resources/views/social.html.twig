@@ -17,7 +17,7 @@
                 <div class="navbar navbar">
                     <div class="row-fluid">
                         <img src="{{ asset('img/logo2sn.png') }}" alt="Logo 2SN" style="height:80px; position: absolute;" />
-                        <div class="navbar-inner" style="padding-left: 130px; padding-top: 20px; border: 0;">
+                        <div class="navbar-inner top-navbar">
                             <ul class="nav">
                                 <li>
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -66,6 +66,8 @@
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/jquery-1.9.1.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.cookie.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/perso.js') }}"></script>
         {% endblock %}
     </body>
 </html>

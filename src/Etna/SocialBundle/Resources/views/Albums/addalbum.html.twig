@@ -4,12 +4,14 @@
 
 {% block body %}
 <div class="container-fluid">
-  <div class="row-fluid">
-    <h2>Ajouter un album</h2>
-    <div>
-        <input type="input" name="album_name" />
-	    <a href="{{ path('etna_social_add_album', {'username': username}) }}">Créer un album</a></div>
+    <div class="row-fluid">
+        <h2>Créer un album</h2>
+
+        <form action="{{ path('etna_social_add_album', {'username' : username})}}" method="post" {{ form_enctype(form) }}>
+            {{ form_widget(form) }}
+
+            <input type="submit" class="btn btn-small" value="Créer album" />
+        </form>
     </div>
-  </div>
 </div>
 {% endblock body %}

@@ -104,8 +104,12 @@ etna_social_change_photo:
 
 etna_social_set_photo:
     pattern: /{username}/albums/{albumname}/{photoid}/set_photo
+<<<<<<< HEAD
     defaults: { _controller: EtnaSocialBundle:Photo:setProfilePhoto }
 
 etna_social_profil_modif:
     pattern: /{username}/modifier
     defaults: { _controller: EtnaSocialBundle:Profile:modifier}
+=======
+    defaults: { _controller: EtnaSocialBundle:Photo:setProfilePhoto }
+>>>>>>> a55bc32e007c7d782f8b0d8ca7fc07c636682485

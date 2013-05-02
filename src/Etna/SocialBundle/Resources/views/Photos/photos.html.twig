@@ -1,0 +1,58 @@
+{% extends '::social.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h2>{{ albumname }}</h2>
+        <a href="{{ path('etna_social_get_albums', {'username' : username}) }}">Retour aux albums</a>
+        {% if app.user.username == username %}
+            <br />
+            <a href="{{ path('etna_social_add_photo', {'username': username, 'albumname' : albumname}) }}"><i class="icon-plus"></i>Ajouter une photo</a>
+            <br />
+            <a href="#modalRemoveAlbum" data-toggle="modal"><i class="icon-trash"></i>Supprimer cet album</a>
+        {% endif %}
+
+        <div id="photo_gallery">
+            {% if nophoto == false %}
+                <div>Tu n'as pas de photo dans cet album.</div>
+            {% endif %}
+
+            {% set i = 0 %}
+            {% for Allphoto in allphoto %}
+                {% set i = i + 1 %}
+                {% if (i == 1) %}
+                    <div class="row-fluid">
+                {% endif %}
+                <div class="span2 photo-thumbnail">
+                    <a href={{ path('etna_social_display_photo', {'username': username, 'albumname' : albumname, 'photoid' : Allphoto.id}) }}>
+                        <img src="{{ Allphoto.url }}" />
+                    </a>
+                </div>
+                {% if (i == 6) %}
+                    </div>
+                    {% set i = 0 %}
+                {% endif %}
+            {% endfor %}
+            {% if i > 0 %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div id="modalRemoveAlbum" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Supprimer un album</h3>
+    </div>
+    <div class="modal-body">
+        <p>Voulez-vous vraiment supprimer cet album ?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+        <a class="btn btn-primary" href="{{ path('etna_social_remove_album', {'username': username, 'albumname' : albumname}) }}">Supprimer l'album</a>
+    </div>
+</div>
+{% endblock body %}

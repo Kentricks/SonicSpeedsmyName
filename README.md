@@ -1,5 +1,12 @@
 Projet 2SN
 
+TO-DO :
+    - Groupe d'amis
+    - Paramètres Membre
+    - Administration (gestion photo, comptes, etc)
+    - Commentaires photos
+
+
 A faire dans l'ordre :
 
   Si un nouveau fichier a été crée :
