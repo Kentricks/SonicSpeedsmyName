@@ -26,7 +26,7 @@
       </div>
 
       <div class="span1">
-	<div>{{ Allmembers.username }}</div>
+	<div><a href="{{ path('etna_social_profile', {'username': Allmembers.username})}}"> {{ Allmembers.username }} </a></div>
         <div> {{ Allmembers.prenom }} {{Allmembers.nom}} </div>
 	{% if Allmembers.deloradd == 'del' %}
 	<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allmembers.username, 'username': username}) }}">Supprimer</a></div>

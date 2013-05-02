@@ -30,7 +30,7 @@
       </div>
 
       <div class="span1">
-	<div><a href="{{ path('etna_social_profile', {'username': username})}}"> {{ Allfriends.username }} </a></div>
+	<div><a href="{{ path('etna_social_profile', {'username': Allfriends.username})}}"> {{ Allfriends.username }} </a></div>
         <div> {{ Allfriends.prenom }} {{ Allfriends.nom }} </div>
 	{% if notmyfriend == 0 %}
 	<div><a href="{{ path('etna_social_remove_friend', {'username_friend': Allfriends.username, 'username': username}) }}">Supprimer</a></div>
