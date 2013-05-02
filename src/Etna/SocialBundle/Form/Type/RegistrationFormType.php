@@ -14,7 +14,10 @@ class RegistrationFormType extends BaseType
             ->add('genre', 'choice', array(
                 'choices'   => array('Homme' => 'Homme', 'Femme' => 'Femme'),
             ))
-            ->add('date_naissance', 'birthday');
+            ->add('date_naissance', 'birthday', array(
+                'format' => 'dd-MM-yyyy',
+                'years' => range(1950, date('Y'))
+            ));
     }
     public function getName()
     {
