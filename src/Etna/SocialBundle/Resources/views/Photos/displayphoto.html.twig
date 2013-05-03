@@ -40,6 +40,9 @@
                         <a href="{{ path('etna_social_profile', {'username': com.expediteur.username})}}">{{ com.expediteur.prenom }} {{ com.expediteur.nom }}</a>
                     </div>
                     <div class="row-fluid">
+                        {% if app.user.username == com.expediteur.username %}
+                            <a class="pull-right" href="{{ path('etna_social_remove_com_photo', {'username' : username, 'albumname' : albumname, 'photoid' : photoid, 'commentid' : com.id }) }}"><i class="icon-remove"></i></a>
+                        {% endif %}
                         {{ com.contenu }}
                     </div>
                 </div>

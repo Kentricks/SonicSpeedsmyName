@@ -50,4 +50,19 @@ class ComPhotoController extends Controller
             'username'=> $username, 'albumname' => $albumname, 'photoid' => $photoid
         ));
     }
+
+    public function removeComAction($username, $albumname, $photoid, $commentid)
+    {
+        $user = $this->container->get('fos_user.user_manager')->loadUserByUsername($username);
+        $id = $user->getId();
+        $em = $this->getDoctrine()->getManager();
+        $album_doctrine = $em->getRepository('EtnaSocialBundle:Membre')->find($id);
+        $album = $album_doctrine->getAlbumFrom($albumname);
+        $photo = $album->getPhotoById($photoid);
+        $com = $em->getRepository('EtnaSocialBundle:CommentairePhoto')->find($commentid);
+        $photo->removeCommentaire($com);
+        $com->setPhoto(null);
+        $em->flush();
+        return $this->redirect($this->generateUrl('etna_social_display_photo',array('username'=> $username, 'albumname' => $albumname, 'photoid' => $photoid, 'commentid' => $commentid)));
+    }
 }

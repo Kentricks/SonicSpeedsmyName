@@ -125,3 +125,7 @@ etna_social_ecrire_message:
 etna_social_add_com_photo:
     pattern: /{username}/albums/{albumname}/{photoid}/add_comment
     defaults: { _controller: EtnaSocialBundle:ComPhoto:addCom }
+
+etna_social_remove_com_photo:
+    pattern: /{username}/albums/{albumname}/{photoid}/remove_comment/{commentid}
+    defaults: { _controller: EtnaSocialBundle:ComPhoto:removeCom }

@@ -132,7 +132,7 @@ class CommentairePhoto
      * @param \Etna\SocialBundle\Entity\Photo $photo
      * @return Commentaire_photo
      */
-    public function setPhoto(\Etna\SocialBundle\Entity\Photo $photo)
+    public function setPhoto($photo)
     {
         $this->photo = $photo;
 
