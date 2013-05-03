@@ -4,37 +4,34 @@ namespace Etna\SocialBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType as Base;
 use Symfony\Component\Form\FormBuilderInterface;
-
+use Symfony\Component\HttpFoundation\Request;
+use Etna\SocialBundle\Entity\Membre;
+use Doctrine\ORM\EntityRepository;
 
 class MessageFormType extends Base
 {
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'virtual' => true,
-            'data_class' => 'Etna\SocialBundle\Entity\Membre',
+    /*
+    private $friends;
 
-        );
+    public function __construct($friends){
+        $this->friends = $friends;
     }
+      */
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        if($options['choices'])
-  //      {
+        //$friends = $this->friends;
         $builder->add('objet', 'text',  array('attr' => array('placeholder' => 'Objet'), 'label' => false))
             ->add('contenu', 'textarea', array(
             'attr' => array('rows' => 2, 'class' => '', 'placeholder' => 'Ecrire'), 'label' => false))
-            ->add('myFriends', new MessageFormType(), array(
-                'data_class' => 'Etna\SocialBundle\Entity\Membre'));
+            ->add('destinataires', 'entity', array(
+                'class' => 'Etna\SocialBundle\Entity\Membre',
+    'query_builder' => function(EntityRepository $repository)  {
+        return $repository->createQueryBuilder('q')
+            ;
+    }));
 
-        /*
-        else
-        {
-           $builder->add('objet', 'text',  array('attr' => array('placeholder' => 'Objet'), 'label' => false))
-        ->add('contenu', 'textarea', array(
-            'attr' => array('rows' => 2, 'class' => '', 'placeholder' => 'Ecrire'), 'label' => false));
-        } */
     }
 
 
@@ -47,4 +44,5 @@ class MessageFormType extends Base
     {
         return 'etna_social_ecrire_message';
     }
+
 }

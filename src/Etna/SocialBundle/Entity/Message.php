@@ -50,7 +50,7 @@ class Message
     private $expediteur;
     
      /**
-     * @ORM\ManyToMany(targetEntity="Membre")
+     * @ORM\ManyToMany(targetEntity="Membre", cascade="persist")
      * @ORM\JoinTable(name="messages_destinataires",
      *      joinColumns={@ORM\JoinColumn(name="message_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="destinataire_id", referencedColumnName="id")}
